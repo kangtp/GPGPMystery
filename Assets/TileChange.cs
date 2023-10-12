@@ -6,9 +6,10 @@ using UnityEngine.Tilemaps;
 
 public class TileChange : MonoBehaviour
 {
-    Grid grid;
+    //Grid grid;
     public Tilemap tilemap;
     public TileBase tileBase;
+    private Vector3 wallPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +28,13 @@ public class TileChange : MonoBehaviour
         //}
         if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽 버튼 클릭을 감지
         {
+            Debug.Log("Screen : " + Input.mousePosition);
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); // 화면 좌표를 월드 좌표로 변환
-            Vector3Int cellPosition = grid.WorldToCell(mousePosition); // 월드 좌표를 그리드 셀 좌표로 변환
-                                                                       // cellPosition을 사용하여 선택한 셀의 위치 정보를 얻을 수 있음
+            Debug.Log("World : " + mousePosition);
+            //Vector3Int cellPosition = WorldToCell(mousePosition); // 월드 좌표를 그리드 셀 좌표로 변환
+            //Debug.Log(cellPosition);
+            //ChangeTile(new Vector3Int((int)wallPosition.x, (int)wallPosition.y,0));
+
         }
 
     }
@@ -44,7 +49,17 @@ public class TileChange : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, 10, LayerMask.GetMask("wall"));
         if (hit.collider != null)
         {
-            //Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.transform.position);
+            wallPosition = hit.collider.transform.position;
+            //벽 타일맵 Int 좌표
+            Vector3Int wallPos = new Vector3Int((int)(wallPosition.x - 0.5), (int)(wallPosition.y - 0.5), 0);
+
+            //벽 뒤 타일 좌표
+            Vector3Int[] wallBackPos = new Vector3Int[5];
+            for(int i = 1; i < wallBackPos.Length + 1; i++)
+            {
+                ChangeTile(new Vector3Int (wallPos.x - i, wallPos.y, 0));
+            }
         }
     }
 }
