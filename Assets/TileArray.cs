@@ -2,52 +2,329 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+
 public class TileArray : MonoBehaviour
 {
+
+    enum TileType { ground, shadow, edge, fire, wall};
+
     //90' rotate to left
     public int[,] tileMap = new int[,]
     {
-         {2,2,2},   
-         {2,2,0},
-         {2,2,2}
+         {2,2,2,2,3,2,2,2,2,2},
+         {2,0,0,0,0,0,0,0,0,2},
+         {2,0,0,0,0,0,0,0,0,2},
+         {2,0,0,0,0,0,0,0,0,2},
+         {2,0,0,0,0,0,0,0,0,3},
+         {2,0,0,0,0,0,0,0,0,2},
+         {2,0,0,0,0,0,0,0,0,2},
+         {2,0,0,0,0,0,0,0,0,2},
+         {2,0,0,0,0,0,0,0,0,2},
+         {2,2,2,2,2,2,2,2,2,2}
+
     };
 
+    public int[,] wallMap = new int[,]
+    {
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,1,0,0,0,0,0,0,1,0},
+         {0,1,0,0,0,0,0,0,1,0},
+         {0,0,1,0,0,0,0,0,0,0},
+         {0,0,1,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,1,0},
+         {0,0,0,0,0,0,0,0,1,0},
+         {0,0,0,0,1,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0}
+    };
+
+
     public float TileSize;
+
+    public float wallSize;
+
+    private int getWall_x, getWall_y;
+
     public Vector2 StartPoint;//top left corner of the map
+
+    private Vector2 dragStartPosition;
+
+    private GameObject get_Wall;
+
+    public GameObject[,] tilePrefab = new GameObject[10,10];
+    public Sprite shadowSprite;
+
+    private bool detectedWall = false;
+
 
     // Use this for initialization
     void Start()
     {
         TileSize = 1;
-        StartPoint = new Vector2(0, 0);
+        wallSize = 1;
         PopulateTileMap();
+        PopulatewallMap();
+        LightDirection();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            int tem = tileMap[1, 1];
-            tileMap[1, 1] = tileMap[0, 0];
-            tileMap[0, 0] = tem;
-            PopulateTileMap();
-        }
+        moveWall();
+        LightDirection();
     }
+
 
     public void PopulateTileMap()
     {
-        for (int i = 0; i < tileMap.GetLength(1); i++)
+        for (int i = 0; i < tileMap.GetLength(0); i++)
         {
-            for (int j = 0; j < tileMap.GetLength(0); j++)
+            for (int j = 0; j < tileMap.GetLength(1); j++)
             {
 
                 GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString()) as GameObject;
                 GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
-                tile.transform.position = new Vector3(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2), 0);
+                tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                tilePrefab[i,j] = tile;
 
             }
         }
     }
+
+    public void PopulatewallMap()
+    {
+        for (int i = 0; i < wallMap.GetLength(0); i++)
+        {
+            for (int j = 0; j < wallMap.GetLength(1); j++)
+            {
+                if (wallMap[i, j] == 1)
+                {
+                    GameObject prefab = Resources.Load("wall") as GameObject;
+                    GameObject wall = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    wall.GetComponent<wall_Info>().Set(i, j);
+                    tileMap[i, j] = 4;
+                    wall.transform.position = new Vector2(StartPoint.x + (wallSize * j) + (wallSize / 2), StartPoint.y - (wallSize * i) - (wallSize / 2));
+
+                }
+
+            }
+        }
+    }
+
+    private void moveWall()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.CompareTag("wall"))
+                {
+                    get_Wall = hit.transform.gameObject;
+                    getWall_x = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_X();
+                    getWall_y = hit.transform.gameObject.GetComponent<wall_Info>().get_Y();
+                    detectedWall = true;
+                }
+            }
+            dragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            Vector2 dragEndPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 dragDirection = dragEndPosition - dragStartPosition;
+
+            // 상하 드래그 방향 감지
+            if (detectedWall)
+            {
+                if (Mathf.Abs(dragDirection.y) > Mathf.Abs(dragDirection.x))
+                {
+                    if (dragDirection.y > 0) // UP
+                    {
+                        detectWallFunc(getWall_x, getWall_y, 'U');
+                    }
+                    else if (dragDirection.y < 0) // Down
+                    {
+                        detectWallFunc(getWall_x, getWall_y, 'D');
+                    }
+                }
+                // 좌우 드래그 방향 감지
+                else
+                {
+                    if (dragDirection.x > 0) // Right
+                    {
+                        detectWallFunc(getWall_x, getWall_y, 'R');
+                    }
+                    else if (dragDirection.x < 0) // Left
+                    {
+                        detectWallFunc(getWall_x, getWall_y, 'L');
+                    }
+                }
+            }
+        }
+    }
+
+    private void detectWallFunc(int x, int y, char v)
+    {
+        //Debug.Log(getWall_x + "," + getWall_y);
+        switch (v)
+        {
+            case 'U':
+                {
+                    if (tileMap[x - 1, y] == 0)
+                    {
+                        wallMap[x - 1, y] = 1;
+                        wallMap[x, y] = 0;
+                        tileMap[x - 1, y] = 4;
+                        tileMap[x, y] = 0;
+                        get_Wall.GetComponent<wall_Info>().Set(x - 1, y);
+                        get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y + 1, 0);
+                    }
+                }
+                break;
+            case 'D':
+                {
+                    if (tileMap[x + 1, y] == 0)
+                    {
+                        wallMap[x + 1, y] = 1;
+                        wallMap[x, y] = 0;
+                        tileMap[x + 1, y] = 4;
+                        tileMap[x, y] = 0;
+                        get_Wall.GetComponent<wall_Info>().Set(x + 1, y);
+                        get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y - 1, 0);
+                    }
+                }
+                break;
+            case 'R':
+                {
+                    if (tileMap[x, y + 1] == 0)
+                    {
+                        wallMap[x, y + 1] = 1;
+                        wallMap[x, y] = 0;
+                        tileMap[x, y + 1] = 4;
+                        tileMap[x, y] = 0;
+                        get_Wall.GetComponent<wall_Info>().Set(x, y + 1);
+                        get_Wall.transform.position = new Vector3(get_Wall.transform.position.x + 1, get_Wall.transform.position.y, 0);
+                    }
+                }
+                break;
+            case 'L':
+                {
+                    if (tileMap[x, y - 1] == 0)
+                    {
+                        wallMap[x, y - 1] = 1;
+                        wallMap[x, y] = 0;
+                        tileMap[x, y - 1] = 4;
+                        tileMap[x, y] = 0;
+                        get_Wall.GetComponent<wall_Info>().Set(x, y - 1);
+                        get_Wall.transform.position = new Vector3(get_Wall.transform.position.x - 1, get_Wall.transform.position.y, 0);
+                    }
+                }
+                break;
+
+            default:
+                break;
+        }
+        detectedWall = false;
+        
+    }
+
+    public void LightDirection()
+    {
+        bool findWall = false;
+        for (int i = 0; i < wallMap.GetLength(0); i++)  //row
+        {
+            for (int j = 0; j < wallMap.GetLength(1); j++)  //column
+            {
+                if (tileMap[i, j] == (int)TileType.fire)
+                {
+                    //맨 윗줄에 불이 있고 반대편에 불이 없을 때만 실행
+                    if (i == 0 && tileMap[tileMap.GetLength(0) - 1, j] != (int)TileType.fire)
+                    {
+                        for (int k = 1; k < tileMap.GetLength(0) - 1; k++)
+                        {
+                            if (findWall)   //벽 찾았으면 벽 이후로 그림자로 바꿈
+                            {
+                                tileMap[k, j] = (int)TileType.shadow;
+                                tilePrefab[k,j].GetComponent<SpriteRenderer>().sprite = shadowSprite;
+                            }
+
+                            if (tileMap[k, j] == (int)TileType.wall) //벽 찾기
+                            {
+                                findWall = true;
+                            }
+
+
+                        }
+
+                    }
+                    //빛이 맨 아래 있을 때
+                    else if (i == tileMap.GetLength(0) - 1 && tileMap[0, j] != (int)TileType.fire) //5,3 불 3,3 벽
+                    {
+                        for (int k = tileMap.GetLength(0) - 2; k >= 1; k--)//다음 칸부터 탐색
+                        {
+                            if (findWall)   //벽 찾았으면 벽 이후로 그림자로 바꿈
+                            {
+                                tileMap[k, j] = (int)TileType.shadow;
+                                tilePrefab[k,j].GetComponent<SpriteRenderer>().sprite = shadowSprite;
+                            }
+
+                            if (tileMap[k, j] == (int)TileType.wall) //벽 찾기
+                            {
+                                findWall = true;
+                            }
+
+
+                        }
+
+                    }
+                    //빛이 맨 왼쪽에 있을 때
+                    else if (j == 0 && tileMap[i, tileMap.GetLength(1) - 1] != (int)TileType.fire)
+                    {
+                        for (int k = 1; k < tileMap.GetLength(1) - 1; k++)
+                        {
+                            if (findWall)   //벽 찾았으면 벽 이후로 그림자로 바꿈
+                            {
+                                tileMap[i, k] = (int)TileType.shadow;
+                                tilePrefab[i,k].GetComponent<SpriteRenderer>().sprite = shadowSprite;
+                            }
+
+                            if (tileMap[i, k] == (int)TileType.wall) //벽 찾기
+                            {
+                                findWall = true;
+                            }
+
+
+                        }
+
+                    }
+                    //빛이 맨 오른쪽
+                    else if (j == tileMap.GetLength(1) - 1 && tileMap[i, 0] != (int)TileType.fire)//2,6불 2,4벽
+                    {
+                        for (int k = tileMap.GetLength(1) - 2; k >= 1; k--)
+                        {
+                            if (findWall)   //벽 찾았으면 벽 이후로 그림자로 바꿈
+                            {
+                                tileMap[i, k] = (int)TileType.shadow;
+                                tilePrefab[i,k].GetComponent<SpriteRenderer>().sprite = shadowSprite;
+                            }
+
+                            if (tileMap[i, k] == (int)TileType.wall) //벽 찾기
+                            {
+                                findWall = true;
+                            }
+
+
+                        }
+
+                    }
+                    findWall = false;
+                }
+            }
+        }
+    }
+
 }
