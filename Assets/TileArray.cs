@@ -201,7 +201,7 @@ public class TileArray : MonoBehaviour
                 break;
             case 'R':
                 {
-                    if (tileMap[x, y + 1] == 0 || tileMap[x, y + 1] == 0)
+                    if (tileMap[x, y + 1] == 0 || tileMap[x, y + 1] == 1)
                     {
                         wallMap[x, y + 1] = 1;
                         wallMap[x, y] = 0;
