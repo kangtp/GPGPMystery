@@ -175,7 +175,7 @@ public class TileArray : MonoBehaviour
         {
             case 'U':
                 {
-                    if (tileMap[x - 1, y] == 0)
+                    if (tileMap[x - 1, y] == 0 || tileMap[x - 1, y] == 1)
                     {
                         wallMap[x - 1, y] = 1;
                         wallMap[x, y] = 0;
@@ -188,7 +188,7 @@ public class TileArray : MonoBehaviour
                 break;
             case 'D':
                 {
-                    if (tileMap[x + 1, y] == 0)
+                    if (tileMap[x + 1, y] == 0 || tileMap[x + 1, y] == 1)
                     {
                         wallMap[x + 1, y] = 1;
                         wallMap[x, y] = 0;
@@ -201,7 +201,7 @@ public class TileArray : MonoBehaviour
                 break;
             case 'R':
                 {
-                    if (tileMap[x, y + 1] == 0)
+                    if (tileMap[x, y + 1] == 0 || tileMap[x, y + 1] == 0)
                     {
                         wallMap[x, y + 1] = 1;
                         wallMap[x, y] = 0;
@@ -214,7 +214,7 @@ public class TileArray : MonoBehaviour
                 break;
             case 'L':
                 {
-                    if (tileMap[x, y - 1] == 0)
+                    if (tileMap[x, y - 1] == 0 || tileMap[x, y - 1] == 1)
                     {
                         wallMap[x, y - 1] = 1;
                         wallMap[x, y] = 0;
