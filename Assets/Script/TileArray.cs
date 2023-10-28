@@ -7,21 +7,23 @@ using UnityEngine;
 public class TileArray : MonoBehaviour
 {
 
-    enum TileType { ground, shadow, edge, fire, wall};
+    public static TileArray Instance;
+
+    public enum TileType { ground, shadow, edge, fire, wall};
 
     //90' rotate to left
     public int[,] tileMap = new int[,]
     {
-         {2,2,2,2,3,2,2,2,2,2},
+         {2,2,2,2,3,2,2,8,2,2},
          {2,0,0,0,0,0,0,0,0,2},
          {2,0,0,0,0,0,0,0,0,2},
-         {2,0,0,0,0,0,0,0,0,2},
+         {9,0,0,0,0,0,0,0,0,2},
          {2,0,0,0,0,0,0,0,0,3},
          {2,0,0,0,0,0,0,0,0,2},
          {3,0,0,0,0,0,0,0,0,2},
+         {2,0,0,0,0,0,0,0,0,10},
          {2,0,0,0,0,0,0,0,0,2},
-         {2,0,0,0,0,0,0,0,0,2},
-         {2,2,2,2,2,2,2,3,2,2}
+         {2,2,2,2,7,2,2,3,2,2}
 
     };
 
@@ -58,6 +60,9 @@ public class TileArray : MonoBehaviour
 
     private bool detectedWall = false;
 
+    private void Awake() {
+        Instance = this;
+    }
 
     // Use this for initialization
     void Start()
@@ -83,7 +88,6 @@ public class TileArray : MonoBehaviour
         {
             for (int j = 0; j < tileMap.GetLength(1); j++)
             {
-
                 GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString()) as GameObject;
                 GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                 tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
