@@ -257,6 +257,9 @@ public class Path : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_y, Hunter.transform.position.y - direction_x, 0); 
             }
+            yield return new WaitForSeconds(0.5f);
+            Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_y, Hunter.transform.position.y - direction_x, 0); 
+            
         }
     }
 
@@ -267,6 +270,7 @@ public class Path : MonoBehaviour
             int direction_x = 0;
             int direction_y = 0;
             m_pathList.Reverse();
+            
             for (int i = 0; i < m_pathList.Count - 1; i++)
             {
                 direction_x = m_pathList[i + 1].Item1 - m_pathList[i].Item1;
@@ -275,6 +279,8 @@ public class Path : MonoBehaviour
                 Debug.Log("x : " + direction_x + ", y : " + direction_y);
                 Monster.transform.position = new Vector3(Monster.transform.position.x + direction_y, Monster.transform.position.y - direction_x, 0); 
             }
+            yield return new WaitForSeconds(0.5f);
+            Monster.transform.position = new Vector3(Monster.transform.position.x + direction_y, Monster.transform.position.y - direction_x, 0); 
         }
     }
 }
