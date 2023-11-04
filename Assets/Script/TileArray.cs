@@ -19,11 +19,11 @@ public class TileArray : MonoBehaviour
          {2,0,0,0,0,0,0,0,0,2},
          {9,0,0,0,0,0,0,0,0,3},
          {2,0,0,0,0,0,0,0,0,2},
-         {2,0,0,0,0,0,0,0,0,2},
          {3,0,0,0,0,0,0,0,0,2},
          {2,0,0,0,0,0,0,0,0,2},
          {2,0,0,0,0,0,0,0,0,2},
-         {2,2,10,2,7,2,2,3,2,2}
+         {2,0,0,0,0,0,0,0,0,2},
+         {2,2,10,2,7,2,2,2,2,2}
 
     };
 
@@ -34,7 +34,7 @@ public class TileArray : MonoBehaviour
          {0,0,0,0,0,0,0,0,0,0},
          {0,1,0,0,0,0,0,0,1,0},
          {0,0,0,0,0,0,0,0,0,0},
-         {0,0,1,0,0,0,0,0,0,0},
+         {0,0,1,0,0,0,12,0,0,0},
          {0,0,0,0,0,0,0,0,1,0},
          {0,0,0,0,0,0,0,0,0,0},
          {0,0,0,0,1,0,0,0,0,0},
@@ -112,7 +112,13 @@ public class TileArray : MonoBehaviour
                     wall.transform.position = new Vector2(StartPoint.x + (wallSize * j) + (wallSize / 2), StartPoint.y - (wallSize * i) - (wallSize / 2));
 
                 }
-
+                if (wallMap[i, j] == 12)
+                {
+                    GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
+                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                    tilePrefab[i, j] = tile;
+                }
             }
         }
     }
@@ -243,6 +249,7 @@ public class TileArray : MonoBehaviour
         {
             for (int j = 0; j < wallMap.GetLength(1); j++)  //column
             {
+                
                 if (tileMap[i, j] == (int)TileType.fire)
                 {
                     //맨 윗줄에 불이 있을 때
@@ -250,6 +257,11 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = 1; k < tileMap.GetLength(0) - 1; k++)
                         {
+                            if(wallMap[k, j] == 12)
+                            {
+                                continue;
+                            }
+
                             if (tileMap[k, j] == (int)TileType.wall)
                             {
                                 findWall = true;
@@ -269,17 +281,15 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = tileMap.GetLength(0) - 2; k >= 1; k--)//다음 칸부터 탐색
                         {
+                            if (wallMap[k, j] == 12)
+                            {
+                                continue;
+                            }
+
                             if (tileMap[k, j] == (int)TileType.wall)
                             {
                                 findWall = true;
                             }
-
-                            //if (!findWall)
-                            //{
-                            //    //불이 비추는 방향 밝게
-                            //    tileMap[k, j] = (int)TileType.ground;
-                            //    tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
-                            //}
 
                             else if (findWall)  //벽 찾으면 그림자로 
                             {
@@ -294,18 +304,15 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = 1; k < tileMap.GetLength(1) - 1; k++)
                         {
-                            
+                            if (wallMap[i, k] == 12)
+                            {
+                                continue;
+                            }
+
                             if (tileMap[i, k] == (int)TileType.wall)
                             {
                                 findWall = true;
                             }
-
-                            //if (!findWall)
-                            //{
-                            //    //불이 비추는 방향 밝게
-                            //    tileMap[i, k] = (int)TileType.ground;
-                            //    tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
-                            //}
 
                             else if (findWall)  //벽 찾으면 그림자로 
                             {
@@ -321,18 +328,15 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = tileMap.GetLength(1) - 2; k >= 1; k--)
                         {
-                            
+                            if (wallMap[i, k] == 12)
+                            {
+                                continue;
+                            }
+
                             if (tileMap[i, k] == (int)TileType.wall)
                             {
                                 findWall = true;
                             }
-
-                            //if (!findWall)
-                            //{
-                            //    //불이 비추는 방향 밝게
-                            //    tileMap[i, k] = (int)TileType.ground;
-                            //    tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
-                            //}
 
                             else if (findWall)  //벽 찾으면 그림자로 
                             {
@@ -345,6 +349,64 @@ public class TileArray : MonoBehaviour
                     }
                     findWall = false;
                 }
+                
+                //십자 불
+                if(wallMap[i, j] == 12)
+                {
+                    //아래 방향
+                    for(int k = i+1; k < tileMap.GetLength(0)-1; k++)
+                    {
+                        if (tileMap[k, j] == (int)TileType.wall)
+                        {
+                            findWall = true;
+                        }
+                        else if (findWall)  //벽 찾으면 그림자로
+                        {
+                            tileMap[k, j] = (int)TileType.shadow;
+                            tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = shadowSprite;
+                        }
+                    }
+                    //위 방향
+                    for (int k = i - 1; k >= 1; k--)
+                    {
+                        if (tileMap[k, j] == (int)TileType.wall)
+                        {
+                            findWall = true;
+                        }
+                        else if (findWall)  //벽 찾으면 그림자로
+                        {
+                            tileMap[k, j] = (int)TileType.shadow;
+                            tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = shadowSprite;
+                        }
+                    }
+                    //오른쪽 방향
+                    for (int k = j+1; k < tileMap.GetLength(1)-1; k++)
+                    {
+                        if (tileMap[i, k] == (int)TileType.wall)
+                        {
+                            findWall = true;
+                        }
+                        else if (findWall)  //벽 찾으면 그림자로
+                        {
+                            tileMap[i, k] = (int)TileType.shadow;
+                            tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = shadowSprite;
+                        }
+                    }
+                    //왼쪽 방향
+                    for (int k = j - 1; k >= 1; k--)
+                    {
+                        if (tileMap[i, k] == (int)TileType.wall)
+                        {
+                            findWall = true;
+                        }
+                        else if (findWall)  //벽 찾으면 그림자로
+                        {
+                            tileMap[i, k] = (int)TileType.shadow;
+                            tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = shadowSprite;
+                        }
+                    }
+                }
+                findWall = false;
             }
         }
     }
@@ -352,11 +414,11 @@ public class TileArray : MonoBehaviour
 
     public void MakeBright()
     {
-        //bool findWall = false;
         for (int i = 0; i < wallMap.GetLength(0); i++)  //row
         {
             for (int j = 0; j < wallMap.GetLength(1); j++)  //column
             {
+                
                 if (tileMap[i, j] == (int)TileType.fire)
                 {
                     //맨 윗줄에 불이 있을 때
@@ -364,6 +426,10 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = 1; k < tileMap.GetLength(0) - 1; k++)
                         {
+                            if (wallMap[k, j] == 12)
+                            {
+                                continue;
+                            }
                             if (tileMap[k, j] == (int)TileType.wall)
                             {
                                 break;
@@ -371,8 +437,6 @@ public class TileArray : MonoBehaviour
                             //불이 비추는 방향 밝게
                             tileMap[k, j] = (int)TileType.ground;
                             tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
-
-
                         }
 
                     }
@@ -381,6 +445,10 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = tileMap.GetLength(0) - 2; k >= 1; k--)//다음 칸부터 탐색
                         {
+                            if (wallMap[k, j] == 12)
+                            {
+                                continue;
+                            }
                             if (tileMap[k, j] == (int)TileType.wall)
                             {
                                 break;
@@ -388,7 +456,6 @@ public class TileArray : MonoBehaviour
                             //불이 비추는 방향 밝게
                             tileMap[k, j] = (int)TileType.ground;
                             tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
-
                         }
                     }
 
@@ -397,24 +464,17 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = 1; k < tileMap.GetLength(1) - 1; k++)
                         {
-
+                            if (wallMap[i, k] == 12)
+                            {
+                                continue;
+                            }
                             if (tileMap[i, k] == (int)TileType.wall)
                             {
                                 break;
                             }
-
                             //불이 비추는 방향 밝게
                             tileMap[i, k] = (int)TileType.ground;
                             tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
-
-                            //if (!findWall)
-                            //{
-                            //    //불이 비추는 방향 밝게
-                            //    tileMap[i, k] = (int)TileType.ground;
-                            //    tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
-                            //}
-
-
                         }
 
                     }
@@ -423,7 +483,10 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = tileMap.GetLength(1) - 2; k >= 1; k--)
                         {
-
+                            if (wallMap[i, k] == 12)
+                            {
+                                continue;
+                            }
                             if (tileMap[i, k] == (int)TileType.wall)
                             {
                                 break;
@@ -431,11 +494,58 @@ public class TileArray : MonoBehaviour
                             //불이 비추는 방향 밝게
                             tileMap[i, k] = (int)TileType.ground;
                             tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
-
                         }
 
                     }
-                    //findWall = false;
+                    
+                }
+                
+                //십자 불
+                if(wallMap[i, j] == 12)
+                {
+                    for (int k = i + 1; k < tileMap.GetLength(0) - 1; k++)
+                    {
+                        if (tileMap[k, j] == (int)TileType.wall)
+                        {
+                            break;
+                        }
+                        //불이 비추는 방향 밝게
+                        tileMap[k, j] = (int)TileType.ground;
+                        tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
+                    }
+                    //위 방향
+                    for (int k = i - 1; k > 0; k--)
+                    {
+                        if (tileMap[k, j] == (int)TileType.wall)
+                        {
+                            break;
+                        }
+                        //불이 비추는 방향 밝게
+                        tileMap[k, j] = (int)TileType.ground;
+                        tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
+                    }
+                    //오른쪽 방향
+                    for (int k = j + 1; k < tileMap.GetLength(1) - 1; k++)
+                    {
+                        if (tileMap[i, k] == (int)TileType.wall)
+                        {
+                            break;
+                        }
+                        //불이 비추는 방향 밝게
+                        tileMap[i, k] = (int)TileType.ground;
+                        tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
+                    }
+                    //왼쪽 방향
+                    for (int k = j - 1; k >= 1; k--)
+                    {
+                        if (tileMap[i, k] == (int)TileType.wall)
+                        {
+                            break;
+                        }
+                        //불이 비추는 방향 밝게
+                        tileMap[i, k] = (int)TileType.ground;
+                        tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
+                    }
                 }
             }
         }
