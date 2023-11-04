@@ -9,7 +9,7 @@ public class TileArray : MonoBehaviour
 
     public static TileArray Instance;
 
-    public enum TileType { ground, shadow, edge, fire, wall};
+    public enum TileType { ground, shadow, edge, fire, wall };
 
     //90' rotate to left
     public int[,] tileMap = new int[,]
@@ -54,13 +54,14 @@ public class TileArray : MonoBehaviour
 
     private GameObject get_Wall;
 
-    public GameObject[,] tilePrefab = new GameObject[10,10];
+    public GameObject[,] tilePrefab = new GameObject[10, 10];
     public Sprite shadowSprite;
     public Sprite groundSprite;
 
     private bool detectedWall = false;
 
-    private void Awake() {
+    private void Awake()
+    {
         Instance = this;
     }
 
@@ -91,7 +92,7 @@ public class TileArray : MonoBehaviour
                 GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString()) as GameObject;
                 GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                 tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
-                tilePrefab[i,j] = tile;
+                tilePrefab[i, j] = tile;
 
             }
         }
@@ -117,7 +118,8 @@ public class TileArray : MonoBehaviour
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
-                    tilePrefab[i, j] = tile;
+                    tile.GetComponent<wall_Info>().Set(i, j);
+                    tileMap[i, j] = 4;
                 }
             }
         }
@@ -186,10 +188,21 @@ public class TileArray : MonoBehaviour
                 {
                     if (tileMap[x - 1, y] == 0 || tileMap[x - 1, y] == 1)
                     {
-                        wallMap[x - 1, y] = 1;
-                        wallMap[x, y] = 0;
-                        tileMap[x - 1, y] = 4;
-                        tileMap[x, y] = 0;
+                        if (tileMap[x, y] == 4)
+                        {
+                            wallMap[x - 1, y] = 1;
+                            wallMap[x, y] = 0;
+                            tileMap[x - 1, y] = 4;
+                            tileMap[x, y] = 0;
+                        }
+                        else if(tileMap[x,y] == 12)
+                        {
+                            wallMap[x - 1, y] = 1;
+                            wallMap[x, y] = 0;
+                            tileMap[x - 1, y] = 12;
+                            tileMap[x, y] = 0;
+                        }
+
                         get_Wall.GetComponent<wall_Info>().Set(x - 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y + 1, 0);
                     }
@@ -199,10 +212,20 @@ public class TileArray : MonoBehaviour
                 {
                     if (tileMap[x + 1, y] == 0 || tileMap[x + 1, y] == 1)
                     {
-                        wallMap[x + 1, y] = 1;
-                        wallMap[x, y] = 0;
-                        tileMap[x + 1, y] = 4;
-                        tileMap[x, y] = 0;
+                        if (tileMap[x, y] == 4)
+                        {
+                            wallMap[x + 1, y] = 1;
+                            wallMap[x, y] = 0;
+                            tileMap[x + 1, y] = 4;
+                            tileMap[x, y] = 0;
+                        }
+                        else if(tileMap[x,y] == 12)
+                        {
+                            wallMap[x + 1, y] = 1;
+                            wallMap[x, y] = 0;
+                            tileMap[x + 1, y] = 12;
+                            tileMap[x, y] = 0;
+                        }
                         get_Wall.GetComponent<wall_Info>().Set(x + 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y - 1, 0);
                     }
@@ -212,10 +235,20 @@ public class TileArray : MonoBehaviour
                 {
                     if (tileMap[x, y + 1] == 0 || tileMap[x, y + 1] == 1)
                     {
-                        wallMap[x, y + 1] = 1;
-                        wallMap[x, y] = 0;
-                        tileMap[x, y + 1] = 4;
-                        tileMap[x, y] = 0;
+                        if (tileMap[x, y] == 4)
+                        {
+                            wallMap[x, y + 1] = 1;
+                            wallMap[x, y] = 0;
+                            tileMap[x, y + 1] = 4;
+                            tileMap[x, y] = 0;
+                        }
+                        else if(tileMap[x,y] == 12)
+                        {
+                            wallMap[x, y + 1] = 1;
+                            wallMap[x, y] = 0;
+                            tileMap[x, y + 1] = 12;
+                            tileMap[x, y] = 0;
+                        }
                         get_Wall.GetComponent<wall_Info>().Set(x, y + 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x + 1, get_Wall.transform.position.y, 0);
                     }
@@ -225,10 +258,20 @@ public class TileArray : MonoBehaviour
                 {
                     if (tileMap[x, y - 1] == 0 || tileMap[x, y - 1] == 1)
                     {
-                        wallMap[x, y - 1] = 1;
-                        wallMap[x, y] = 0;
-                        tileMap[x, y - 1] = 4;
-                        tileMap[x, y] = 0;
+                        if (tileMap[x, y] == 4)
+                        {
+                            wallMap[x, y - 1] = 1;
+                            wallMap[x, y] = 0;
+                            tileMap[x, y - 1] = 4;
+                            tileMap[x, y] = 0;
+                        }
+                        else if(tileMap[x,y] == 12)
+                        {
+                            wallMap[x, y - 1] = 1;
+                            wallMap[x, y] = 0;
+                            tileMap[x, y - 1] = 12;
+                            tileMap[x, y] = 0;
+                        }
                         get_Wall.GetComponent<wall_Info>().Set(x, y - 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x - 1, get_Wall.transform.position.y, 0);
                     }
@@ -239,7 +282,6 @@ public class TileArray : MonoBehaviour
                 break;
         }
         detectedWall = false;
-        
     }
 
     public void makeShadow()
@@ -249,7 +291,7 @@ public class TileArray : MonoBehaviour
         {
             for (int j = 0; j < wallMap.GetLength(1); j++)  //column
             {
-                
+
                 if (tileMap[i, j] == (int)TileType.fire)
                 {
                     //맨 윗줄에 불이 있을 때
@@ -257,7 +299,7 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = 1; k < tileMap.GetLength(0) - 1; k++)
                         {
-                            if(wallMap[k, j] == 12)
+                            if (wallMap[k, j] == 12)
                             {
                                 continue;
                             }
@@ -349,12 +391,12 @@ public class TileArray : MonoBehaviour
                     }
                     findWall = false;
                 }
-                
+
                 //십자 불
-                if(wallMap[i, j] == 12)
+                if (wallMap[i, j] == 12)
                 {
                     //아래 방향
-                    for(int k = i+1; k < tileMap.GetLength(0)-1; k++)
+                    for (int k = i + 1; k < tileMap.GetLength(0) - 1; k++)
                     {
                         if (tileMap[k, j] == (int)TileType.wall)
                         {
@@ -380,7 +422,7 @@ public class TileArray : MonoBehaviour
                         }
                     }
                     //오른쪽 방향
-                    for (int k = j+1; k < tileMap.GetLength(1)-1; k++)
+                    for (int k = j + 1; k < tileMap.GetLength(1) - 1; k++)
                     {
                         if (tileMap[i, k] == (int)TileType.wall)
                         {
@@ -418,7 +460,7 @@ public class TileArray : MonoBehaviour
         {
             for (int j = 0; j < wallMap.GetLength(1); j++)  //column
             {
-                
+
                 if (tileMap[i, j] == (int)TileType.fire)
                 {
                     //맨 윗줄에 불이 있을 때
@@ -426,7 +468,7 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = 1; k < tileMap.GetLength(0) - 1; k++)
                         {
-                            if (wallMap[k, j] == 12)
+                            if (tileMap[k, j] == 12)
                             {
                                 continue;
                             }
@@ -445,7 +487,7 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = tileMap.GetLength(0) - 2; k >= 1; k--)//다음 칸부터 탐색
                         {
-                            if (wallMap[k, j] == 12)
+                            if (tileMap[k, j] == 12)
                             {
                                 continue;
                             }
@@ -464,7 +506,7 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = 1; k < tileMap.GetLength(1) - 1; k++)
                         {
-                            if (wallMap[i, k] == 12)
+                            if (tileMap[i, k] == 12)
                             {
                                 continue;
                             }
@@ -483,7 +525,7 @@ public class TileArray : MonoBehaviour
                     {
                         for (int k = tileMap.GetLength(1) - 2; k >= 1; k--)
                         {
-                            if (wallMap[i, k] == 12)
+                            if (tileMap[i, k] == 12)
                             {
                                 continue;
                             }
@@ -497,11 +539,11 @@ public class TileArray : MonoBehaviour
                         }
 
                     }
-                    
+
                 }
-                
+
                 //십자 불
-                if(wallMap[i, j] == 12)
+                if (wallMap[i, j] == 12)
                 {
                     for (int k = i + 1; k < tileMap.GetLength(0) - 1; k++)
                     {
