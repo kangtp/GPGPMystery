@@ -9,9 +9,9 @@ public class TileArray : MonoBehaviour
 
     public static TileArray Instance;
 
-    public enum TileType { ground, shadow, edge, fire, wall };
-
-    //90' rotate to left
+    public enum TileType { shadow, ground, edge, fire, wall };
+    //12는 도깨비불
+    
     public int[,] tileMap = new int[,]
     {
          {2,2,3,2,2,2,2,8,2,2},
@@ -22,9 +22,8 @@ public class TileArray : MonoBehaviour
          {3,0,0,0,0,0,0,0,0,2},
          {2,0,0,0,0,0,0,0,0,2},
          {2,0,0,0,0,0,0,0,0,2},
-         {2,0,0,0,0,0,0,0,0,2},
-         {2,2,10,2,7,2,2,2,2,2}
-
+         {2,0,0,0,0,0,0,0,0,3},
+         {2,2,10,2,7,2,2,3,2,2}
     };
 
     public int[,] wallMap = new int[,]
@@ -34,7 +33,7 @@ public class TileArray : MonoBehaviour
          {0,1,0,0,0,0,0,0,0,0},
          {0,0,0,0,0,0,0,0,1,0},
          {0,0,0,0,0,0,0,0,0,0},
-         {0,0,1,0,0,0,12,0,0,0},
+         {0,0,1,0,0,0,0,0,0,0},
          {0,0,0,0,0,0,0,0,1,0},
          {0,0,0,0,0,0,0,0,0,0},
          {0,0,0,0,1,0,0,0,0,0},

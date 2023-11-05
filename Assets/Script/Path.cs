@@ -47,8 +47,8 @@ public class Path : MonoBehaviour
     public int m_GoalPosition_x;
     public int m_GoalPosition_y;
 
-    private const int pathable = 0; // 통행가능
-    private const int pathable_monster = 1; // 어둑시니 통행가능
+    private const int pathable = 1; // 통행가능
+    private const int pathable_monster = 0; // 어둑시니 통행가능
     private const int blocked = 22; // 막혀있음
     private const int visited = 33;
 
@@ -190,26 +190,30 @@ public class Path : MonoBehaviour
                     {
                         startPosition_x = i;
                         startPosition_y = j;
-                        pathMap[i, j] = 0;
+                        //pathMap[i, j] = 0;
+                        pathMap[i, j] = 1;
                     }
                     if (pathMap[i, j] == 8)
                     {
                         GoalPosition_x = i;
                         GoalPosition_y = j;
-                        pathMap[i, j] = 0;
+                        //pathMap[i, j] = 0;
+                        pathMap[i, j] = 1;
                     }
 
                     if (m_pathMap[i, j] == 9)
                     {
                         m_startPosition_x = i;
                         m_startPosition_y = j;
-                        m_pathMap[i, j] = 1;
+                        //m_pathMap[i, j] = 1;
+                        m_pathMap[i, j] = 0;
                     }
                     if (m_pathMap[i, j] == 10)
                     {
                         m_GoalPosition_x = i;
                         m_GoalPosition_y = j;
-                        m_pathMap[i, j] = 1;
+                        //m_pathMap[i, j] = 1;
+                        m_pathMap[i, j] = 0;
                     }
                 }
             }
