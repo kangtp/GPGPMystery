@@ -254,8 +254,8 @@ MonoBehaviour:
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -4, y: 5}
-  shadowSprite: {fileID: -663449377, guid: 381034d4cceb71f469d719e16cc7fbe4, type: 3}
-  groundSprite: {fileID: -1118111170, guid: 381034d4cceb71f469d719e16cc7fbe4, type: 3}
+  shadowSprite: {fileID: 2147451762, guid: 563d6b9790908384e8a7c6b231d0c149, type: 3}
+  groundSprite: {fileID: -462921658, guid: 381034d4cceb71f469d719e16cc7fbe4, type: 3}
 --- !u!1 &1016835374
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,6 +289,10 @@ MonoBehaviour:
   startPosition_y: 0
   GoalPosition_x: 0
   GoalPosition_y: 0
+  m_startPosition_x: 0
+  m_startPosition_y: 0
+  m_GoalPosition_x: 0
+  m_GoalPosition_y: 0
   size: 0
 --- !u!4 &1016835376
 Transform:
@@ -333,7 +337,7 @@ RectTransform:
   m_GameObject: {fileID: 1222286382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4657248, y: 0.4657248, z: 0.4657248}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2053854691}
@@ -342,7 +346,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -639.7733, y: 381.08252}
+  m_AnchoredPosition: {x: -256, y: 162}
   m_SizeDelta: {x: 244.4534, y: 45.835}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1222286384
