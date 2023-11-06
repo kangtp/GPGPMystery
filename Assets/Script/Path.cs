@@ -47,25 +47,11 @@ public class Path : MonoBehaviour
     public int m_GoalPosition_x;
     public int m_GoalPosition_y;
 
-    private const int pathable = 1; // 통행가능
-    private const int pathable_monster = 0; // 어둑시니 통행가능
-    private const int blocked = 22; // 막혀있음
-    private const int visited = 33;
-
-    private int row;
-    private int col;
-
-    private List<(int, int)> pathList = new List<(int, int)>();
-    private List<(int, int)> m_pathList = new List<(int, int)>();
-
-
     public float size;
 
     private void Start()
     {
         size = 1.5f;
-        row = pathMap.GetLength(0);
-        col = pathMap.GetLength(1);
         Get_tilemap();
         PopulatePathmap();
     }
@@ -73,24 +59,11 @@ public class Path : MonoBehaviour
     public void Go_Button()
     {
         Get_tilemap();
-        /*
-                if (monster_FindPath(m_startPosition_x, m_startPosition_y) && hunter_FindPath(startPosition_x, startPosition_y))
-                {
-                    StartCoroutine(move_hunter());
-                    StartCoroutine(move_monster());
-                    Debug.Log("클리어");
-                }
-                else
-                {
-                    Debug.Log("게임오버");
-                }
-                PrintArray(m_pathMap);
-                */
-
-        BFS();
-       // Debug.Log(path.Count.ToString());
-        PrintPathList(path);
+        BFS(pathMap,1,startPosition_x,startPosition_y,GoalPosition_x,GoalPosition_y);
+        BFS(m_pathMap,0,m_startPosition_x,m_startPosition_y,m_GoalPosition_x,m_GoalPosition_y);
+        PrintPathList(m_path);
         StartCoroutine(move_hunter());
+        StartCoroutine(move_monster());
     }
 
 
@@ -187,18 +160,17 @@ public class Path : MonoBehaviour
         {
             int direction_x = 0;
             int direction_y = 0;
-            m_pathList.Reverse();
 
-            for (int i = 0; i < m_pathList.Count - 1; i++)
+            for (int i = 0; i < m_path.Count - 1; i++)
             {
-                direction_x = m_pathList[i + 1].Item1 - m_pathList[i].Item1;
-                direction_y = m_pathList[i + 1].Item2 - m_pathList[i].Item2;
+                direction_x = m_path[i + 1].X - m_path[i].X;
+                direction_y = m_path[i + 1].Y - m_path[i].Y;
                 yield return new WaitForSeconds(0.5f);
                 Debug.Log("x : " + direction_x + ", y : " + direction_y);
-                Monster.transform.position = new Vector3(Monster.transform.position.x + direction_y, Monster.transform.position.y - direction_x, 0);
+                Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
             }
             yield return new WaitForSeconds(0.5f);
-            Monster.transform.position = new Vector3(Monster.transform.position.x + direction_y, Monster.transform.position.y - direction_x, 0);
+            Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
         }
     }
 
@@ -375,29 +347,30 @@ public class Path : MonoBehaviour
 
 
     List<Pos> path = new List<Pos>();
+    List<Pos> m_path = new List<Pos>();
 
     // !!!!!!!!! 밑에 getlength한번 테스트해보고 안되면 위치 바꿔보기
-    private void BFS()
+    private void BFS(int[,] maze, int code, int startPositionx, int startPositiony,int GoalPositionx, int GoalPositiony)
     {
         int[] dirX = new int[] { -1, 0, 1, 0 };
         int[] dirY = new int[] { 0, -1, 0, 1 };
 
-        bool[,] found = new bool[pathMap.GetLength(0), pathMap.GetLength(1)];
-        Pos[,] parent = new Pos[pathMap.GetLength(0), pathMap.GetLength(1)];
+        bool[,] found = new bool[maze.GetLength(0), maze.GetLength(1)];
+        Pos[,] parent = new Pos[maze.GetLength(0), maze.GetLength(1)];
 
-        for (int i = 0; i < pathMap.GetLength(0); i++)
+        for (int i = 0; i < maze.GetLength(0); i++)
         {
-            for (int j = 0; j < pathMap.GetLength(1); j++)
+            for (int j = 0; j < maze.GetLength(1); j++)
             {
                 parent[i, j] = new Pos(0, 0);
             }
         }
 
         Queue<Pos> q = new Queue<Pos>();
-        q.Enqueue(new Pos(startPosition_x, startPosition_y));
-        found[startPosition_x, startPosition_y] = true;
+        q.Enqueue(new Pos(startPositionx, startPositiony));
+        found[startPositionx, startPositiony] = true;
 
-        parent[startPosition_x, startPosition_y] = new Pos(startPosition_x, startPosition_y);
+        parent[startPositionx, startPositiony] = new Pos(startPositionx, startPositiony);
 
 
 
@@ -414,9 +387,9 @@ public class Path : MonoBehaviour
                 int nextX = nowX + dirX[i];
                 int nextY = nowY + dirY[i];
 
-                if (nextX < 0 || nextX >= pathMap.GetLength(0) || nextY < 0 || nextY >= pathMap.GetLength(1))
+                if (nextX < 0 || nextX >= maze.GetLength(0) || nextY < 0 || nextY >= pathMap.GetLength(1))
                     continue;
-                if (pathMap[nextX, nextY] != 1) //////////여기서 0으로 바꿔주면댐
+                if (maze[nextX, nextY] != code) //////////여기서 0으로 바꿔주면댐
                     continue;
                 if (found[nextX, nextY])
                     continue;
@@ -427,42 +400,39 @@ public class Path : MonoBehaviour
             }
         }
 
-        int x = GoalPosition_x;
-        int y = GoalPosition_y;
+        int x = GoalPositionx;
+        int y = GoalPositiony;
 
         while (parent[x, y].X != x || parent[x, y].Y != y)
         {
-            path.Add(new Pos(y, x));
+            if (code == 1)
+            {
+                path.Add(new Pos(y, x));
+            }
+            else
+            {
+                m_path.Add(new Pos(y, x));
+            }
 
-            Pos pos = parent[x, y];
+
+                Pos pos = parent[x, y];
             x = pos.X;
             y = pos.Y;
 
         }
-        path.Add(new Pos(y, x));
-        path.Reverse();
-        //PrintFoundArray(found);
-    }
-
-
-    private void PrintFoundArray(bool[,] found)
-    {
-        int rows = found.GetLength(0);
-        int cols = found.GetLength(1);
-
-        string output = "Found Array:\n";
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < cols; j++)
+        if (code == 1)
             {
-                output += found[i, j] ? "1 " : "0 ";
+                path.Add(new Pos(y, x));
+                path.Reverse();
             }
-            output += "\n";
-        }
-
-        Debug.Log(output);
+            else
+            {
+                m_path.Add(new Pos(y, x));
+                m_path.Reverse();
+            }
+        
     }
+
 
     private void PrintPathList(List<Pos> path)
     {
