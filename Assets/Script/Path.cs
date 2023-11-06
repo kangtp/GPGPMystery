@@ -61,36 +61,41 @@ public class Path : MonoBehaviour
         Get_tilemap();
         BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
         BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
-        StartCoroutine(move_hunter());
-        StartCoroutine(move_monster());
+        if (checkPathable(2))
+        {
+            StartCoroutine(move_hunter());
+            StartCoroutine(move_monster());
+        }
     }
 
     public bool checkPathable(int code)
     {
+        Debug.Log(path[path.Count - 1].X.ToString() + GoalPosition_x.ToString() + " , " + path[path.Count - 1].Y.ToString() + GoalPosition_y.ToString());
         if (code == 0)
         {
-            if (m_path[m_path.Count - 1].X == m_GoalPosition_x && m_path[m_path.Count - 1].Y == m_GoalPosition_y)
+            if (m_path[m_path.Count - 1].X == m_GoalPosition_y && m_path[m_path.Count - 1].Y == m_GoalPosition_x)
             {
                 return true;
             }
         }
         else if (code == 1)
         {
-            if (path[path.Count - 1].X == GoalPosition_x && path[path.Count - 1].X == GoalPosition_x)
+            if (path[path.Count - 1].X == GoalPosition_y && path[path.Count - 1].Y == GoalPosition_x)
             {
                 return true;
             }
         }
         else if (code == 2)
         {
-            if (path[path.Count - 1].X == GoalPosition_x && path[path.Count - 1].Y == GoalPosition_y
-        && m_path[m_path.Count - 1].X == m_GoalPosition_x && m_path[m_path.Count - 1].Y == m_GoalPosition_y)
+            if (path[path.Count - 1].X == GoalPosition_y && path[path.Count - 1].Y == GoalPosition_x
+        && m_path[m_path.Count - 1].X == m_GoalPosition_y && m_path[m_path.Count - 1].Y == m_GoalPosition_x)
             {
                 return true;
             }
         }
-   
 
+        path.Clear();
+        m_path.Clear();
         return false;
 
     }
@@ -195,7 +200,7 @@ public class Path : MonoBehaviour
                 direction_x = m_path[i + 1].X - m_path[i].X;
                 direction_y = m_path[i + 1].Y - m_path[i].Y;
                 yield return new WaitForSeconds(0.5f);
-                Debug.Log("x : " + direction_x + ", y : " + direction_y);
+                //Debug.Log("x : " + direction_x + ", y : " + direction_y);
                 Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
             }
             yield return new WaitForSeconds(0.5f);
