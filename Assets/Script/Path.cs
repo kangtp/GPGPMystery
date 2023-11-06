@@ -59,11 +59,40 @@ public class Path : MonoBehaviour
     public void Go_Button()
     {
         Get_tilemap();
-        BFS(pathMap,1,startPosition_x,startPosition_y,GoalPosition_x,GoalPosition_y);
-        BFS(m_pathMap,0,m_startPosition_x,m_startPosition_y,m_GoalPosition_x,m_GoalPosition_y);
-        PrintPathList(m_path);
+        BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
+        BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
         StartCoroutine(move_hunter());
         StartCoroutine(move_monster());
+    }
+
+    public bool checkPathable(int code)
+    {
+        if (code == 0)
+        {
+            if (m_path[m_path.Count - 1].X == m_GoalPosition_x && m_path[m_path.Count - 1].Y == m_GoalPosition_y)
+            {
+                return true;
+            }
+        }
+        else if (code == 1)
+        {
+            if (path[path.Count - 1].X == GoalPosition_x && path[path.Count - 1].X == GoalPosition_x)
+            {
+                return true;
+            }
+        }
+        else if (code == 2)
+        {
+            if (path[path.Count - 1].X == GoalPosition_x && path[path.Count - 1].Y == GoalPosition_y
+        && m_path[m_path.Count - 1].X == m_GoalPosition_x && m_path[m_path.Count - 1].Y == m_GoalPosition_y)
+            {
+                return true;
+            }
+        }
+   
+
+        return false;
+
     }
 
 
@@ -350,7 +379,7 @@ public class Path : MonoBehaviour
     List<Pos> m_path = new List<Pos>();
 
     // !!!!!!!!! 밑에 getlength한번 테스트해보고 안되면 위치 바꿔보기
-    private void BFS(int[,] maze, int code, int startPositionx, int startPositiony,int GoalPositionx, int GoalPositiony)
+    private void BFS(int[,] maze, int code, int startPositionx, int startPositiony, int GoalPositionx, int GoalPositiony)
     {
         int[] dirX = new int[] { -1, 0, 1, 0 };
         int[] dirY = new int[] { 0, -1, 0, 1 };
@@ -389,7 +418,7 @@ public class Path : MonoBehaviour
 
                 if (nextX < 0 || nextX >= maze.GetLength(0) || nextY < 0 || nextY >= pathMap.GetLength(1))
                     continue;
-                if (maze[nextX, nextY] != code) //////////여기서 0으로 바꿔주면댐
+                if (maze[nextX, nextY] != code)
                     continue;
                 if (found[nextX, nextY])
                     continue;
@@ -413,24 +442,20 @@ public class Path : MonoBehaviour
             {
                 m_path.Add(new Pos(y, x));
             }
-
-
-                Pos pos = parent[x, y];
+            Pos pos = parent[x, y];
             x = pos.X;
             y = pos.Y;
-
         }
         if (code == 1)
-            {
-                path.Add(new Pos(y, x));
-                path.Reverse();
-            }
-            else
-            {
-                m_path.Add(new Pos(y, x));
-                m_path.Reverse();
-            }
-        
+        {
+            path.Add(new Pos(y, x));
+            path.Reverse();
+        }
+        else
+        {
+            m_path.Add(new Pos(y, x));
+            m_path.Reverse();
+        }
     }
 
 
