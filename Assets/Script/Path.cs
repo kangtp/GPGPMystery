@@ -4,20 +4,9 @@ using UnityEngine;
 
 public class Path : MonoBehaviour
 {
-    [System.Serializable]
-    public class Node
-    {
-        public Node(bool _isWall, int _x, int _y) { isWall = _isWall; x = _x; y = _y; }
 
-        public bool isWall;
-        public Node ParentNode;
-
-        // G : 시작으로부터 이동했던 거리, H : |가로|+|세로| 장애물 무시하여 목표까지의 거리, F : G + H
-        public int x, y, G, H;
-        public int F { get { return G + H; } }
-    }
-
-    private int[,] pathMap = new int[,]
+    [SerializeField]
+    public int[,] pathMap = new int[,]
     {
          {0,0,0,0,0,0,0,0,0,0},
          {0,0,0,0,0,0,0,0,0,0},
@@ -31,17 +20,160 @@ public class Path : MonoBehaviour
          {0,0,0,0,0,0,0,0,0,0}
     };
 
-    int hunter_Goalpoint, hunter_Startpoint, monster_Goalpoint, monster_Startpoint;
+    public int[,] m_pathMap = new int[,]
+    {
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0},
+         {0,0,0,0,0,0,0,0,0,0}
+    };
+
+    private GameObject Hunter;
+    private GameObject Monster;
+
+    public int startPosition_x;
+    public int startPosition_y;
+    public int GoalPosition_x;
+    public int GoalPosition_y;
+
+    public int m_startPosition_x;
+    public int m_startPosition_y;
+    public int m_GoalPosition_x;
+    public int m_GoalPosition_y;
+
+    private const int pathable = 1; // 통행가능
+    private const int pathable_monster = 0; // 어둑시니 통행가능
+    private const int blocked = 22; // 막혀있음
+    private const int visited = 33;
+
+    private List<(int, int)> pathList = new List<(int, int)>();
+    private List<(int, int)> m_pathList = new List<(int, int)>();
+
+    public bool hunter_FindPath(int x, int y)
+    {
+        int rowN = pathMap.GetLength(0);
+        int colN = pathMap.GetLength(1);
+
+        if (x < 0 || y < 0 || x >= rowN || y >= colN)
+        {
+            return false;
+        }
+        else if (pathMap[x, y] != pathable)
+        {
+            return false;
+        }
+        else if (x == GoalPosition_x && y == GoalPosition_y)
+        {
+            pathMap[x, y] = visited;
+            pathList.Add((x, y));
+            return true;
+        }
+        else
+        {
+            pathMap[x, y] = visited;
+
+            if (hunter_FindPath(x - 1, y) || hunter_FindPath(x, y + 1) || hunter_FindPath(x + 1, y) || hunter_FindPath(x, y - 1))
+            {
+                pathList.Add((x, y));
+                return true;
+            }
+            pathMap[x, y] = blocked;
+            return false;
+        }
+    }
+
+    public bool monster_FindPath(int x, int y)
+    {
+        int rowN = m_pathMap.GetLength(0);
+        int colN = m_pathMap.GetLength(1);
+
+        if (x < 0 || y < 0 || x >= rowN || y >= colN)
+        {
+            return false;
+        }
+        else if (m_pathMap[x, y] != pathable_monster)
+        {
+            return false;
+        }
+        else if (x == m_GoalPosition_x && y == m_GoalPosition_y)
+        {
+            m_pathMap[x, y] = visited;
+            m_pathList.Add((x, y));
+            return true;
+        }
+        else
+        {
+            m_pathMap[x, y] = visited;
+
+            if (monster_FindPath(x - 1, y) || monster_FindPath(x, y + 1) || monster_FindPath(x + 1, y) || monster_FindPath(x, y - 1))
+            {
+                m_pathList.Add((x, y));
+                return true;
+            }
+            m_pathMap[x, y] = blocked;
+            return false;
+        }
+    }
+
+    private void PrintPath()
+    {
+        m_pathList.Reverse();
+        foreach ((int x, int y) in m_pathList)
+        {
+            Debug.Log($"Path: ({x}, {y})");
+        }
+    }
+
+    private void PrintArray(int[,] array)
+    {
+        string output = "Array Contents:\n";
+        int rows = array.GetLength(0);
+        int cols = array.GetLength(1);
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                output += array[i, j] + " ";
+            }
+            output += "\n";
+        }
+
+        Debug.Log(output);
+    }
+
     public float size;
-    
+
     private void Start()
     {
         size = 1.5f;
+
         Get_tilemap();
         PopulatePathmap();
     }
 
-   
+    public void Go_Button()
+    {
+        Get_tilemap();
+        if (monster_FindPath(m_startPosition_x, m_startPosition_y) && hunter_FindPath(startPosition_x, startPosition_y))
+        {
+            StartCoroutine(move_hunter());
+            StartCoroutine(move_monster());
+            Debug.Log("클리어");
+        }
+        else
+        {
+            Debug.Log("게임오버");
+        }
+        PrintArray(m_pathMap);
+        
+    }
 
 
     public void Get_tilemap()
@@ -52,10 +184,36 @@ public class Path : MonoBehaviour
             {
                 for (int j = 0; j < TileArray.Instance.tileMap.GetLength(1); j++)
                 {
-                    pathMap[i,j] = TileArray.Instance.tileMap[i,j];
-                    if(pathMap[i,j] != 0 && pathMap[i,j] != 7 && pathMap[i,j] != 8 && pathMap[i,j] != 9 && pathMap[i,j] != 10)
+                    pathMap[i, j] = TileArray.Instance.tileMap[i, j];
+                    m_pathMap[i, j] = TileArray.Instance.tileMap[i, j];
+                    if (pathMap[i, j] == 7)
                     {
-                        pathMap[i,j] = 1;
+                        startPosition_x = i;
+                        startPosition_y = j;
+                        //pathMap[i, j] = 0;
+                        pathMap[i, j] = 1;
+                    }
+                    if (pathMap[i, j] == 8)
+                    {
+                        GoalPosition_x = i;
+                        GoalPosition_y = j;
+                        //pathMap[i, j] = 0;
+                        pathMap[i, j] = 1;
+                    }
+
+                    if (m_pathMap[i, j] == 9)
+                    {
+                        m_startPosition_x = i;
+                        m_startPosition_y = j;
+                        //m_pathMap[i, j] = 1;
+                        m_pathMap[i, j] = 0;
+                    }
+                    if (m_pathMap[i, j] == 10)
+                    {
+                        m_GoalPosition_x = i;
+                        m_GoalPosition_y = j;
+                        //m_pathMap[i, j] = 1;
+                        m_pathMap[i, j] = 0;
                     }
                 }
             }
@@ -64,23 +222,23 @@ public class Path : MonoBehaviour
 
     public void PopulatePathmap()
     {
-        for (int i = 0; i < pathMap.GetLength(0); i++)
+        for (int i = 0; i < TileArray.Instance.tileMap.GetLength(0); i++)
         {
-            for (int j = 0; j < pathMap.GetLength(1); j++)
+            for (int j = 0; j < TileArray.Instance.tileMap.GetLength(1); j++)
             {
 
-                if (pathMap[i, j] == 7)
+                if (TileArray.Instance.tileMap[i, j] == 7)
                 {
                     GameObject prefab = Resources.Load("Hunter") as GameObject;
-                    GameObject hunter = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
-                    hunter.transform.position = TileArray.Instance.tilePrefab[i,j].transform.position;
+                    Hunter = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    Hunter.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
-                if (pathMap[i, j] == 9)
+                if (TileArray.Instance.tileMap[i, j] == 9)
                 {
                     GameObject prefab = Resources.Load("Monster") as GameObject;
-                    GameObject monster = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
-                    monster.transform.position = TileArray.Instance.tilePrefab[i,j].transform.position;
+                    Monster = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    Monster.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
 
@@ -88,123 +246,46 @@ public class Path : MonoBehaviour
         }
     }
 
-    public Vector2Int bottomLeft, topRight, startPos, targetPos;
-    public List<Node> FinalNodeList;
-    public bool allowDiagonal, dontCrossCorner;
-
-    int sizeX, sizeY;
-    Node[,] NodeArray;
-    Node StartNode, TargetNode, CurNode;
-    List<Node> OpenList, ClosedList;
-
-
-    public void PathFinding()
+    IEnumerator move_hunter()
     {
-        // NodeArray의 크기 정해주고, isWall, x, y 대입
-        sizeX = topRight.x - bottomLeft.x + 1;
-        sizeY = topRight.y - bottomLeft.y + 1;
-        NodeArray = new Node[sizeX, sizeY];
-
-        for (int i = 0; i < sizeX; i++)
+        if (Hunter != null)
         {
-            for (int j = 0; j < sizeY; j++)
+            int direction_x = 0;
+            int direction_y = 0;
+            pathList.Reverse();
+
+            for (int i = 0; i < pathList.Count - 1; i++)
             {
-                bool isWall = false;
-                foreach (Collider2D col in Physics2D.OverlapCircleAll(new Vector2(i + bottomLeft.x, j + bottomLeft.y), 0.4f))
-                    if (col.gameObject.layer == LayerMask.NameToLayer("Wall")) isWall = true;
-
-                NodeArray[i, j] = new Node(isWall, i + bottomLeft.x, j + bottomLeft.y);
+                direction_x = pathList[i + 1].Item1 - pathList[i].Item1;
+                direction_y = pathList[i + 1].Item2 - pathList[i].Item2;
+                yield return new WaitForSeconds(0.5f);
+                Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_y, Hunter.transform.position.y - direction_x, 0); 
             }
-        }
-
-
-        // 시작과 끝 노드, 열린리스트와 닫힌리스트, 마지막리스트 초기화
-        StartNode = NodeArray[startPos.x - bottomLeft.x, startPos.y - bottomLeft.y];
-        TargetNode = NodeArray[targetPos.x - bottomLeft.x, targetPos.y - bottomLeft.y];
-
-        OpenList = new List<Node>() { StartNode };
-        ClosedList = new List<Node>();
-        FinalNodeList = new List<Node>();
-
-
-        while (OpenList.Count > 0)
-        {
-            // 열린리스트 중 가장 F가 작고 F가 같다면 H가 작은 걸 현재노드로 하고 열린리스트에서 닫힌리스트로 옮기기
-            CurNode = OpenList[0];
-            for (int i = 1; i < OpenList.Count; i++)
-                if (OpenList[i].F <= CurNode.F && OpenList[i].H < CurNode.H) CurNode = OpenList[i];
-
-            OpenList.Remove(CurNode);
-            ClosedList.Add(CurNode);
-
-
-            // 마지막
-            if (CurNode == TargetNode)
-            {
-                Node TargetCurNode = TargetNode;
-                while (TargetCurNode != StartNode)
-                {
-                    FinalNodeList.Add(TargetCurNode);
-                    TargetCurNode = TargetCurNode.ParentNode;
-                }
-                FinalNodeList.Add(StartNode);
-                FinalNodeList.Reverse();
-
-                for (int i = 0; i < FinalNodeList.Count; i++) print(i + "번째는 " + FinalNodeList[i].x + ", " + FinalNodeList[i].y);
-                return;
-            }
-
-
-            // ↗↖↙↘
-            if (allowDiagonal)
-            {
-                OpenListAdd(CurNode.x + 1, CurNode.y + 1);
-                OpenListAdd(CurNode.x - 1, CurNode.y + 1);
-                OpenListAdd(CurNode.x - 1, CurNode.y - 1);
-                OpenListAdd(CurNode.x + 1, CurNode.y - 1);
-            }
-
-            // ↑ → ↓ ←
-            OpenListAdd(CurNode.x, CurNode.y + 1);
-            OpenListAdd(CurNode.x + 1, CurNode.y);
-            OpenListAdd(CurNode.x, CurNode.y - 1);
-            OpenListAdd(CurNode.x - 1, CurNode.y);
+            yield return new WaitForSeconds(0.5f);
+            Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_y, Hunter.transform.position.y - direction_x, 0); 
+            
         }
     }
 
-    void OpenListAdd(int checkX, int checkY)
+    IEnumerator move_monster()
     {
-        // 상하좌우 범위를 벗어나지 않고, 벽이 아니면서, 닫힌리스트에 없다면
-        if (checkX >= bottomLeft.x && checkX < topRight.x + 1 && checkY >= bottomLeft.y && checkY < topRight.y + 1 && !NodeArray[checkX - bottomLeft.x, checkY - bottomLeft.y].isWall && !ClosedList.Contains(NodeArray[checkX - bottomLeft.x, checkY - bottomLeft.y]))
+        if (Monster != null)
         {
-            // 대각선 허용시, 벽 사이로 통과 안됨
-            if (allowDiagonal) if (NodeArray[CurNode.x - bottomLeft.x, checkY - bottomLeft.y].isWall && NodeArray[checkX - bottomLeft.x, CurNode.y - bottomLeft.y].isWall) return;
-
-            // 코너를 가로질러 가지 않을시, 이동 중에 수직수평 장애물이 있으면 안됨
-            if (dontCrossCorner) if (NodeArray[CurNode.x - bottomLeft.x, checkY - bottomLeft.y].isWall || NodeArray[checkX - bottomLeft.x, CurNode.y - bottomLeft.y].isWall) return;
-
-
-            // 이웃노드에 넣고, 직선은 10, 대각선은 14비용
-            Node NeighborNode = NodeArray[checkX - bottomLeft.x, checkY - bottomLeft.y];
-            int MoveCost = CurNode.G + (CurNode.x - checkX == 0 || CurNode.y - checkY == 0 ? 10 : 14);
-
-
-            // 이동비용이 이웃노드G보다 작거나 또는 열린리스트에 이웃노드가 없다면 G, H, ParentNode를 설정 후 열린리스트에 추가
-            if (MoveCost < NeighborNode.G || !OpenList.Contains(NeighborNode))
+            int direction_x = 0;
+            int direction_y = 0;
+            m_pathList.Reverse();
+            
+            for (int i = 0; i < m_pathList.Count - 1; i++)
             {
-                NeighborNode.G = MoveCost;
-                NeighborNode.H = (Mathf.Abs(NeighborNode.x - TargetNode.x) + Mathf.Abs(NeighborNode.y - TargetNode.y)) * 10;
-                NeighborNode.ParentNode = CurNode;
-
-                OpenList.Add(NeighborNode);
+                direction_x = m_pathList[i + 1].Item1 - m_pathList[i].Item1;
+                direction_y = m_pathList[i + 1].Item2 - m_pathList[i].Item2;
+                yield return new WaitForSeconds(0.5f);
+                Debug.Log("x : " + direction_x + ", y : " + direction_y);
+                Monster.transform.position = new Vector3(Monster.transform.position.x + direction_y, Monster.transform.position.y - direction_x, 0); 
             }
+            yield return new WaitForSeconds(0.5f);
+            Monster.transform.position = new Vector3(Monster.transform.position.x + direction_y, Monster.transform.position.y - direction_x, 0); 
         }
     }
-
-    void OnDrawGizmos()
-    {
-        if (FinalNodeList.Count != 0) for (int i = 0; i < FinalNodeList.Count - 1; i++)
-                Gizmos.DrawLine(new Vector2(FinalNodeList[i].x, FinalNodeList[i].y), new Vector2(FinalNodeList[i + 1].x, FinalNodeList[i + 1].y));
-    }
-    
 }
+
