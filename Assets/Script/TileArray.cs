@@ -10,37 +10,39 @@ public class TileArray : MonoBehaviour
     public static TileArray Instance;
 
     public enum TileType { shadow, ground, edge, fire, wall };
-    //12 도깨비불
-    //9 어둑시니
-    //7 헌터
-    //10 어둑시니 출구
-    //8 헌터 출구
+    /*
+     * 7 사냥꾼
+     * 8 사냥꾼 출구
+     * 9 어둑시니
+     * 10 어둑시니 출구
+     * 12 십자불
+    */
 
     public int[,] tileMap = new int[,]
     {
          {2,9,2,2,7,2,2,2,2,2},
-         {2,0,0,0,0,0,0,0,0,3},
-         {2,0,0,0,0,0,0,0,0,3},
-         {2,0,0,0,0,0,0,0,0,3},
-         {2,0,0,0,0,0,0,0,0,3},
-         {2,0,0,0,0,0,0,0,0,3},
-         {2,0,0,0,0,0,0,0,0,3},
-         {2,0,0,0,0,0,0,0,0,3},
-         {10,0,0,0,0,0,0,0,0,3},
+         {2,0,0,0,0,0,0,0,0,1},
+         {2,0,0,0,0,0,0,0,0,1},
+         {2,0,0,0,0,0,0,0,0,1},
+         {2,0,0,0,0,0,0,0,0,1},
+         {2,0,0,0,0,0,0,0,0,1},
+         {2,0,0,0,0,0,0,0,0,1},
+         {2,0,0,0,0,0,0,0,0,1},
+         {10,0,0,0,0,0,0,0,0,1},
          {2,2,2,2,2,2,2,2,8,2}
     };
 
     public int[,] wallMap = new int[,]
     {
          {0,0,0,0,0,0,0,0,0,0},
-         {0,0,0,0,1,0,0,0,0,0},
-         {0,0,0,0,1,0,0,0,0,0},
-         {0,0,0,0,1,0,0,0,0,0},
-         {0,0,1,1,1,0,0,0,0,0},
-         {0,0,0,0,1,0,0,0,0,0},
-         {0,0,0,0,1,0,0,0,0,0},
-         {0,0,0,0,1,0,0,0,0,0},
-         {0,0,0,1,0,0,0,0,0,0},
+         {0,0,0,0,1,0,0,0,0,3},
+         {0,0,0,0,1,0,0,0,0,3},
+         {0,0,0,0,1,0,0,0,0,3},
+         {0,0,1,1,1,0,0,0,0,3},
+         {0,0,0,0,1,0,0,0,0,3},
+         {0,0,0,0,1,0,0,0,0,3},
+         {0,0,0,0,1,0,0,0,0,3},
+         {0,0,0,1,0,0,0,0,0,3},
          {0,0,0,0,0,0,0,0,0,0}
     };
 
@@ -107,6 +109,7 @@ public class TileArray : MonoBehaviour
         {
             for (int j = 0; j < wallMap.GetLength(1); j++)
             {
+                //통나무 생성
                 if (wallMap[i, j] == 1)
                 {
                     GameObject prefab = Resources.Load("wall") as GameObject;
@@ -116,13 +119,23 @@ public class TileArray : MonoBehaviour
                     wall.transform.position = new Vector2(StartPoint.x + (wallSize * j) + (wallSize / 2), StartPoint.y - (wallSize * i) - (wallSize / 2));
 
                 }
+                //일자불 생성
+                if (wallMap[i, j] == 3)
+                {
+                    GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
+                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                    //tile.GetComponent<wall_Info>().Set(i, j);
+                    //tileMap[i, j] = 4;
+                }
+                //십자불 생성
                 if (wallMap[i, j] == 12)
                 {
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
-                    tile.GetComponent<wall_Info>().Set(i, j);
-                    tileMap[i, j] = 4;
+                    //tile.GetComponent<wall_Info>().Set(i, j);
+                    //tileMap[i, j] = 4;
                 }
             }
         }
@@ -236,7 +249,7 @@ public class TileArray : MonoBehaviour
                 break;
             case 'R':
                 {
-                    if (tileMap[x, y + 1] == 0 || tileMap[x, y + 1] == 1)
+                    if ((tileMap[x, y + 1] == 0 || tileMap[x, y + 1] == 1) && wallMap[x, y + 1] != 3)
                     {
                         if (tileMap[x, y] == 4)
                         {
@@ -295,12 +308,12 @@ public class TileArray : MonoBehaviour
             for (int j = 0; j < wallMap.GetLength(1); j++)  //column
             {
 
-                if (tileMap[i, j] == (int)TileType.fire)
+                if (wallMap[i, j] == (int)TileType.fire)
                 {
                     //맨 윗줄에 불이 있을 때
                     if (i == 0)
                     {
-                        for (int k = 1; k < tileMap.GetLength(0) - 1; k++)
+                        for (int k = 1; k < wallMap.GetLength(0) - 1; k++)
                         {
                             if (wallMap[k, j] == 12)
                             {
@@ -322,9 +335,9 @@ public class TileArray : MonoBehaviour
 
                     }
                     //빛이 맨 아래 있을 때
-                    else if (i == tileMap.GetLength(0) - 1) //5,3 불 3,3 벽
+                    else if (i == wallMap.GetLength(0) - 1) //5,3 불 3,3 벽
                     {
-                        for (int k = tileMap.GetLength(0) - 2; k >= 1; k--)//다음 칸부터 탐색
+                        for (int k = wallMap.GetLength(0) - 2; k >= 1; k--)//다음 칸부터 탐색
                         {
                             if (wallMap[k, j] == 12)
                             {
@@ -347,7 +360,7 @@ public class TileArray : MonoBehaviour
                     //빛이 맨 왼쪽에 있을 때
                     else if (j == 0)
                     {
-                        for (int k = 1; k < tileMap.GetLength(1) - 1; k++)
+                        for (int k = 1; k < wallMap.GetLength(1) - 1; k++)
                         {
                             if (wallMap[i, k] == 12)
                             {
@@ -369,9 +382,9 @@ public class TileArray : MonoBehaviour
 
                     }
                     //빛이 맨 오른쪽
-                    else if (j == tileMap.GetLength(1) - 1)//2,6불 2,4벽
+                    else if (j == wallMap.GetLength(1) - 1)//2,6불 2,4벽
                     {
-                        for (int k = tileMap.GetLength(1) - 2; k >= 1; k--)
+                        for (int k = wallMap.GetLength(1) - 2; k >= 1; k--)
                         {
                             if (wallMap[i, k] == 12)
                             {
@@ -464,14 +477,15 @@ public class TileArray : MonoBehaviour
             for (int j = 0; j < wallMap.GetLength(1); j++)  //column
             {
 
-                if (tileMap[i, j] == (int)TileType.fire)
+                if (wallMap[i, j] == (int)TileType.fire)
                 {
                     //맨 윗줄에 불이 있을 때
                     if (i == 0)
                     {
-                        for (int k = 1; k < tileMap.GetLength(0) - 1; k++)
+                        for (int k = 1; k < wallMap.GetLength(0) - 1; k++)
                         {
-                            if (tileMap[k, j] == 12)
+                            //십자불은 스프라이트 바꾸면 안되니까 패스
+                            if (wallMap[k, j] == 12)
                             {
                                 continue;
                             }
@@ -486,11 +500,11 @@ public class TileArray : MonoBehaviour
 
                     }
                     //빛이 맨 아래 있을 때
-                    else if (i == tileMap.GetLength(0) - 1) //5,3 불 3,3 벽
+                    else if (i == wallMap.GetLength(0) - 1) //5,3 불 3,3 벽
                     {
-                        for (int k = tileMap.GetLength(0) - 2; k >= 1; k--)//다음 칸부터 탐색
+                        for (int k = wallMap.GetLength(0) - 2; k >= 1; k--)//다음 칸부터 탐색
                         {
-                            if (tileMap[k, j] == 12)
+                            if (wallMap[k, j] == 12)
                             {
                                 continue;
                             }
@@ -507,9 +521,9 @@ public class TileArray : MonoBehaviour
                     //빛이 맨 왼쪽에 있을 때
                     else if (j == 0)
                     {
-                        for (int k = 1; k < tileMap.GetLength(1) - 1; k++)
+                        for (int k = 1; k < wallMap.GetLength(1) - 1; k++)
                         {
-                            if (tileMap[i, k] == 12)
+                            if (wallMap[i, k] == 12)
                             {
                                 continue;
                             }
@@ -524,11 +538,11 @@ public class TileArray : MonoBehaviour
 
                     }
                     //빛이 맨 오른쪽
-                    else if (j == tileMap.GetLength(1) - 1)//2,6불 2,4벽
+                    else if (j == wallMap.GetLength(1) - 1)//2,6불 2,4벽
                     {
-                        for (int k = tileMap.GetLength(1) - 2; k >= 1; k--)
+                        for (int k = wallMap.GetLength(1) - 2; k >= 1; k--)
                         {
-                            if (tileMap[i, k] == 12)
+                            if (wallMap[i, k] == 12)
                             {
                                 continue;
                             }
