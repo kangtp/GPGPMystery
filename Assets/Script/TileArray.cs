@@ -115,7 +115,7 @@ public class TileArray : MonoBehaviour
                     GameObject prefab = Resources.Load("wall") as GameObject;
                     GameObject wall = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     wall.GetComponent<wall_Info>().Set(i, j);
-                    tileMap[i, j] = 4;
+                    tileMap[i, j] = (int)TileType.wall;
                     wall.transform.position = new Vector2(StartPoint.x + (wallSize * j) + (wallSize / 2), StartPoint.y - (wallSize * i) - (wallSize / 2));
 
                 }

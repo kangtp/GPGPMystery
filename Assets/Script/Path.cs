@@ -70,6 +70,7 @@ public class Path : MonoBehaviour
 
     public bool checkPathable(int code)
     {
+        Debug.Log(path[path.Count - 2].X + " ," + path[path.Count - 2].Y);
         Debug.Log(path[path.Count - 1].X.ToString() + GoalPosition_x.ToString() + " , " + path[path.Count - 1].Y.ToString() + GoalPosition_y.ToString());
         if (code == 0)
         {
@@ -98,6 +99,11 @@ public class Path : MonoBehaviour
         m_path.Clear();
         return false;
 
+    }
+
+    public bool checkArrive()
+    {
+        return true;
     }
 
 
