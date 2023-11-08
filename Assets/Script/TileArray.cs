@@ -323,6 +323,7 @@ public class TileArray : MonoBehaviour
                             if (tileMap[k, j] == (int)TileType.wall)
                             {
                                 findWall = true;
+                                
                             }
 
                             else if (findWall)  //벽 찾으면 그림자로 
@@ -347,6 +348,7 @@ public class TileArray : MonoBehaviour
                             if (tileMap[k, j] == (int)TileType.wall)
                             {
                                 findWall = true;
+                                
                             }
 
                             else if (findWall)  //벽 찾으면 그림자로 
@@ -370,6 +372,7 @@ public class TileArray : MonoBehaviour
                             if (tileMap[i, k] == (int)TileType.wall)
                             {
                                 findWall = true;
+                                
                             }
 
                             else if (findWall)  //벽 찾으면 그림자로 
@@ -394,6 +397,7 @@ public class TileArray : MonoBehaviour
                             if (tileMap[i, k] == (int)TileType.wall)
                             {
                                 findWall = true;
+                                
                             }
 
                             else if (findWall)  //벽 찾으면 그림자로 
