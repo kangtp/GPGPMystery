@@ -20,7 +20,7 @@ public class TileArray1 : MonoBehaviour
     [SerializeField]
     public int[,] tileMap = new int[,]
     {
-         {2,9,2,2,7,2,2,2,2,2},
+         {2,7,2,2,9,2,2,2,2,2},
          {1,0,0,0,0,0,0,0,0,2},
          {1,0,0,0,0,0,0,0,0,2},
          {1,0,0,0,0,0,0,0,0,2},
