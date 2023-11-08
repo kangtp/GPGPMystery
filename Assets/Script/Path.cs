@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Path : MonoBehaviour
 {
 
+    Fadeinout fadeinout;
     [SerializeField]
     public int[,] pathMap = new int[,]
     {
@@ -37,6 +39,11 @@ public class Path : MonoBehaviour
     private GameObject Hunter;
     private GameObject Monster;
 
+    private Animator monsterAnimation;
+    private Animator hunterAnimation;
+
+    public float movespeed;
+
     public int count;
 
     public int startPosition_x;
@@ -49,13 +56,46 @@ public class Path : MonoBehaviour
     public int m_GoalPosition_x;
     public int m_GoalPosition_y;
 
+    private bool clearHunter;
+    private bool clearMonster;
+
     public float size;
 
     private void Start()
     {
+        clearHunter = false;
+        clearMonster = false;
+        fadeinout = FindAnyObjectByType<Fadeinout>();
+        fadeinout.fadeOut();
         size = 1.5f;
         Get_tilemap();
         PopulatePathmap();
+    }
+
+    private void Update() 
+    {
+        
+        if(count == 0 && clearMonster)
+        {
+            StartCoroutine(ChangeScene());
+        }
+        else if(count == 1 && clearHunter)
+        {
+            StartCoroutine(ChangeScene());
+        }
+        else if(count == 2 && clearHunter && clearMonster)
+        {
+            StartCoroutine(ChangeScene());
+        }
+    }
+
+    public IEnumerator ChangeScene()
+    {
+        clearHunter = false;
+        clearMonster = false;
+        fadeinout.fadeIn();
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene("Stage2");
     }
 
     public void Go_Button()
@@ -176,6 +216,8 @@ public class Path : MonoBehaviour
                 {
                     GameObject prefab = Resources.Load("Hunter") as GameObject;
                     Hunter = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    hunterAnimation = Hunter.GetComponent<Animator>();
+                    hunterAnimation.SetInteger("First",1);
                     Hunter.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
@@ -183,6 +225,8 @@ public class Path : MonoBehaviour
                 {
                     GameObject prefab = Resources.Load("Monster") as GameObject;
                     Monster = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    monsterAnimation = Monster.GetComponent<Animator>();
+                    monsterAnimation.SetInteger("Vector",1);
                     Monster.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
@@ -202,12 +246,32 @@ public class Path : MonoBehaviour
             {
                 direction_x = path[i + 1].X - path[i].X;
                 direction_y = path[i + 1].Y - path[i].Y;
+
+                Debug.Log("an : " + hunterAnimation.GetInteger("Vector"));
+                if(direction_y == 1)
+                {
+                    hunterAnimation.SetInteger("Vector",1);
+                }
+                else if(direction_y == -1)
+                {
+                     hunterAnimation.SetInteger("Vector",0);
+                }
+                else if(direction_x == -1)
+                {
+                     hunterAnimation.SetInteger("Vector",2);
+                }
+                else if(direction_x == 1)
+                {
+                     hunterAnimation.SetInteger("Vector",3);
+                }
+
                 yield return new WaitForSeconds(0.5f);
                 Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_x, Hunter.transform.position.y - direction_y, 0);
             }
             yield return new WaitForSeconds(0.5f);
             Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_x, Hunter.transform.position.y - direction_y, 0);
-
+            yield return new WaitForSeconds(0.5f);
+            clearHunter = true;
         }
     }
 
@@ -220,14 +284,38 @@ public class Path : MonoBehaviour
 
             for (int i = 0; i < m_path.Count - 1; i++)
             {
+                
                 direction_x = m_path[i + 1].X - m_path[i].X;
                 direction_y = m_path[i + 1].Y - m_path[i].Y;
+                Debug.Log("x : " + direction_x.ToString() + ", y : " + direction_y.ToString());
+
+                //y가 1이면 밑으로 가는거 y가 -1이면 위로 가는 거 x가 -1이면 왼쪽으로가는거 x가 1이면 오른쪽으로가는거
+                //애니메이션 down = y->1, up = y->-1, left = x->-1, right = x->1
+                if(direction_y == 1)
+                {
+                    monsterAnimation.SetInteger("Vector",1);
+                }
+                else if(direction_y == -1)
+                {
+                     monsterAnimation.SetInteger("Vector",0);
+                }
+                else if(direction_x == -1)
+                {
+                     monsterAnimation.SetInteger("Vector",2);
+                }
+                else if(direction_x == 1)
+                {
+                     monsterAnimation.SetInteger("Vector",3);
+                }
+
                 yield return new WaitForSeconds(0.5f);
                 //Debug.Log("x : " + direction_x + ", y : " + direction_y);
                 Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
             }
             yield return new WaitForSeconds(0.5f);
             Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
+            yield return new WaitForSeconds(0.5f);
+            clearMonster = true;
         }
     }
 
@@ -504,15 +592,15 @@ public class Path : MonoBehaviour
         {
             int nowX = checklist[checklist.Count - 2].X;
             int nowY = checklist[checklist.Count - 2].Y;
-            Debug.Log("goalX : " + goalx.ToString() + " goalY : " + goaly.ToString());
+            //Debug.Log("goalX : " + goalx.ToString() + " goalY : " + goaly.ToString());
             for (int i = 0; i < 4; i++)
             {
                 int X = nowX + dirX[i];
                 int Y = nowY + dirY[i];
-                Debug.Log("X : " + X.ToString() + " Y : " + Y.ToString());
+                //Debug.Log("X : " + X.ToString() + " Y : " + Y.ToString());
                 if ((X == goalx && Y == goaly) || (X == goaly && Y == goalx) )
                 {
-                    Debug.Log("수행완료");
+                    //Debug.Log("수행완료");
                     return true;
                 }
 
