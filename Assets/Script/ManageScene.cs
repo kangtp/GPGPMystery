@@ -8,7 +8,7 @@ public class ManageScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(createIcon());
     }
 
     // Update is called once per frame
@@ -19,50 +19,62 @@ public class ManageScene : MonoBehaviour
 
     public void Stage1()
     {
-        GameObject.Find("StageSelectMenu").transform.GetChild(6).gameObject.SetActive(true);
+        //GameObject.Find("StageSelectMenu").transform.GetChild(6).gameObject.SetActive(true);
         StartCoroutine(EnterStage1());
     }
 
     public void Stage2()
     {
-        GameObject.Find("StageSelectMenu").transform.GetChild(7).gameObject.SetActive(true);
+        //GameObject.Find("StageSelectMenu").transform.GetChild(7).gameObject.SetActive(true);
         StartCoroutine(EnterStage2());
     }
 
     public void Stage3()
     {
-        GameObject.Find("StageSelectMenu").transform.GetChild(8).gameObject.SetActive(true);
+        //GameObject.Find("StageSelectMenu").transform.GetChild(8).gameObject.SetActive(true);
         StartCoroutine(EnterStage3());
     }
 
     public void Stage4()
     {
-        GameObject.Find("StageSelectMenu").transform.GetChild(9).gameObject.SetActive(true);
+        //GameObject.Find("StageSelectMenu").transform.GetChild(9).gameObject.SetActive(true);
         StartCoroutine(EnterStage4());
     }
 
     IEnumerator EnterStage1()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage1");
     }
 
     IEnumerator EnterStage2()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage2");
     }
 
     IEnumerator EnterStage3()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage3");
     }
 
     IEnumerator EnterStage4()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage4");
+    }
+
+    IEnumerator createIcon()
+    {
+        yield return new WaitForSeconds(1.5f);
+        GameObject.Find("StageSelectMenu").transform.GetChild(1).gameObject.SetActive(true);
+        GameObject.Find("StageSelectMenu").transform.GetChild(2).gameObject.SetActive(true);
+        GameObject.Find("StageSelectMenu").transform.GetChild(3).gameObject.SetActive(true);
+        GameObject.Find("StageSelectMenu").transform.GetChild(4).gameObject.SetActive(true);
+        GameObject.Find("StageSelectMenu").transform.GetChild(5).gameObject.SetActive(true);
+        GameObject.Find("StageSelectMenu").transform.GetChild(6).gameObject.SetActive(true);
+
     }
 
 }

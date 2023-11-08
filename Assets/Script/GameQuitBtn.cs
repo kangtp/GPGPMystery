@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class startButton : MonoBehaviour
+public class GameQuitBtn : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -17,8 +16,12 @@ public class startButton : MonoBehaviour
         
     }
 
-    public void GameStart()
+    public void GameQuit()
     {
-        SceneManager.LoadScene("Level Menu");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }
