@@ -37,6 +37,8 @@ public class Path : MonoBehaviour
     private GameObject Hunter;
     private GameObject Monster;
 
+    public int count;
+
     public int startPosition_x;
     public int startPosition_y;
     public int GoalPosition_x;
@@ -59,51 +61,66 @@ public class Path : MonoBehaviour
     public void Go_Button()
     {
         Get_tilemap();
-        BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
-        BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
-        if (checkPathable(2))
+        switch (count)
         {
-            StartCoroutine(move_hunter());
-            StartCoroutine(move_monster());
+            case 0:
+                {
+                    BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
+                    if (checkPathable(count))
+                    {
+                        StartCoroutine(move_monster());
+                    }
+                }
+                break;
+            case 1:
+                {
+                    BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
+                    if (checkPathable(count))
+                    {
+                        StartCoroutine(move_hunter());
+                    }
+                }
+                break;
+            case 2:
+                {
+                    BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
+                    BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
+                    PrintPathList(path);
+                    PrintPathList(m_path);
+                    if (checkPathable(count))
+                    {
+                        StartCoroutine(move_hunter());
+                        StartCoroutine(move_monster());
+                    }
+                }
+                break;
+
+            default:
+                break;
         }
+
     }
 
     public bool checkPathable(int code)
     {
-        Debug.Log(path[path.Count - 2].X + " ," + path[path.Count - 2].Y);
-        Debug.Log(path[path.Count - 1].X.ToString() + GoalPosition_x.ToString() + " , " + path[path.Count - 1].Y.ToString() + GoalPosition_y.ToString());
+        //Debug.Log(path[path.Count - 2].X + " ," + path[path.Count - 2].Y);
+        //Debug.Log(path[path.Count - 1].X.ToString() + GoalPosition_x.ToString() + " , " + path[path.Count - 1].Y.ToString() + GoalPosition_y.ToString());
         if (code == 0)
         {
-            if (m_path[m_path.Count - 1].X == m_GoalPosition_y && m_path[m_path.Count - 1].Y == m_GoalPosition_x)
-            {
-                return true;
-            }
+            return CheckArrival(m_path, m_GoalPosition_x, m_GoalPosition_y);
         }
         else if (code == 1)
         {
-            if (path[path.Count - 1].X == GoalPosition_y && path[path.Count - 1].Y == GoalPosition_x)
-            {
-                return true;
-            }
+            return CheckArrival(path, GoalPosition_x, GoalPosition_y);
         }
         else if (code == 2)
         {
-            if (path[path.Count - 1].X == GoalPosition_y && path[path.Count - 1].Y == GoalPosition_x
-        && m_path[m_path.Count - 1].X == m_GoalPosition_y && m_path[m_path.Count - 1].Y == m_GoalPosition_x)
-            {
-                return true;
-            }
+            return (CheckArrival(path, GoalPosition_y, GoalPosition_x) && CheckArrival(m_path, m_GoalPosition_x, m_GoalPosition_y));
         }
-
-        path.Clear();
-        m_path.Clear();
         return false;
 
-    }
 
-    public bool checkArrive()
-    {
-        return true;
+
     }
 
 
@@ -389,12 +406,24 @@ public class Path : MonoBehaviour
     List<Pos> path = new List<Pos>();
     List<Pos> m_path = new List<Pos>();
 
+    int[] dirX = new int[] { -1, 0, 1, 0 };
+    int[] dirY = new int[] { 0, -1, 0, 1 };
     // !!!!!!!!! 밑에 getlength한번 테스트해보고 안되면 위치 바꿔보기
     private void BFS(int[,] maze, int code, int startPositionx, int startPositiony, int GoalPositionx, int GoalPositiony)
     {
-        int[] dirX = new int[] { -1, 0, 1, 0 };
-        int[] dirY = new int[] { 0, -1, 0, 1 };
-
+        if (code == 0)
+        {
+            m_path.Clear();
+        }
+        else if (code == 1)
+        {
+            path.Clear();
+        }
+        else if (code == 2)
+        {
+            path.Clear();
+            m_path.Clear();
+        }
         bool[,] found = new bool[maze.GetLength(0), maze.GetLength(1)];
         Pos[,] parent = new Pos[maze.GetLength(0), maze.GetLength(1)];
 
@@ -467,6 +496,29 @@ public class Path : MonoBehaviour
             m_path.Add(new Pos(y, x));
             m_path.Reverse();
         }
+    }
+
+    private bool CheckArrival(List<Pos> checklist, int goalx, int goaly)
+    {
+        if (checklist.Count >= 2)
+        {
+            int nowX = checklist[checklist.Count - 2].X;
+            int nowY = checklist[checklist.Count - 2].Y;
+            Debug.Log("goalX : " + goalx.ToString() + " goalY : " + goaly.ToString());
+            for (int i = 0; i < 4; i++)
+            {
+                int X = nowX + dirX[i];
+                int Y = nowY + dirY[i];
+                Debug.Log("X : " + X.ToString() + " Y : " + Y.ToString());
+                if ((X == goalx && Y == goaly) || (X == goaly && Y == goalx) )
+                {
+                    Debug.Log("수행완료");
+                    return true;
+                }
+
+            }
+        }
+        return false;
     }
 
 
