@@ -85,6 +85,8 @@ public class Path : MonoBehaviour
                 {
                     BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
                     BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
+                    PrintPathList(path);
+                    PrintPathList(m_path);
                     if (checkPathable(count))
                     {
                         StartCoroutine(move_hunter());
@@ -105,7 +107,7 @@ public class Path : MonoBehaviour
         //Debug.Log(path[path.Count - 1].X.ToString() + GoalPosition_x.ToString() + " , " + path[path.Count - 1].Y.ToString() + GoalPosition_y.ToString());
         if (code == 0)
         {
-            return CheckArrival(m_path, m_GoalPosition_y, m_GoalPosition_x);
+            return CheckArrival(m_path, m_GoalPosition_x, m_GoalPosition_y);
         }
         else if (code == 1)
         {
@@ -113,7 +115,7 @@ public class Path : MonoBehaviour
         }
         else if (code == 2)
         {
-            return (CheckArrival(path, GoalPosition_x, GoalPosition_y) && CheckArrival(m_path, m_GoalPosition_y, m_GoalPosition_x));
+            return (CheckArrival(path, GoalPosition_y, GoalPosition_x) && CheckArrival(m_path, m_GoalPosition_x, m_GoalPosition_y));
         }
         return false;
 
@@ -508,7 +510,7 @@ public class Path : MonoBehaviour
                 int X = nowX + dirX[i];
                 int Y = nowY + dirY[i];
                 Debug.Log("X : " + X.ToString() + " Y : " + Y.ToString());
-                if (X == goalx && Y == goaly)
+                if ((X == goalx && Y == goaly) || (X == goaly && Y == goalx) )
                 {
                     Debug.Log("수행완료");
                     return true;
