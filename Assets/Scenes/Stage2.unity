@@ -854,7 +854,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 760325242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1534d9826a8d02343a5722a1e8572179, type: 3}
+  m_Script: {fileID: 11500000, guid: b75a7f81f573245cd88b84dce0a495e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TileSize: 0
@@ -1128,8 +1128,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1016835376}
-  - component: {fileID: 1016835375}
   - component: {fileID: 1016835377}
+  - component: {fileID: 1016835378}
   m_Layer: 0
   m_Name: PathManager
   m_TagString: Untagged
@@ -1137,29 +1137,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1016835375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016835374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 348419b32e5994c8f970609ab5a8948e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movespeed: 0
-  count: 2
-  startPosition_x: 0
-  startPosition_y: 0
-  GoalPosition_x: 0
-  GoalPosition_y: 0
-  m_startPosition_x: 0
-  m_startPosition_y: 0
-  m_GoalPosition_x: 0
-  m_GoalPosition_y: 0
-  size: 0
 --- !u!4 &1016835376
 Transform:
   m_ObjectHideFlags: 0
@@ -1190,7 +1167,30 @@ MonoBehaviour:
   canvasGroup: {fileID: 944202701}
   fadein: 0
   fadeout: 0
-  timetofade: 2
+  timetofade: 0.3
+--- !u!114 &1016835378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016835374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbb776910c804a299d7c902cfbb5cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movespeed: 0
+  count: 2
+  startPosition_x: 0
+  startPosition_y: 0
+  GoalPosition_x: 0
+  GoalPosition_y: 0
+  m_startPosition_x: 0
+  m_startPosition_y: 0
+  m_GoalPosition_x: 0
+  m_GoalPosition_y: 0
+  size: 0
 --- !u!1 &1079150420
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,7 +3359,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1016835375}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Path, Assembly-CSharp
         m_MethodName: Go_Button
         m_Mode: 1

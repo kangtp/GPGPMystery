@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Path : MonoBehaviour
+public class Path1 : MonoBehaviour
 {
 
     Fadeinout fadeinout;
@@ -166,14 +166,14 @@ public class Path : MonoBehaviour
 
     public void Get_tilemap()
     {
-        if (TileArray.Instance != null)
+        if (TileArray1.Instance != null)
         {
-            for (int i = 0; i < TileArray.Instance.tileMap.GetLength(0); i++)
+            for (int i = 0; i < TileArray1.Instance.tileMap.GetLength(0); i++)
             {
-                for (int j = 0; j < TileArray.Instance.tileMap.GetLength(1); j++)
+                for (int j = 0; j < TileArray1.Instance.tileMap.GetLength(1); j++)
                 {
-                    pathMap[i, j] = TileArray.Instance.tileMap[i, j];
-                    m_pathMap[i, j] = TileArray.Instance.tileMap[i, j];
+                    pathMap[i, j] = TileArray1.Instance.tileMap[i, j];
+                    m_pathMap[i, j] = TileArray1.Instance.tileMap[i, j];
                     if (pathMap[i, j] == 7)
                     {
                         startPosition_x = i;
@@ -207,27 +207,27 @@ public class Path : MonoBehaviour
 
     public void PopulatePathmap()
     {
-        for (int i = 0; i < TileArray.Instance.tileMap.GetLength(0); i++)
+        for (int i = 0; i < TileArray1.Instance.tileMap.GetLength(0); i++)
         {
-            for (int j = 0; j < TileArray.Instance.tileMap.GetLength(1); j++)
+            for (int j = 0; j < TileArray1.Instance.tileMap.GetLength(1); j++)
             {
 
-                if (TileArray.Instance.tileMap[i, j] == 7)
+                if (TileArray1.Instance.tileMap[i, j] == 7)
                 {
                     GameObject prefab = Resources.Load("Hunter") as GameObject;
                     Hunter = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     hunterAnimation = Hunter.GetComponent<Animator>();
                     hunterAnimation.SetInteger("First",1);
-                    Hunter.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
+                    Hunter.transform.position = TileArray1.Instance.tilePrefab[i, j].transform.position;
                 }
 
-                if (TileArray.Instance.tileMap[i, j] == 9)
+                if (TileArray1.Instance.tileMap[i, j] == 9)
                 {
                     GameObject prefab = Resources.Load("Monster") as GameObject;
                     Monster = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     monsterAnimation = Monster.GetComponent<Animator>();
                     monsterAnimation.SetInteger("Vector",1);
-                    Monster.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
+                    Monster.transform.position = TileArray1.Instance.tilePrefab[i, j].transform.position;
                 }
 
 

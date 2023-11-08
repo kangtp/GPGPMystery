@@ -37,7 +37,7 @@ public class Fadeinout : MonoBehaviour
                 canvasGroup.alpha -= timetofade * Time.deltaTime;
                 if(canvasGroup.alpha == 0)
                 {
-                    fadein = false;
+                    fadeout = false;
                 }
             }
         }
