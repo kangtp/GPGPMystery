@@ -30,6 +30,17 @@ public class TileArray : MonoBehaviour
          {2,0,0,0,0,0,0,0,0,1},
          {10,0,0,0,0,0,0,0,0,1},
          {2,2,2,2,2,2,2,8,2,2}
+
+        //{2,9,2,2,7,2,2,2,2,2},
+        // {2,1,1,1,1,1,1,1,1,1},
+        // {2,1,1,1,1,1,1,1,1,1},
+        // {2,1,1,1,1,1,1,1,1,1},
+        // {2,1,1,1,1,1,1,1,1,1},
+        // {2,1,1,1,1,1,1,1,1,1},
+        // {2,1,1,1,1,1,1,1,1,1},
+        // {2,1,1,1,1,1,1,1,1,1},
+        // {10,1,1,1,1,1,1,1,1,1},
+        // {2,2,2,2,2,2,2,8,2,2}
     };
 
     public int[,] wallMap = new int[,]
@@ -94,10 +105,27 @@ public class TileArray : MonoBehaviour
         {
             for (int j = 0; j < tileMap.GetLength(1); j++)
             {
-                GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString()) as GameObject;
-                GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
-                tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
-                tilePrefab[i, j] = tile;
+                if (tileMap[i,j] == 0)
+                {
+                    GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString() + (Random.Range(0, 1000) % 3).ToString()) as GameObject;
+                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                    tilePrefab[i, j] = tile;
+                }
+                else if (tileMap[i,j] == 1)
+                {
+                    GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString() + (Random.Range(0, 1000) % 3).ToString()) as GameObject;
+                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                    tilePrefab[i, j] = tile;
+                }
+                else
+                {
+                    GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString()) as GameObject;
+                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                    tilePrefab[i, j] = tile;
+                }
 
             }
         }
