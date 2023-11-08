@@ -37,8 +37,8 @@ public class TileArray : MonoBehaviour
          {0,0,0,0,0,0,0,0,0,0},
          {0,0,0,0,1,0,0,0,0,3},
          {0,0,0,0,1,0,0,0,0,3},
-         {0,0,0,0,1,0,0,0,0,3},
-         {0,0,0,0,1,0,0,0,0,3},
+         {0,0,0,0,2,0,0,0,0,3},
+         {0,0,0,0,2,0,0,0,0,3},
          {0,0,0,0,1,0,0,0,0,3},
          {0,0,0,0,1,0,0,0,0,3},
          {0,0,0,0,1,0,0,0,0,3},
@@ -110,9 +110,9 @@ public class TileArray : MonoBehaviour
             for (int j = 0; j < wallMap.GetLength(1); j++)
             {
                 //통나무 생성
-                if (wallMap[i, j] == 1)
+                if (wallMap[i, j] == 1 || wallMap[i,j] == 2)
                 {
-                    GameObject prefab = Resources.Load("wall") as GameObject;
+                    GameObject prefab = Resources.Load("wall_" + wallMap[i,j].ToString()) as GameObject;
                     GameObject wall = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     wall.GetComponent<wall_Info>().Set(i, j);
                     tileMap[i, j] = (int)TileType.wall;

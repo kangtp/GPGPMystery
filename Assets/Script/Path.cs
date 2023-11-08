@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Path : MonoBehaviour
 {
 
+    Fadeinout fadeinout;
     [SerializeField]
     public int[,] pathMap = new int[,]
     {
@@ -54,18 +56,46 @@ public class Path : MonoBehaviour
     public int m_GoalPosition_x;
     public int m_GoalPosition_y;
 
+    private bool clearHunter;
+    private bool clearMonster;
+
     public float size;
 
     private void Start()
     {
+        clearHunter = false;
+        clearMonster = false;
+        fadeinout = FindAnyObjectByType<Fadeinout>();
+        fadeinout.fadeOut();
         size = 1.5f;
         Get_tilemap();
         PopulatePathmap();
     }
 
-    private void FixedUpdate() 
+    private void Update() 
     {
+        
+        if(count == 0 && clearMonster)
+        {
+            StartCoroutine(ChangeScene());
+        }
+        else if(count == 1 && clearHunter)
+        {
+            StartCoroutine(ChangeScene());
+        }
+        else if(count == 2 && clearHunter && clearMonster)
+        {
+            StartCoroutine(ChangeScene());
+        }
+    }
 
+    public IEnumerator ChangeScene()
+    {
+        clearHunter = false;
+        clearMonster = false;
+        fadeinout.fadeIn();
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage2");
     }
 
     public void Go_Button()
@@ -240,7 +270,8 @@ public class Path : MonoBehaviour
             }
             yield return new WaitForSeconds(0.5f);
             Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_x, Hunter.transform.position.y - direction_y, 0);
-
+            yield return new WaitForSeconds(0.5f);
+            clearHunter = true;
         }
     }
 
@@ -283,6 +314,8 @@ public class Path : MonoBehaviour
             }
             yield return new WaitForSeconds(0.5f);
             Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
+            yield return new WaitForSeconds(0.5f);
+            clearMonster = true;
         }
     }
 
