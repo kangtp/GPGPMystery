@@ -860,8 +860,8 @@ MonoBehaviour:
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -4, y: 5}
-  shadowSprite: {fileID: 1261852888, guid: 5e654a559eb407f42bcec0e32934998f, type: 3}
-  groundSprite: {fileID: 1349750109, guid: 5e654a559eb407f42bcec0e32934998f, type: 3}
+  shadowSprite: {fileID: -1804090897, guid: 5f384c3c8dbe54748b3f725b0e8e092f, type: 3}
+  groundSprite: {fileID: 463654327, guid: 5f384c3c8dbe54748b3f725b0e8e092f, type: 3}
 --- !u!1 &855925796
 GameObject:
   m_ObjectHideFlags: 0
