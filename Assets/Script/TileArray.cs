@@ -30,17 +30,6 @@ public class TileArray : MonoBehaviour
          {2,0,0,0,0,0,0,0,0,1},
          {10,0,0,0,0,0,0,0,0,1},
          {2,2,2,2,2,2,2,8,2,2}
-
-        //{2,9,2,2,7,2,2,2,2,2},
-        // {2,1,1,1,1,1,1,1,1,1},
-        // {2,1,1,1,1,1,1,1,1,1},
-        // {2,1,1,1,1,1,1,1,1,1},
-        // {2,1,1,1,1,1,1,1,1,1},
-        // {2,1,1,1,1,1,1,1,1,1},
-        // {2,1,1,1,1,1,1,1,1,1},
-        // {2,1,1,1,1,1,1,1,1,1},
-        // {10,1,1,1,1,1,1,1,1,1},
-        // {2,2,2,2,2,2,2,8,2,2}
     };
 
     public int[,] wallMap = new int[,]
@@ -105,27 +94,10 @@ public class TileArray : MonoBehaviour
         {
             for (int j = 0; j < tileMap.GetLength(1); j++)
             {
-                if (tileMap[i,j] == 0)
-                {
-                    GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString() + (Random.Range(0, 1000) % 3).ToString()) as GameObject;
-                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
-                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
-                    tilePrefab[i, j] = tile;
-                }
-                else if (tileMap[i,j] == 1)
-                {
-                    GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString() + (Random.Range(0, 1000) % 3).ToString()) as GameObject;
-                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
-                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
-                    tilePrefab[i, j] = tile;
-                }
-                else
-                {
-                    GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString()) as GameObject;
-                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
-                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
-                    tilePrefab[i, j] = tile;
-                }
+                GameObject prefab = Resources.Load("tile_" + tileMap[i, j].ToString()) as GameObject;
+                GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                tilePrefab[i, j] = tile;
 
             }
         }
@@ -138,9 +110,9 @@ public class TileArray : MonoBehaviour
             for (int j = 0; j < wallMap.GetLength(1); j++)
             {
                 //통나무 생성
-                if (wallMap[i, j] == 1 || wallMap[i,j] == 2)
+                if (wallMap[i, j] == 1 || wallMap[i, j] == 2)
                 {
-                    GameObject prefab = Resources.Load("wall_" + wallMap[i,j].ToString()) as GameObject;
+                    GameObject prefab = Resources.Load("wall_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject wall = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     wall.GetComponent<wall_Info>().Set(i, j);
                     tileMap[i, j] = (int)TileType.wall;
@@ -239,7 +211,7 @@ public class TileArray : MonoBehaviour
                             tileMap[x - 1, y] = 4;
                             tileMap[x, y] = 0;
                         }
-                        else if(tileMap[x,y] == 12)
+                        else if (tileMap[x, y] == 12)
                         {
                             wallMap[x - 1, y] = 1;
                             wallMap[x, y] = 0;
@@ -263,7 +235,7 @@ public class TileArray : MonoBehaviour
                             tileMap[x + 1, y] = 4;
                             tileMap[x, y] = 0;
                         }
-                        else if(tileMap[x,y] == 12)
+                        else if (tileMap[x, y] == 12)
                         {
                             wallMap[x + 1, y] = 1;
                             wallMap[x, y] = 0;
@@ -286,7 +258,7 @@ public class TileArray : MonoBehaviour
                             tileMap[x, y + 1] = 4;
                             tileMap[x, y] = 0;
                         }
-                        else if(tileMap[x,y] == 12)
+                        else if (tileMap[x, y] == 12)
                         {
                             wallMap[x, y + 1] = 1;
                             wallMap[x, y] = 0;
@@ -309,7 +281,7 @@ public class TileArray : MonoBehaviour
                             tileMap[x, y - 1] = 4;
                             tileMap[x, y] = 0;
                         }
-                        else if(tileMap[x,y] == 12)
+                        else if (tileMap[x, y] == 12)
                         {
                             wallMap[x, y - 1] = 1;
                             wallMap[x, y] = 0;
@@ -351,7 +323,7 @@ public class TileArray : MonoBehaviour
                             if (tileMap[k, j] == (int)TileType.wall)
                             {
                                 findWall = true;
-                                
+
                             }
 
                             else if (findWall)  //벽 찾으면 그림자로 
@@ -376,7 +348,7 @@ public class TileArray : MonoBehaviour
                             if (tileMap[k, j] == (int)TileType.wall)
                             {
                                 findWall = true;
-                                
+
                             }
 
                             else if (findWall)  //벽 찾으면 그림자로 
@@ -400,7 +372,7 @@ public class TileArray : MonoBehaviour
                             if (tileMap[i, k] == (int)TileType.wall)
                             {
                                 findWall = true;
-                                
+
                             }
 
                             else if (findWall)  //벽 찾으면 그림자로 
@@ -425,7 +397,7 @@ public class TileArray : MonoBehaviour
                             if (tileMap[i, k] == (int)TileType.wall)
                             {
                                 findWall = true;
-                                
+
                             }
 
                             else if (findWall)  //벽 찾으면 그림자로 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7422233064747457439}
   - component: {fileID: 6485396940292880766}
   m_Layer: 0
-  m_Name: tile_02
+  m_Name: tile_0
   m_TagString: road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 705655218, guid: 5f384c3c8dbe54748b3f725b0e8e092f, type: 3}
+  m_Sprite: {fileID: -1804090897, guid: 5f384c3c8dbe54748b3f725b0e8e092f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
