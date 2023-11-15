@@ -19,50 +19,66 @@ public class ManageScene : MonoBehaviour
 
     public void Stage1()
     {
-        //GameObject.Find("StageSelectMenu").transform.GetChild(6).gameObject.SetActive(true);
-        StartCoroutine(EnterStage1());
+        GameObject.Find("Intro").transform.GetChild(0).gameObject.SetActive(true);
+    }
+
+    public void GoStage1_1()
+    {
+        StartCoroutine(EnterStage1_1());
     }
 
     public void Stage2()
     {
-        //GameObject.Find("StageSelectMenu").transform.GetChild(7).gameObject.SetActive(true);
-        StartCoroutine(EnterStage2());
+        GameObject.Find("Intro").transform.GetChild(1).gameObject.SetActive(true);
+    }
+
+    public void GoStage1_2()
+    {
+        StartCoroutine(EnterStage1_2());
     }
 
     public void Stage3()
     {
-        //GameObject.Find("StageSelectMenu").transform.GetChild(8).gameObject.SetActive(true);
-        StartCoroutine(EnterStage3());
+        GameObject.Find("Intro").transform.GetChild(2).gameObject.SetActive(true);
+    }
+
+    public void GoStage1_3()
+    {
+        StartCoroutine(EnterStage1_3());
     }
 
     public void Stage4()
     {
-        //GameObject.Find("StageSelectMenu").transform.GetChild(9).gameObject.SetActive(true);
-        StartCoroutine(EnterStage4());
+        GameObject.Find("Intro").transform.GetChild(3).gameObject.SetActive(true);
     }
 
-    IEnumerator EnterStage1()
+    public void GoStage1_4()
     {
-        yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage1");
+        StartCoroutine(EnterStage1_4());
     }
 
-    IEnumerator EnterStage2()
+    IEnumerator EnterStage1_1()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage2");
+        SceneManager.LoadScene("Stage1-1");
     }
 
-    IEnumerator EnterStage3()
+    IEnumerator EnterStage1_2()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage3");
+        SceneManager.LoadScene("Stage1-2");
     }
 
-    IEnumerator EnterStage4()
+    IEnumerator EnterStage1_3()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage4");
+        SceneManager.LoadScene("Stage1-3");
+    }
+
+    IEnumerator EnterStage1_4()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage1-4");
     }
 
     IEnumerator createIcon()
