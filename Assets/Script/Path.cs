@@ -95,7 +95,7 @@ public class Path : MonoBehaviour
         clearMonster = false;
         fadeinout.fadeIn();
         yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene("Stage2");
+        SceneManager.LoadScene("Stage1-2");
     }
 
     public void Go_Button()
