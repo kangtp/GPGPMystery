@@ -10745,8 +10745,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uAE4C\uB9C9\uC0B0\uAE30\uC2AD"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 68def495b9002ed44b68f41580da0188, type: 2}
-  m_sharedMaterial: {fileID: -2096159796069695429, guid: 68def495b9002ed44b68f41580da0188, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f8250f2275a26f94ba5375796d099b87, type: 2}
+  m_sharedMaterial: {fileID: 3017851133876421811, guid: f8250f2275a26f94ba5375796d099b87, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
