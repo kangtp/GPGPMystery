@@ -12,13 +12,6 @@ public class MovieOff : MonoBehaviour
     void Start()
     {
         StartCoroutine(screenOff());
-
-    }
-
-    public void skipBtn()
-    {
-        StopCoroutine(screenOff());
-        panel.SetActive(false);
     }
 
     // Update is called once per frame
