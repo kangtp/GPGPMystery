@@ -9,7 +9,7 @@ public class MovieOff : MonoBehaviour
 
     public GameObject panel;
 
-    void Start()
+    void Awake()
     {
         StartCoroutine(screenOff());
 
