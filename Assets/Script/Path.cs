@@ -101,6 +101,8 @@ public class Path : MonoBehaviour
     public void Go_Button()
     {
         Get_tilemap();
+        if(TileArray.Instance.Touchable)
+        {
         switch (count)
         {
             case 0:
@@ -137,6 +139,7 @@ public class Path : MonoBehaviour
 
             default:
                 break;
+        }
         }
 
     }
@@ -239,6 +242,7 @@ public class Path : MonoBehaviour
     {
         if (Hunter != null)
         {
+            TileArray.Instance.Touchable = false;
             int direction_x = 0;
             int direction_y = 0;
 
@@ -279,6 +283,7 @@ public class Path : MonoBehaviour
     {
         if (Monster != null)
         {
+            TileArray.Instance.Touchable = false;
             int direction_x = 0;
             int direction_y = 0;
 

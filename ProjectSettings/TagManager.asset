@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - wall
   - road
   - edge
+  - wall_1
+  - wall_0
+  - wall
+  - firefly
   layers:
   - Default
   - TransparentFX
