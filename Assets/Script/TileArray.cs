@@ -67,6 +67,8 @@ public class TileArray : MonoBehaviour
     public Sprite shadowSprite;
     public Sprite groundSprite;
 
+    bool RLwall;
+
     private bool detectedWall = false;
 
     private void Awake()
@@ -164,8 +166,17 @@ public class TileArray : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.CompareTag("wall"))
+                if (hit.collider.CompareTag("wall_0"))
                 {
+                    RLwall = true;
+                    get_Wall = hit.transform.gameObject;
+                    getWall_x = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_X();
+                    getWall_y = hit.transform.gameObject.GetComponent<wall_Info>().get_Y();
+                    detectedWall = true;
+                }
+                else if (hit.collider.CompareTag("wall_1"))
+                {
+                    RLwall = false;
                     get_Wall = hit.transform.gameObject;
                     getWall_x = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_X();
                     getWall_y = hit.transform.gameObject.GetComponent<wall_Info>().get_Y();
@@ -185,11 +196,11 @@ public class TileArray : MonoBehaviour
             {
                 if (Mathf.Abs(dragDirection.y) > Mathf.Abs(dragDirection.x))
                 {
-                    if (dragDirection.y > 0) // UP
+                    if (dragDirection.y > 0 && !RLwall) // UP
                     {
                         detectWallFunc(getWall_x, getWall_y, 'U');
                     }
-                    else if (dragDirection.y < 0) // Down
+                    else if (dragDirection.y < 0 && !RLwall) // Down
                     {
                         detectWallFunc(getWall_x, getWall_y, 'D');
                     }
@@ -197,11 +208,11 @@ public class TileArray : MonoBehaviour
                 // 좌우 드래그 방향 감지
                 else
                 {
-                    if (dragDirection.x > 0) // Right
+                    if (dragDirection.x > 0 && RLwall) // Right
                     {
                         detectWallFunc(getWall_x, getWall_y, 'R');
                     }
-                    else if (dragDirection.x < 0) // Left
+                    else if (dragDirection.x < 0 && RLwall) // Left
                     {
                         detectWallFunc(getWall_x, getWall_y, 'L');
                     }
