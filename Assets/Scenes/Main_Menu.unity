@@ -151,7 +151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1444204630}
+  - {fileID: 955262851}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -419,7 +419,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1496004926}
         m_TargetAssemblyTypeName: MovieOff, Assembly-CSharp
-        m_MethodName: skipBtn
+        m_MethodName: SkipBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1335,6 +1335,11 @@ MonoBehaviour:
   - {fileID: 790990920}
   - {fileID: 890833083}
   - {fileID: 864003548}
+--- !u!4 &955262851 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4797970383891740395, guid: 5969a15ea3c58c44cbf19069806e0808, type: 3}
+  m_PrefabInstance: {fileID: 1572349455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &958115465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,7 +2357,7 @@ RectTransform:
   m_Children:
   - {fileID: 1313355178}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

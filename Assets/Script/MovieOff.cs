@@ -20,6 +20,12 @@ public class MovieOff : MonoBehaviour
         
     }
 
+    public void SkipBtn()
+    {
+        StopCoroutine(screenOff());
+        panel.SetActive(false);
+    }
+
     IEnumerator screenOff()
     {
         yield return new WaitForSeconds(18.0f);
