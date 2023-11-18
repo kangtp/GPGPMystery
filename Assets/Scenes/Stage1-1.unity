@@ -854,15 +854,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 760325242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1534d9826a8d02343a5722a1e8572179, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d015033d2d38df44a173353fc430b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -4, y: 5}
-  shadowSprite: {fileID: -1106377860, guid: 5e654a559eb407f42bcec0e32934998f, type: 3}
-  groundSprite: {fileID: 1349750109, guid: 5e654a559eb407f42bcec0e32934998f, type: 3}
+  shadowSprite: {fileID: -960234240, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
+  groundSprite: {fileID: 849118353, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
   Touchable: 0
+  isOnFenFire: 1
 --- !u!1 &855925796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movespeed: 0
-  count: 2
+  count: 1
   startPosition_x: 0
   startPosition_y: 0
   GoalPosition_x: 0
