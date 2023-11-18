@@ -862,6 +862,8 @@ MonoBehaviour:
   StartPoint: {x: -4, y: 5}
   shadowSprite: {fileID: -960234240, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
   groundSprite: {fileID: 849118353, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
+  offFenFireSprite: {fileID: 983341240, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
+  onFenFireSprite: {fileID: 415978979, guid: 1bc920887c58b9f46802dc0af9d86f02, type: 3}
   Touchable: 0
   isOnFenFire: 1
 --- !u!1 &855925796
