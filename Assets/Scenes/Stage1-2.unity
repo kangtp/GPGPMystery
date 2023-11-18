@@ -854,9 +854,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 760325242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be234f4ef0c42464aaada3143d58e4bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d015033d2d38df44a173353fc430b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileMap_path: Data/Stage1-2-tileMap
+  wallMap_path: Data/Stage1-2-wallMap
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -4, y: 5}
@@ -1179,9 +1181,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1016835374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbb776910c804a299d7c902cfbb5cd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 348419b32e5994c8f970609ab5a8948e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: Stage1-3
   movespeed: 0
   count: 1
   startPosition_x: 0
@@ -3362,7 +3365,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1016835378}
-        m_TargetAssemblyTypeName: Path1, Assembly-CSharp
+        m_TargetAssemblyTypeName: PathManager, Assembly-CSharp
         m_MethodName: Go_Button
         m_Mode: 1
         m_Arguments:

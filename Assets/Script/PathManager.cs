@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Path : MonoBehaviour
+public class PathManager : MonoBehaviour
 {
 
     Fadeinout fadeinout;
+
+    public string nextScene;
+
     [SerializeField]
     public int[,] pathMap = new int[,]
     {
@@ -95,7 +98,7 @@ public class Path : MonoBehaviour
         clearMonster = false;
         fadeinout.fadeIn();
         yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene("Stage1-2");
+        SceneManager.LoadScene(nextScene);
     }
 
     public void Go_Button()
@@ -324,167 +327,6 @@ public class Path : MonoBehaviour
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    /*
-    public bool hunter_FindPath(int x, int y)
-    {
-        int rowN = pathMap.GetLength(0);
-        int colN = pathMap.GetLength(1);
-
-        if (x < 0 || y < 0 || x >= rowN || y >= colN)
-        {
-            return false;
-        }
-        else if (pathMap[x, y] != pathable)
-        {
-            return false;
-        }
-        else if (x == GoalPosition_x && y == GoalPosition_y)
-        {
-            pathMap[x, y] = visited;
-            pathList.Add((x, y));
-            return true;
-        }
-        else
-        {
-            pathMap[x, y] = visited;
-
-            if (hunter_FindPath(x - 1, y) || hunter_FindPath(x, y + 1) || hunter_FindPath(x + 1, y) || hunter_FindPath(x, y - 1))
-            {
-                pathList.Add((x, y));
-                return true;
-            }
-            pathMap[x, y] = blocked;
-            return false;
-        }
-    }
-
-    public bool monster_FindPath(int x, int y)
-    {
-        int rowN = m_pathMap.GetLength(0);
-        int colN = m_pathMap.GetLength(1);
-
-        if (x < 0 || y < 0 || x >= rowN || y >= colN)
-        {
-            return false;
-        }
-        else if (m_pathMap[x, y] != pathable_monster)
-        {
-            return false;
-        }
-        else if (x == m_GoalPosition_x && y == m_GoalPosition_y)
-        {
-            m_pathMap[x, y] = visited;
-            m_pathList.Add((x, y));
-            return true;
-        }
-        else
-        {
-            m_pathMap[x, y] = visited;
-
-            if (monster_FindPath(x - 1, y) || monster_FindPath(x, y + 1) || monster_FindPath(x + 1, y) || monster_FindPath(x, y - 1))
-            {
-                m_pathList.Add((x, y));
-                return true;
-            }
-            m_pathMap[x, y] = blocked;
-            return false;
-        }
-    }
-
-    private void PrintArray(int[,] array)
-    {
-        string output = "Array Contents:\n";
-        int rows = array.GetLength(0);
-        int cols = array.GetLength(1);
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < cols; j++)
-            {
-                output += array[i, j] + " ";
-            }
-            output += "\n";
-        }
-
-        Debug.Log(output);
-    }
-*/
-    ///////////////////////////////////////////////////////////////////////////
-    /*
-    public bool[,] visitMap;
-    int[,] DIRECTION_OFFSETS =
-    {
-    {1, 0},		
-	{-1, 0},			
-	{0, 1},			
-	{0, -1}			
-};
-
-    int NUM_DIRECTIONS = 4;
-
-    struct MapPosition
-    {
-        public int x;
-        public int y;
-        public int direction;
-    };
-
-    public enum PosStatus { NOT_VISIT = 0, WALL = 1, VISIT = 2 };
-
-
-    bool is_movable(int[,] maze, MapPosition pos)
-    {
-        // 현재 위치가 미로의 범위를 벗어나는 지 확인
-        if (pos.x < 0 || pos.y < 0 || pos.x >= row || pos.y >= col)
-            return false;
-        // 현재 위치가 벽이거나 이미 방문한 곳인지 확인
-        if (maze[pos.y, pos.x] != pathable)
-            return false;
-        return true;
-    }
-
-    // BFS 
-    bool findPath(int[,] maze, int[,] visited, MapPosition pos, int goal)
-    {
-
-        Queue<MapPosition> queue = new Queue<MapPosition>();
-        MapPosition currPos;
-        MapPosition nextPos;
-        int nextX;
-        int nextY;
-
-        queue.Enqueue(pos); // 처음 시작 위치를 큐에 넣기
-        while (queue.Count > 0)
-        {
-            currPos = queue.Dequeue(); // 큐에서 꺼내기
-            if (maze[currPos.x, currPos.y] == goal)          // 도착 지점에 도달한 경우
-                return true;
-            if (visited[currPos.x, currPos.y] == 33)     // 현재 위치를 방문했는지 확인
-                continue;
-            visited[currPos.x, currPos.y] = 33; // 현재 위치를 VISIT 으로 변경
-            while (currPos.direction < NUM_DIRECTIONS)
-            {
-                // 다음 좌표 설정
-                nextX = currPos.x + DIRECTION_OFFSETS[currPos.direction, 0];
-                nextY = currPos.y + DIRECTION_OFFSETS[currPos.direction, 1];
-                nextPos.x = nextX;
-                nextPos.y = nextY;
-                nextPos.direction = 0;
-
-                if (is_movable(maze, nextPos))
-                {
-                    // 다음 이동 지점에 이전 이동 거리 + 1 저장
-                    maze[nextY, nextX] = maze[currPos.x, currPos.y] + 1;
-                    queue.Enqueue(nextPos); // 다음 이동 지점 큐에 저장
-                }
-                pos.direction += 1;
-                //pathList.Add((pos.x,pos.y));
-            }
-        }
-        return true;
-    }
-*/
     ///////////////////////////////////////////////////////////////////////////
 
     class Pos
