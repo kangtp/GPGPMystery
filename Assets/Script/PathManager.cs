@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Path1 : MonoBehaviour
+public class PathManager : MonoBehaviour
 {
 
     Fadeinout fadeinout;
+
+    public string nextScene;
+
     [SerializeField]
     public int[,] pathMap = new int[,]
     {
@@ -72,18 +75,18 @@ public class Path1 : MonoBehaviour
         PopulatePathmap();
     }
 
-    private void Update()
+    private void Update() 
     {
-
-        if (count == 0 && clearMonster)
+        
+        if(count == 0 && clearMonster)
         {
             StartCoroutine(ChangeScene());
         }
-        else if (count == 1 && clearHunter)
+        else if(count == 1 && clearHunter)
         {
             StartCoroutine(ChangeScene());
         }
-        else if (count == 2 && clearHunter && clearMonster)
+        else if(count == 2 && clearHunter && clearMonster)
         {
             StartCoroutine(ChangeScene());
         }
@@ -95,51 +98,51 @@ public class Path1 : MonoBehaviour
         clearMonster = false;
         fadeinout.fadeIn();
         yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene("Stage1-2");
+        SceneManager.LoadScene(nextScene);
     }
 
     public void Go_Button()
     {
         Get_tilemap();
-        if (TileArray1.Instance.Touchable)
+        if(TileArray.Instance.Touchable)
         {
-            switch (count)
-            {
-                case 0:
+        switch (count)
+        {
+            case 0:
+                {
+                    BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
+                    if (checkPathable(count))
                     {
-                        BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
-                        if (checkPathable(count))
-                        {
-                            StartCoroutine(move_monster());
-                        }
+                        StartCoroutine(move_monster());
                     }
-                    break;
-                case 1:
+                }
+                break;
+            case 1:
+                {
+                    BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
+                    if (checkPathable(count))
                     {
-                        BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
-                        if (checkPathable(count))
-                        {
-                            StartCoroutine(move_hunter());
-                        }
+                        StartCoroutine(move_hunter());
                     }
-                    break;
-                case 2:
+                }
+                break;
+            case 2:
+                {
+                    BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
+                    BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
+                    PrintPathList(path);
+                    PrintPathList(m_path);
+                    if (checkPathable(count))
                     {
-                        BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
-                        BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
-                        PrintPathList(path);
-                        PrintPathList(m_path);
-                        if (checkPathable(count))
-                        {
-                            StartCoroutine(move_hunter());
-                            StartCoroutine(move_monster());
-                        }
+                        StartCoroutine(move_hunter());
+                        StartCoroutine(move_monster());
                     }
-                    break;
+                }
+                break;
 
-                default:
-                    break;
-            }
+            default:
+                break;
+        }
         }
 
     }
@@ -169,14 +172,14 @@ public class Path1 : MonoBehaviour
 
     public void Get_tilemap()
     {
-        if (TileArray1.Instance != null)
+        if (TileArray.Instance != null)
         {
-            for (int i = 0; i < TileArray1.Instance.tileMap.GetLength(0); i++)
+            for (int i = 0; i < TileArray.Instance.tileMap.GetLength(0); i++)
             {
-                for (int j = 0; j < TileArray1.Instance.tileMap.GetLength(1); j++)
+                for (int j = 0; j < TileArray.Instance.tileMap.GetLength(1); j++)
                 {
-                    pathMap[i, j] = TileArray1.Instance.tileMap[i, j];
-                    m_pathMap[i, j] = TileArray1.Instance.tileMap[i, j];
+                    pathMap[i, j] = TileArray.Instance.tileMap[i, j];
+                    m_pathMap[i, j] = TileArray.Instance.tileMap[i, j];
                     if (pathMap[i, j] == 7)
                     {
                         startPosition_x = i;
@@ -210,27 +213,27 @@ public class Path1 : MonoBehaviour
 
     public void PopulatePathmap()
     {
-        for (int i = 0; i < TileArray1.Instance.tileMap.GetLength(0); i++)
+        for (int i = 0; i < TileArray.Instance.tileMap.GetLength(0); i++)
         {
-            for (int j = 0; j < TileArray1.Instance.tileMap.GetLength(1); j++)
+            for (int j = 0; j < TileArray.Instance.tileMap.GetLength(1); j++)
             {
 
-                if (TileArray1.Instance.tileMap[i, j] == 7)
+                if (TileArray.Instance.tileMap[i, j] == 7)
                 {
                     GameObject prefab = Resources.Load("Hunter") as GameObject;
                     Hunter = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     hunterAnimation = Hunter.GetComponent<Animator>();
-                    hunterAnimation.SetInteger("First", 1);
-                    Hunter.transform.position = TileArray1.Instance.tilePrefab[i, j].transform.position;
+                    hunterAnimation.SetInteger("First",1);
+                    Hunter.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
-                if (TileArray1.Instance.tileMap[i, j] == 9)
+                if (TileArray.Instance.tileMap[i, j] == 9)
                 {
                     GameObject prefab = Resources.Load("Monster") as GameObject;
                     Monster = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     monsterAnimation = Monster.GetComponent<Animator>();
-                    monsterAnimation.SetInteger("Vector", 1);
-                    Monster.transform.position = TileArray1.Instance.tilePrefab[i, j].transform.position;
+                    monsterAnimation.SetInteger("Vector",1);
+                    Monster.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
 
@@ -242,7 +245,7 @@ public class Path1 : MonoBehaviour
     {
         if (Hunter != null)
         {
-            TileArray1.Instance.Touchable = false;
+            TileArray.Instance.Touchable = false;
             int direction_x = 0;
             int direction_y = 0;
 
@@ -252,21 +255,21 @@ public class Path1 : MonoBehaviour
                 direction_y = path[i + 1].Y - path[i].Y;
 
                 Debug.Log("an : " + hunterAnimation.GetInteger("Vector"));
-                if (direction_y == 1)
+                if(direction_y == 1)
                 {
-                    hunterAnimation.SetInteger("Vector", 1);
+                    hunterAnimation.SetInteger("Vector",1);
                 }
-                else if (direction_y == -1)
+                else if(direction_y == -1)
                 {
-                    hunterAnimation.SetInteger("Vector", 0);
+                     hunterAnimation.SetInteger("Vector",0);
                 }
-                else if (direction_x == -1)
+                else if(direction_x == -1)
                 {
-                    hunterAnimation.SetInteger("Vector", 2);
+                     hunterAnimation.SetInteger("Vector",2);
                 }
-                else if (direction_x == 1)
+                else if(direction_x == 1)
                 {
-                    hunterAnimation.SetInteger("Vector", 3);
+                     hunterAnimation.SetInteger("Vector",3);
                 }
 
                 yield return new WaitForSeconds(0.5f);
@@ -283,34 +286,34 @@ public class Path1 : MonoBehaviour
     {
         if (Monster != null)
         {
-            TileArray1.Instance.Touchable = false;
+            TileArray.Instance.Touchable = false;
             int direction_x = 0;
             int direction_y = 0;
 
             for (int i = 0; i < m_path.Count - 1; i++)
             {
-
+                
                 direction_x = m_path[i + 1].X - m_path[i].X;
                 direction_y = m_path[i + 1].Y - m_path[i].Y;
                 Debug.Log("x : " + direction_x.ToString() + ", y : " + direction_y.ToString());
 
                 //y가 1이면 밑으로 가는거 y가 -1이면 위로 가는 거 x가 -1이면 왼쪽으로가는거 x가 1이면 오른쪽으로가는거
                 //애니메이션 down = y->1, up = y->-1, left = x->-1, right = x->1
-                if (direction_y == 1)
+                if(direction_y == 1)
                 {
-                    monsterAnimation.SetInteger("Vector", 1);
+                    monsterAnimation.SetInteger("Vector",1);
                 }
-                else if (direction_y == -1)
+                else if(direction_y == -1)
                 {
-                    monsterAnimation.SetInteger("Vector", 0);
+                     monsterAnimation.SetInteger("Vector",0);
                 }
-                else if (direction_x == -1)
+                else if(direction_x == -1)
                 {
-                    monsterAnimation.SetInteger("Vector", 2);
+                     monsterAnimation.SetInteger("Vector",2);
                 }
-                else if (direction_x == 1)
+                else if(direction_x == 1)
                 {
-                    monsterAnimation.SetInteger("Vector", 3);
+                     monsterAnimation.SetInteger("Vector",3);
                 }
 
                 yield return new WaitForSeconds(0.5f);
@@ -324,167 +327,6 @@ public class Path1 : MonoBehaviour
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////
-    /*
-    public bool hunter_FindPath(int x, int y)
-    {
-        int rowN = pathMap.GetLength(0);
-        int colN = pathMap.GetLength(1);
-
-        if (x < 0 || y < 0 || x >= rowN || y >= colN)
-        {
-            return false;
-        }
-        else if (pathMap[x, y] != pathable)
-        {
-            return false;
-        }
-        else if (x == GoalPosition_x && y == GoalPosition_y)
-        {
-            pathMap[x, y] = visited;
-            pathList.Add((x, y));
-            return true;
-        }
-        else
-        {
-            pathMap[x, y] = visited;
-
-            if (hunter_FindPath(x - 1, y) || hunter_FindPath(x, y + 1) || hunter_FindPath(x + 1, y) || hunter_FindPath(x, y - 1))
-            {
-                pathList.Add((x, y));
-                return true;
-            }
-            pathMap[x, y] = blocked;
-            return false;
-        }
-    }
-
-    public bool monster_FindPath(int x, int y)
-    {
-        int rowN = m_pathMap.GetLength(0);
-        int colN = m_pathMap.GetLength(1);
-
-        if (x < 0 || y < 0 || x >= rowN || y >= colN)
-        {
-            return false;
-        }
-        else if (m_pathMap[x, y] != pathable_monster)
-        {
-            return false;
-        }
-        else if (x == m_GoalPosition_x && y == m_GoalPosition_y)
-        {
-            m_pathMap[x, y] = visited;
-            m_pathList.Add((x, y));
-            return true;
-        }
-        else
-        {
-            m_pathMap[x, y] = visited;
-
-            if (monster_FindPath(x - 1, y) || monster_FindPath(x, y + 1) || monster_FindPath(x + 1, y) || monster_FindPath(x, y - 1))
-            {
-                m_pathList.Add((x, y));
-                return true;
-            }
-            m_pathMap[x, y] = blocked;
-            return false;
-        }
-    }
-
-    private void PrintArray(int[,] array)
-    {
-        string output = "Array Contents:\n";
-        int rows = array.GetLength(0);
-        int cols = array.GetLength(1);
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < cols; j++)
-            {
-                output += array[i, j] + " ";
-            }
-            output += "\n";
-        }
-
-        Debug.Log(output);
-    }
-*/
-    ///////////////////////////////////////////////////////////////////////////
-    /*
-    public bool[,] visitMap;
-    int[,] DIRECTION_OFFSETS =
-    {
-    {1, 0},		
-	{-1, 0},			
-	{0, 1},			
-	{0, -1}			
-};
-
-    int NUM_DIRECTIONS = 4;
-
-    struct MapPosition
-    {
-        public int x;
-        public int y;
-        public int direction;
-    };
-
-    public enum PosStatus { NOT_VISIT = 0, WALL = 1, VISIT = 2 };
-
-
-    bool is_movable(int[,] maze, MapPosition pos)
-    {
-        // 현재 위치가 미로의 범위를 벗어나는 지 확인
-        if (pos.x < 0 || pos.y < 0 || pos.x >= row || pos.y >= col)
-            return false;
-        // 현재 위치가 벽이거나 이미 방문한 곳인지 확인
-        if (maze[pos.y, pos.x] != pathable)
-            return false;
-        return true;
-    }
-
-    // BFS 
-    bool findPath(int[,] maze, int[,] visited, MapPosition pos, int goal)
-    {
-
-        Queue<MapPosition> queue = new Queue<MapPosition>();
-        MapPosition currPos;
-        MapPosition nextPos;
-        int nextX;
-        int nextY;
-
-        queue.Enqueue(pos); // 처음 시작 위치를 큐에 넣기
-        while (queue.Count > 0)
-        {
-            currPos = queue.Dequeue(); // 큐에서 꺼내기
-            if (maze[currPos.x, currPos.y] == goal)          // 도착 지점에 도달한 경우
-                return true;
-            if (visited[currPos.x, currPos.y] == 33)     // 현재 위치를 방문했는지 확인
-                continue;
-            visited[currPos.x, currPos.y] = 33; // 현재 위치를 VISIT 으로 변경
-            while (currPos.direction < NUM_DIRECTIONS)
-            {
-                // 다음 좌표 설정
-                nextX = currPos.x + DIRECTION_OFFSETS[currPos.direction, 0];
-                nextY = currPos.y + DIRECTION_OFFSETS[currPos.direction, 1];
-                nextPos.x = nextX;
-                nextPos.y = nextY;
-                nextPos.direction = 0;
-
-                if (is_movable(maze, nextPos))
-                {
-                    // 다음 이동 지점에 이전 이동 거리 + 1 저장
-                    maze[nextY, nextX] = maze[currPos.x, currPos.y] + 1;
-                    queue.Enqueue(nextPos); // 다음 이동 지점 큐에 저장
-                }
-                pos.direction += 1;
-                //pathList.Add((pos.x,pos.y));
-            }
-        }
-        return true;
-    }
-*/
     ///////////////////////////////////////////////////////////////////////////
 
     class Pos
@@ -551,7 +393,7 @@ public class Path1 : MonoBehaviour
 
                 if (nextX < 0 || nextX >= maze.GetLength(0) || nextY < 0 || nextY >= pathMap.GetLength(1))
                     continue;
-                if (maze[nextX, nextY] != code)
+                if (maze[nextX, nextY] != code )
                     continue;
                 if (found[nextX, nextY])
                     continue;
@@ -603,7 +445,7 @@ public class Path1 : MonoBehaviour
                 int X = nowX + dirX[i];
                 int Y = nowY + dirY[i];
                 //Debug.Log("X : " + X.ToString() + " Y : " + Y.ToString());
-                if ((X == goalx && Y == goaly) || (X == goaly && Y == goalx))
+                if ((X == goalx && Y == goaly) || (X == goaly && Y == goalx) )
                 {
                     //Debug.Log("수행완료");
                     return true;

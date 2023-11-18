@@ -857,6 +857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d015033d2d38df44a173353fc430b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileMap_path: Data/Stage1-1-tileMap
+  wallMap_path: Data/Stage1-1-wallMap
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -4, y: 5}
@@ -1153,6 +1155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348419b32e5994c8f970609ab5a8948e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextScene: Stage1-2
   movespeed: 0
   count: 1
   startPosition_x: 0
