@@ -10,6 +10,7 @@ TagManager:
   - wall_0
   - wall
   - firefly
+  - fenfire
   layers:
   - Default
   - TransparentFX

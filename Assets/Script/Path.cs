@@ -551,7 +551,7 @@ public class Path : MonoBehaviour
 
                 if (nextX < 0 || nextX >= maze.GetLength(0) || nextY < 0 || nextY >= pathMap.GetLength(1))
                     continue;
-                if (maze[nextX, nextY] != code)
+                if (maze[nextX, nextY] != code )
                     continue;
                 if (found[nextX, nextY])
                     continue;
