@@ -129,8 +129,8 @@ public class TileArray : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ReadtileMap();
-        ReadwallMap();
+        //ReadtileMap();
+        //ReadwallMap();
         TileSize = 1;
         wallSize = 1;
         Touchable = true;
@@ -667,7 +667,7 @@ public class TileArray : MonoBehaviour
                             if((i + n < 0) || (i + n >= tileMap.GetLength(0)) || (j + m < 0) || (j + m >= tileMap.GetLength(1)))
                             {
                                 continue;
-                            }*/
+                            }
                             //밝게할 타일이 타일맵의 0이나 1이 아니면(길 타일이 아니면) 건너뛴다. 길이 아니면 칠하면 안되니까.
                             if (tileMap[i + n, j + m] != 0 && tileMap[i + n, j + m] != 1)
                             {
