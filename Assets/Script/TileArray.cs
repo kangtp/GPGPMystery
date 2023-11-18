@@ -11,12 +11,19 @@ public class TileArray : MonoBehaviour
 
     public enum TileType { shadow, ground, edge, fire, wall };
     /*
-     * 7 사냥꾼
+     * -1 null
+     * 0 그림자 타일
+     * 1 빛 타일
+     * 2 돌 타일
+     * 3 일자방향 불
+     * 4 updown통나무 // wall
+     * 5 leftright통나무 // wall
+     * 7 사냥꾼 입구 및 생성
      * 8 사냥꾼 출구
-     * 9 어둑시니
+     * 9 어둑시니 입구 및 생성
      * 10 어둑시니 출구
-     * 11 도깨비불
-     * 12 십자불
+     * 11 반딧불 // wall
+     * 12 십자불 / wall
     */
     [SerializeField]
     public int[,] tileMap = new int[,]

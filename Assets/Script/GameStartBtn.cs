@@ -22,7 +22,7 @@ public class GameStartBtn : MonoBehaviour
 
     public void GameStart()
     {
-        //°ÔÀÓ½ÃÀÛ¹öÆ°À» ´©¸£¸é ¹öÆ° UI ¾Èº¸ÀÌ°ÔÇÏ°í µÎ·ç¸¶¸® ¾Ö´Ï¸ÞÀÌ¼ÇÀ» ½ÇÇà
+        //ï¿½ï¿½ï¿½Ó½ï¿½ï¿½Û¹ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° UI ï¿½Èºï¿½ï¿½Ì°ï¿½ï¿½Ï°ï¿½ ï¿½Î·ç¸¶ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         for(int i = 0; i < buttons.Length; i++) 
         {
             buttons[i].enabled = false;
@@ -34,7 +34,7 @@ public class GameStartBtn : MonoBehaviour
 
     IEnumerator StartGame()
     {
-        //1.5ÃÊ µÚ¿¡ ·¹º§¸Þ´º·Î ÀÌµ¿
+        //1.5ï¿½ï¿½ ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene("Level Menu");
     }

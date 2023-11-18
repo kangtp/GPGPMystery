@@ -110,7 +110,7 @@ public class ManageScene : MonoBehaviour
     IEnumerator EnterStage1_1()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage1-1");
+        SceneManager.LoadScene("Stage1_talk");
     }
     IEnumerator EnterStage1_2()
     {
