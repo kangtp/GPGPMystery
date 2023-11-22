@@ -129,8 +129,8 @@ public class TileArray : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //ReadtileMap();
-        //ReadwallMap();
+        ReadtileMap();
+        ReadwallMap();
         TileSize = 1;
         wallSize = 1;
         Touchable = true;
