@@ -28,6 +28,7 @@ public class TileArray : MonoBehaviour
      * 4 updown통나무 // wall
      * 5 leftright통나무 // wall
      * 6 temp
+     * 
      * 7 사냥꾼 입구 및 생성
      * 8 사냥꾼 출구
      * 9 어둑시니 입구 및 생성
@@ -35,6 +36,8 @@ public class TileArray : MonoBehaviour
      * 11 반딧불 // wall
      * 12 십자불 / wall
      * 13 도깨비불 //wall
+     * 
+     * 20 호랑이 //boss
     */
 
     public int[,] tileMap = new int[,]
@@ -51,17 +54,41 @@ public class TileArray : MonoBehaviour
         //{-1, -1, -1,1,0,1, -1, -1, -1, -1},
         //{-1, -1, -1,1,7,1, -1, -1, -1, -1}
 
+        //stage2
+        //{-1,-1,-1,0,8,0,0,-1,-1,-1},
+        //{-1,-1,-1,0,0,0,0,-1,-1,-1},
+        //{-1,-1,-1,0,0,0,0,-1,-1,-1},
+        //{-1,-1,-1,0,0,0,2,-1,-1,-1},
+        //{-1,-1,-1,2,0,0,0,-1,-1,-1},
+        //{-1,-1,-1,0,0,0,0,-1,-1,-1},
+        //{-1,-1,-1,2,0,0,0,-1,-1,-1},
+        //{-1,-1,-1,0,0,0,2,-1,-1,-1},
+        //{-1,-1,-1,0,0,0,0,-1,-1,-1},
+        //{-1,-1,-1,0,0,7,0,-1,-1,-1}
+
         //stage3
-        {-1,-1,0,0,8,0,0,0,-1,-1},
-        {-1,-1,0,0,0,0,0,0,-1,-1},
-        {-1,-1,0,0,0,0,0,0,-1,-1},
-        {-1,-1,0,0,0,0,0,0,-1,-1},
-        {-1,-1,0,0,0,0,0,0,-1,-1},
-        {-1,-1,0,0,0,0,0,0,-1,-1},
-        {-1,-1,0,0,0,0,0,0,-1,-1},
-        {-1,-1,0,0,0,0,0,0,-1,-1},
-        {-1,-1,0,0,0,0,0,0,-1,-1},
-        {-1,-1,0,0,7,0,0,0,-1,-1}
+        //{-1,-1,0,0,8,0,0,0,-1,-1},
+        //{-1,-1,0,0,0,0,0,0,-1,-1},
+        //{-1,-1,0,0,0,0,0,0,-1,-1},
+        //{-1,-1,0,0,0,0,0,0,-1,-1},
+        //{-1,-1,0,0,0,0,0,0,-1,-1},
+        //{-1,-1,0,0,0,0,0,0,-1,-1},
+        //{-1,-1,0,0,0,0,0,0,-1,-1},
+        //{-1,-1,0,0,0,0,0,0,-1,-1},
+        //{-1,-1,0,0,0,0,0,0,-1,-1},
+        //{-1,-1,0,0,7,0,0,0,-1,-1}
+
+        //boss
+        {0,0,0,0,8,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,7,0,0,0,0}
     };
 
     public int[,] wallMap = new int[,]
@@ -78,17 +105,52 @@ public class TileArray : MonoBehaviour
         //{0,0,0,12,0,12,0,0,0,0},
         //{0,0,0,12,0,12,0,0,0,0}
 
+        //stage2
+        //{0,0,0,12,0,0,0,0,0,0},
+        //{0,0,0,12,5,0,0,0,0,0},
+        //{0,0,0,12,0,0,0,0,0,0},
+        //{0,0,0,12,0,0,0,0,0,0},
+        //{0,0,0,0,0,0,12,0,0,0},
+        //{0,0,0,0,0,5,12,0,0,0},
+        //{0,0,0,0,0,0,12,0,0,0},
+        //{0,0,0,12,5,0,0,0,0,0},
+        //{0,0,0,12,5,4,0,0,0,0},
+        //{0,0,0,12,0,0,0,0,0,0}
+
         //stage3
-        {0,0,0,0,0,0,0,2,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,11,0,0,0,0,13,0,0},
-        {0,0,11,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,5,0,0,0},
-        {0,0,0,0,0,0,12,2,0,0}
+        //{0,0,0,0,0,0,0,2,0,0},
+        //{0,0,0,0,0,0,0,0,0,0},
+        //{0,0,0,0,0,0,0,0,0,0},
+        //{0,0,0,0,0,0,0,0,0,0},
+        //{0,0,11,0,0,0,0,0,0,0},
+        //{0,0,11,0,0,0,0,0,0,0},
+        //{0,0,0,0,0,0,0,0,0,0},
+        //{0,0,0,0,0,0,0,0,0,0},
+        //{0,0,0,0,0,0,4,0,0,0},
+        //{0,0,0,0,0,0,12,2,0,0}
+
+        //boss
+        //{0,0,0,0,0,0,0,0,0,0},
+        //{0,0,0,11,0,0,0,0,0,0},
+        //{0,0,0,0,0,0,0,0,0,0},
+        //{12,0,0,0,0,0,0,0,0,0},
+        //{0,0,0,0,0,20,0,0,0,0},
+        //{0,0,0,0,0,0,0,0,0,0},
+        //{0,0,0,0,0,0,0,0,0,0},
+        //{0,0,0,0,0,0,0,11,0,13},
+        //{0,11,0,0,0,0,0,0,0,0},
+        //{0,0,0,0,0,0,0,0,0,0}
+
+        { 0,0,0,0,8,0,0,0,0,12 },
+{ 0,0,0,0,0,0,0,0,0,0 },
+{ 0,0,0,0,0,0,11,0,0,0 },
+{ 0,0,0,0,20,20,0,0,0,0 },
+{ 0,0,0,0,20,20,0,0,0,12 },
+{ 12,0,0,0,11,0,5,4,4,0 },
+{ 0,0,2,0,0,0,0,0,5,0 },
+{ 2,0,0,2,0,0,0,0,0,0 },
+{ 12,5,4,0,2,2,2,2,2,0 },
+{ 12,0,0,0,0,7,0,0,0,0 }
     };
 
 
@@ -121,6 +183,9 @@ public class TileArray : MonoBehaviour
 
     public bool isOnFenFire = true;
 
+    public GameObject boss;
+    public GameObject player;
+
     private void Awake()
     {
         Instance = this;
@@ -129,14 +194,13 @@ public class TileArray : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //ReadtileMap();
-        //ReadwallMap();
+        ReadtileMap();
+        ReadwallMap();
         TileSize = 1;
         wallSize = 1;
         Touchable = true;
         PopulateTileMap();
         PopulatewallMap();
-
     }
 
     // Update is called once per frame
@@ -216,6 +280,11 @@ public class TileArray : MonoBehaviour
                 GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                 tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
                 tilePrefab[i, j] = tile;
+                //hunter
+                if (tileMap[i, j] == 7)
+                {
+                    player = tile;
+                }
             }
         }
     }
@@ -291,6 +360,16 @@ public class TileArray : MonoBehaviour
                     tileMap[i, j] = 13;
                     tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
                 }
+
+                //호랑이 생성
+                if (wallMap[i, j] == 20)
+                {
+                    GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
+                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                    tileMap[i, j] = 20;
+                    boss = tile;
+                }
             }
         }
     }
@@ -344,7 +423,6 @@ public class TileArray : MonoBehaviour
                     if (dragDirection.y > 0 && RLwall != 0) // UP
                     {
                         detectWallFunc(getWall_x, getWall_y, 'U');
-
                     }
                     else if (dragDirection.y < 0 && RLwall != 0) // Down
                     {
@@ -399,9 +477,9 @@ public class TileArray : MonoBehaviour
                             tileMap[x - 1, y] = 1;
                             tileMap[x, y] = 1;
                         }
-
                         get_Wall.GetComponent<wall_Info>().Set(x - 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y + 1, 0);
+                        FindObjectOfType<Boss>().boss_count -= 1;
                     }
                 }
                 break;
@@ -434,6 +512,7 @@ public class TileArray : MonoBehaviour
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x + 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y - 1, 0);
+                        FindObjectOfType<Boss>().boss_count -= 1;
                     }
                 }
                 break;
@@ -466,6 +545,7 @@ public class TileArray : MonoBehaviour
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x, y + 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x + 1, get_Wall.transform.position.y, 0);
+                        FindObjectOfType<Boss>().boss_count -= 1;
                     }
                 }
                 break;
@@ -498,6 +578,7 @@ public class TileArray : MonoBehaviour
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x, y - 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x - 1, get_Wall.transform.position.y, 0);
+                        FindObjectOfType<Boss>().boss_count -= 1;
                     }
                 }
                 break;
@@ -524,7 +605,9 @@ public class TileArray : MonoBehaviour
                     getWall_x = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_X();
                     getWall_y = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_Y();
                     tilePrefab[getWall_x, getWall_y].GetComponent<SpriteRenderer>().sprite = shadowSprite;
-                    get_Wall.GetComponent<SpriteRenderer>().sprite = offFenFireSprite;
+                    //get_Wall.GetComponent<SpriteRenderer>().sprite = offFenFireSprite;
+                    get_Wall.GetComponent<Animator>().runtimeAnimatorController = 
+                        (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Ani\\goblinfire1off",typeof(RuntimeAnimatorController)));
                     isOnFenFire = false;
                 }
                 else if (!isOnFenFire && hit.collider.CompareTag("fenfire"))
@@ -534,7 +617,9 @@ public class TileArray : MonoBehaviour
                     getWall_x = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_X();
                     getWall_y = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_Y();
                     tilePrefab[getWall_x, getWall_y].GetComponent<SpriteRenderer>().sprite = groundSprite;
-                    get_Wall.GetComponent<SpriteRenderer>().sprite = onFenFireSprite;
+                    //get_Wall.GetComponent<SpriteRenderer>().sprite = onFenFireSprite;
+                    get_Wall.GetComponent<Animator>().runtimeAnimatorController =
+                        (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Ani\\goblinfire1", typeof(RuntimeAnimatorController)));
                     isOnFenFire = true;
                 }
             }
@@ -694,7 +779,7 @@ public class TileArray : MonoBehaviour
                     {
                         if (tileMap[k, j] != 0 && tileMap[k, j] != 1)
                         {
-                            if (tileMap[k, j] == (int)TileType.upDownWood || tileMap[k, j] == 5 || tileMap[k, j] == 2)
+                            if (tileMap[k, j] == (int)TileType.upDownWood || tileMap[k, j] == 5 || tileMap[k, j] == 2 || tileMap[k, j] == 20)
                             {
                                 break;
                             }
@@ -709,7 +794,7 @@ public class TileArray : MonoBehaviour
                     {
                         if (tileMap[k, j] != 0 && tileMap[k, j] != 1)
                         {
-                            if (tileMap[k, j] == (int)TileType.upDownWood || tileMap[k, j] == 5 || tileMap[k, j] == 2)
+                            if (tileMap[k, j] == (int)TileType.upDownWood || tileMap[k, j] == 5 || tileMap[k, j] == 2 || tileMap[k, j] == 20)
                             {
                                 break;
                             }
@@ -724,7 +809,7 @@ public class TileArray : MonoBehaviour
                     {
                         if (tileMap[i, k] != 0 && tileMap[i, k] != 1)
                         {
-                            if (tileMap[i, k] == (int)TileType.upDownWood || tileMap[i, k] == 5 || tileMap[i, k] == 2)
+                            if (tileMap[i, k] == (int)TileType.upDownWood || tileMap[i, k] == 5 || tileMap[i, k] == 2 || tileMap[i,k] == 20)
                             {
                                 break;
                             }
@@ -739,7 +824,7 @@ public class TileArray : MonoBehaviour
                     {
                         if (tileMap[i, k] != 0 && tileMap[i, k] != 1)
                         {
-                            if (tileMap[i, k] == (int)TileType.upDownWood || tileMap[i, k] == 5 || tileMap[i, k] == 2)
+                            if (tileMap[i, k] == (int)TileType.upDownWood || tileMap[i, k] == 5 || tileMap[i, k] == 2 || tileMap[i, k] == 20)
                             {
                                 break;
                             }
