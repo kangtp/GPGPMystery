@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class DialogueSystem : MonoBehaviour
 {
 
+    public string nextScene;
     public TMP_Text txtName;
     public TMP_Text txtSentence;
 
@@ -79,7 +80,7 @@ public class DialogueSystem : MonoBehaviour
 
     private void End()
     {
-        SceneManager.LoadScene("Stage1-1");
+        SceneManager.LoadScene(nextScene);
     }
 
    

@@ -236,6 +236,21 @@ public class PathManager : MonoBehaviour
                     Monster.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
+                if(TileArray.Instance.tileMap[i,j] == 8)
+                {
+                    GameObject prefab = Resources.Load("wayout4") as GameObject;
+                    GameObject wayout = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    wayout.transform.position = new Vector2(TileArray.Instance.tilePrefab[i, j].transform.position.x,
+                    TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.5f);
+                }
+
+                if(TileArray.Instance.tileMap[i,j] == 10)
+                {
+                    GameObject prefab = Resources.Load("wayout1") as GameObject;
+                    GameObject wayout = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    wayout.transform.position = new Vector2(TileArray.Instance.tilePrefab[i, j].transform.position.x,
+                    TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.5f);
+                }
 
             }
         }
@@ -423,12 +438,12 @@ public class PathManager : MonoBehaviour
         }
         if (code == 1)
         {
-            path.Add(new Pos(y, x));
+            //path.Add(new Pos(y, x));
             path.Reverse();
         }
         else
         {
-            m_path.Add(new Pos(y, x));
+            //m_path.Add(new Pos(y, x));
             m_path.Reverse();
         }
     }
@@ -445,7 +460,7 @@ public class PathManager : MonoBehaviour
                 int X = nowX + dirX[i];
                 int Y = nowY + dirY[i];
                 //Debug.Log("X : " + X.ToString() + " Y : " + Y.ToString());
-                if ((X == goalx && Y == goaly) || (X == goaly && Y == goalx) )
+                if ((X == goalx && Y == goaly) || (X == goaly && Y == goalx))
                 {
                     //Debug.Log("수행완료");
                     return true;

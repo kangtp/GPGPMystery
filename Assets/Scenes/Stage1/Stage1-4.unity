@@ -864,8 +864,12 @@ MonoBehaviour:
   StartPoint: {x: -4, y: 5}
   shadowSprite: {fileID: -960234240, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
   groundSprite: {fileID: 849118353, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
+  offFenFireSprite: {fileID: 0}
+  onFenFireSprite: {fileID: 0}
   Touchable: 0
   isOnFenFire: 1
+  boss: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &855925796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,7 +1188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348419b32e5994c8f970609ab5a8948e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: Level Menu
+  nextScene: Stage1_BossClear_talk
   movespeed: 0
   count: 1
   startPosition_x: 0
