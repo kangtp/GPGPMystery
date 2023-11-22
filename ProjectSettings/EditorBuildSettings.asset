@@ -18,9 +18,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage1/Stage1-2.unity
     guid: c57a86e63722b4088b22b16c635db790
   - enabled: 1
+    path: Assets/Scenes/Stage1/Stage1-3.unity
+    guid: 2dbfe067b85bd4712a6bb1d1dbb3cb2c
+  - enabled: 1
+    path: Assets/Scenes/Stage1/Stage1-4.unity
+    guid: 994d04d6815bf4fcc866cf33e4c81c21
+  - enabled: 1
+    path: Assets/Scenes/Stage1/Stage1_Boss_talk.unity
+    guid: f0bd065d22ec94768aecc203adf08224
+  - enabled: 1
+    path: Assets/Scenes/Stage1/Stage1_BossClear_talk.unity
+    guid: 7d574bdbe47994b878188a70ab5dbc81
+  - enabled: 0
     path: Assets/Scenes/Stage1-3.unity
     guid: c7b468b2f600bc34ca17d12255fa6852
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Stage1-4.unity
     guid: 82a94b6c7bfc10f429f88f72cb5fbf01
   - enabled: 1
