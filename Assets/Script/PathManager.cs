@@ -438,12 +438,12 @@ public class PathManager : MonoBehaviour
         }
         if (code == 1)
         {
-            //path.Add(new Pos(y, x));
+            path.Add(new Pos(y, x));
             path.Reverse();
         }
         else
         {
-            //m_path.Add(new Pos(y, x));
+            m_path.Add(new Pos(y, x));
             m_path.Reverse();
         }
     }
