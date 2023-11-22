@@ -118,16 +118,7 @@ public class TileArray : MonoBehaviour
         //{0,0,0,12,0,0,0,0,0,0}
 
         //stage3
-        //{0,0,0,0,0,0,0,2,0,0},
-        //{0,0,0,0,0,0,0,0,0,0},
-        //{0,0,0,0,0,0,0,0,0,0},
-        //{0,0,0,0,0,0,0,0,0,0},
-        //{0,0,11,0,0,0,0,0,0,0},
-        //{0,0,11,0,0,0,0,0,0,0},
-        //{0,0,0,0,0,0,0,0,0,0},
-        //{0,0,0,0,0,0,0,0,0,0},
-        //{0,0,0,0,0,0,4,0,0,0},
-        //{0,0,0,0,0,0,12,2,0,0}
+
 
         //boss
         //{0,0,0,0,0,0,0,0,0,0},
@@ -186,6 +177,7 @@ public class TileArray : MonoBehaviour
     public GameObject boss;
     public GameObject player;
 
+    public bool isBoss;
     private void Awake()
     {
         Instance = this;
@@ -479,7 +471,8 @@ public class TileArray : MonoBehaviour
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x - 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y + 1, 0);
-                        FindObjectOfType<Boss>().boss_count -= 1;
+                        if(isBoss)
+                            FindObjectOfType<Boss>().boss_count -= 1;
                     }
                 }
                 break;
@@ -512,7 +505,8 @@ public class TileArray : MonoBehaviour
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x + 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y - 1, 0);
-                        FindObjectOfType<Boss>().boss_count -= 1;
+                        if (isBoss)
+                            FindObjectOfType<Boss>().boss_count -= 1;
                     }
                 }
                 break;
@@ -545,7 +539,8 @@ public class TileArray : MonoBehaviour
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x, y + 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x + 1, get_Wall.transform.position.y, 0);
-                        FindObjectOfType<Boss>().boss_count -= 1;
+                        if (isBoss)
+                            FindObjectOfType<Boss>().boss_count -= 1;
                     }
                 }
                 break;
@@ -578,7 +573,8 @@ public class TileArray : MonoBehaviour
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x, y - 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x - 1, get_Wall.transform.position.y, 0);
-                        FindObjectOfType<Boss>().boss_count -= 1;
+                        if (isBoss)
+                            FindObjectOfType<Boss>().boss_count -= 1;
                     }
                 }
                 break;
