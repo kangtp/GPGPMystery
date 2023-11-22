@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
@@ -8,13 +9,6 @@ public class Boss : MonoBehaviour
     public int boss_count;
     public GameObject boss;
     public GameObject player;
-    public Animation anim;
-
-    private float timer = 0;
-    private float curTime = 0;
-    private float period = 2;
-
-    public bool move = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +21,6 @@ public class Boss : MonoBehaviour
     void Update()
     {
         CheckCount();
-        //curTime += Time.deltaTime;
-        //if (curTime > period)
-        //{
-        //    curTime -= curTime;
-        //}
-
-        //float xValue = x.Evaluate(curTime);
-        //float yValue = y.Evaluate(curTime);
-
-        //boss.transform.position = new Vector3(0, yValue, 0);
     }
 
     void CheckCount()
@@ -46,13 +30,15 @@ public class Boss : MonoBehaviour
             //호랑이 공격
             StartCoroutine(MoveBoss());
             GameOver();
-            boss_count = 5;
+            //게임 오버
+            boss_count = -2;
         }
     }
 
     void GameOver()
     {
         Debug.Log("GameOver!!!!!!!!!!!!!");
+        //
     }
 
     IEnumerator MoveBoss()
@@ -60,20 +46,21 @@ public class Boss : MonoBehaviour
         float distance;
         while (true)
         {
-            timer += Time.deltaTime;
             Vector3 direction = player.transform.position - boss.transform.position;
             direction.Normalize();
             distance = Vector3.Distance(boss.transform.position, player.transform.position);
-            boss.transform.Translate(direction * 1 * Time.deltaTime);
+            yield return new WaitForSeconds(0.05f);
+            boss.transform.Translate(direction * 100 * Time.deltaTime);
             Debug.Log("ing~");
-            if (distance < 0.1)
+            if (distance < 0.5)
             {
                 Debug.Log("break!!!!!");
-                yield return null;
+                yield return new WaitForSeconds(2f);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
-
         
+
 
     }
 }
