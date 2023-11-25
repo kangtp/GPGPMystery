@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class GameStartBtn : MonoBehaviour
 {
-
+    AudioSource paper;
     public Image[] buttons;
     // Start is called before the first frame update
     void Start()
     {
-        
+        paper = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,6 +28,8 @@ public class GameStartBtn : MonoBehaviour
             buttons[i].enabled = false;
         }
         GameObject.Find("Ani").transform.GetChild(0).gameObject.SetActive(true);
+        GameObject.Find("Manage").GetComponent<AudioSource>().Stop();
+        paper.Play();
         StartCoroutine(StartGame());
         
     }

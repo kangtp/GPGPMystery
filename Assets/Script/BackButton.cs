@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BackButton : MonoBehaviour
 {
+    AudioSource audioSource;
     public GameObject currentWindow;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -19,6 +20,10 @@ public class BackButton : MonoBehaviour
 
     public void Back()
     {
+        
+        audioSource.clip = FindObjectOfType<AudioManager>().back;
+        audioSource.Play();
+
         GameObject.Find("Stages").transform.GetChild(0).gameObject.SetActive(true);
         GameObject.Find("Stages").transform.GetChild(1).gameObject.SetActive(true);
         GameObject.Find("Stages").transform.GetChild(2).gameObject.SetActive(true);

@@ -6,7 +6,9 @@ using UnityEngine;
 public class count : MonoBehaviour
 {
     public TextMeshProUGUI countNum;
+    public Font font;
     private int leftNum;
+    public bool isOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,13 @@ public class count : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        countNum.text = FindObjectOfType<Boss>().boss_count.ToString();
+        if (!isOver)
+        {
+            countNum.text = FindObjectOfType<Boss>().boss_count.ToString();
+        }
+        else
+        {
+            countNum.text = "³¡";
+        }
     }
 }

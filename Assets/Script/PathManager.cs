@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PathManager : MonoBehaviour
 {
-
+    AudioSource audioSource;
+    public AudioClip failSound;
+    public AudioClip successSound;
+    public AudioClip walkSound;
     Fadeinout fadeinout;
 
     public string nextScene;
@@ -73,6 +76,7 @@ public class PathManager : MonoBehaviour
         size = 1.5f;
         Get_tilemap();
         PopulatePathmap();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update() 
@@ -106,43 +110,58 @@ public class PathManager : MonoBehaviour
         Get_tilemap();
         if(TileArray.Instance.Touchable)
         {
-        switch (count)
-        {
-            case 0:
-                {
-                    BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
-                    if (checkPathable(count))
+            switch (count)
+            {
+                case 0:
                     {
-                        StartCoroutine(move_monster());
+                        BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
+                        if (checkPathable(count))
+                        {
+                            audioSource.clip = successSound; audioSource.Play();
+                            StartCoroutine(move_monster());
+                        }
+                        else
+                        {
+                            audioSource.clip = failSound; audioSource.Play();
+                        }
                     }
-                }
-                break;
-            case 1:
-                {
-                    BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
-                    if (checkPathable(count))
+                    break;
+                case 1:
                     {
-                        StartCoroutine(move_hunter());
+                        BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
+                        if (checkPathable(count))
+                        {
+                            audioSource.clip = successSound; audioSource.Play();
+                            StartCoroutine(move_hunter());
+                        }
+                        else
+                        {
+                            audioSource.clip = failSound; audioSource.Play();
+                        }
                     }
-                }
-                break;
-            case 2:
-                {
-                    BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
-                    BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
-                    PrintPathList(path);
-                    PrintPathList(m_path);
-                    if (checkPathable(count))
+                    break;
+                case 2:
                     {
-                        StartCoroutine(move_hunter());
-                        StartCoroutine(move_monster());
+                        BFS(pathMap, 1, startPosition_x, startPosition_y, GoalPosition_x, GoalPosition_y);
+                        BFS(m_pathMap, 0, m_startPosition_x, m_startPosition_y, m_GoalPosition_x, m_GoalPosition_y);
+                        PrintPathList(path);
+                        PrintPathList(m_path);
+                        if (checkPathable(count))
+                        {
+                            audioSource.clip = successSound; audioSource.Play();
+                            StartCoroutine(move_hunter());
+                            StartCoroutine(move_monster());
+                        }
+                        else
+                        {
+                            audioSource.clip = failSound; audioSource.Play();
+                        }
                     }
-                }
-                break;
+                    break;
 
-            default:
-                break;
-        }
+                default:
+                    break;
+            }
         }
 
     }
@@ -260,6 +279,7 @@ public class PathManager : MonoBehaviour
     {
         if (Hunter != null)
         {
+            GameObject.Find("AudioManager").GetComponent<AudioSource>().Play();
             TileArray.Instance.Touchable = false;
             int direction_x = 0;
             int direction_y = 0;
@@ -294,6 +314,7 @@ public class PathManager : MonoBehaviour
             Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_x, Hunter.transform.position.y - direction_y, 0);
             yield return new WaitForSeconds(0.5f);
             clearHunter = true;
+            GameObject.Find("AudioManager").GetComponent<AudioSource>().volume *= 0.4f;
         }
     }
 
@@ -301,6 +322,7 @@ public class PathManager : MonoBehaviour
     {
         if (Monster != null)
         {
+            GameObject.Find("AudioManager").GetComponent<AudioSource>().Play();
             TileArray.Instance.Touchable = false;
             int direction_x = 0;
             int direction_y = 0;
@@ -339,6 +361,7 @@ public class PathManager : MonoBehaviour
             Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
             yield return new WaitForSeconds(0.5f);
             clearMonster = true;
+            GameObject.Find("AudioManager").GetComponent<AudioSource>().volume = 0.4f;
         }
     }
 

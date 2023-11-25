@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
+    AudioSource audioSource;
     public int boss_count;
     public GameObject boss;
     public GameObject player;
@@ -13,12 +15,18 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         boss = FindObjectOfType<TileArray>().boss;
         player = FindObjectOfType<TileArray>().player;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        //CheckCount();
+    }
+
+    private void FixedUpdate()
     {
         CheckCount();
     }
@@ -27,9 +35,13 @@ public class Boss : MonoBehaviour
     {
         if (boss_count == -1)
         {
+            TileArray.Instance.Touchable = false;
+            FindObjectOfType<count>().isOver = true;
             //호랑이 공격
+            audioSource.Play();
             StartCoroutine(MoveBoss());
             GameOver();
+
             //게임 오버
             boss_count = -2;
         }
@@ -37,30 +49,32 @@ public class Boss : MonoBehaviour
 
     void GameOver()
     {
-        Debug.Log("GameOver!!!!!!!!!!!!!");
-        //
+        Debug.Log("GameOver!!!");
     }
 
     IEnumerator MoveBoss()
     {
-        float distance;
+        float origin = Vector3.Distance(boss.transform.position, player.transform.position);
         while (true)
         {
             Vector3 direction = player.transform.position - boss.transform.position;
             direction.Normalize();
-            distance = Vector3.Distance(boss.transform.position, player.transform.position);
+            float distance = Vector3.Distance(boss.transform.position, player.transform.position);
             yield return new WaitForSeconds(0.05f);
-            boss.transform.Translate(direction * 100 * Time.deltaTime);
-            Debug.Log("ing~");
-            if (distance < 0.5)
+            if(distance > (origin * 0.85))
             {
-                Debug.Log("break!!!!!");
+                boss.transform.localScale *= 1.2f;
+            }
+            else
+            {
+                boss.transform.localScale *= 0.93f;
+            }
+            boss.transform.Translate(direction * 100 * Time.deltaTime);
+            if (distance < 1)
+            {
                 yield return new WaitForSeconds(2f);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
-        
-
-
     }
 }
