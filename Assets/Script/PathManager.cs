@@ -249,6 +249,14 @@ public class PathManager : MonoBehaviour
                     Hunter.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
+                if(TileArray.Instance.tileMap[i,j] == 8)
+                {
+                    GameObject prefab = Resources.Load("wayout4") as GameObject;
+                    GameObject wayout = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    wayout.transform.position = new Vector2(TileArray.Instance.tilePrefab[i, j].transform.position.x,
+                    TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.8f);
+                }
+
                 if (TileArray.Instance.tileMap[i, j] == 9)
                 {
                     GameObject prefab = Resources.Load("Monster") as GameObject;
@@ -258,13 +266,7 @@ public class PathManager : MonoBehaviour
                     Monster.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
-                if(TileArray.Instance.tileMap[i,j] == 8)
-                {
-                    GameObject prefab = Resources.Load("wayout4") as GameObject;
-                    GameObject wayout = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
-                    wayout.transform.position = new Vector2(TileArray.Instance.tilePrefab[i, j].transform.position.x,
-                    TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.8f);
-                }
+                
 
                 if(TileArray.Instance.tileMap[i,j] == 10)
                 {
@@ -317,8 +319,8 @@ public class PathManager : MonoBehaviour
                 Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_x, Hunter.transform.position.y - direction_y, 0);
             }
             yield return new WaitForSeconds(0.5f);
-            Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_x, Hunter.transform.position.y - direction_y, 0);
-            yield return new WaitForSeconds(0.5f);
+            //Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_x, Hunter.transform.position.y - direction_y, 0);
+            //yield return new WaitForSeconds(0.5f);
             clearHunter = true;
             GameObject.Find("AudioManager").GetComponent<AudioSource>().volume *= 0.4f;
         }
@@ -363,8 +365,8 @@ public class PathManager : MonoBehaviour
                 //Debug.Log("x : " + direction_x + ", y : " + direction_y);
                 Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
             }
-            yield return new WaitForSeconds(0.5f);
-            Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
+            //yield return new WaitForSeconds(0.5f);
+            //Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
             yield return new WaitForSeconds(0.5f);
             clearMonster = true;
             GameObject.Find("AudioManager").GetComponent<AudioSource>().volume = 0.4f;
@@ -499,12 +501,6 @@ public class PathManager : MonoBehaviour
         }
         return false;
     }
-
-    private void calculate_Lastdir(int goal_posx, int goal_posy)
-    {
-        
-    }
-
 
     private void PrintPathList(List<Pos> path)
     {

@@ -457,8 +457,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d015033d2d38df44a173353fc430b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMap_path: Data/Stage2/Stage2-2-tileMap
-  wallMap_path: Data/Stage2/Stage2-2-wallMap
+  tileMap_path: Data/Stage3/Stage3-2-tileMap
+  wallMap_path: Data/Stage3/Stage3-2-wallMap
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -5, y: 5}
@@ -690,9 +690,9 @@ MonoBehaviour:
   failSound: {fileID: 8300000, guid: 38be1064fcd2e7943829de4136e4ba7d, type: 3}
   successSound: {fileID: 8300000, guid: 1ef1b5b494c19c34aba5294c1226aa75, type: 3}
   walkSound: {fileID: 8300000, guid: d1cedcdf2f18f2841b8936efc2a8d0de, type: 3}
-  nextScene: Stage2-3
+  nextScene: Stage3-3
   movespeed: 0
-  count: 0
+  count: 2
   startPosition_x: 0
   startPosition_y: 0
   GoalPosition_x: 0

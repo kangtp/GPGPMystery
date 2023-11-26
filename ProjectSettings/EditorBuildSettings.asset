@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage1/Stage1_talk.unity
     guid: 7527252e6065045f3ab92e57b93ff4a5
   - enabled: 1
-    path: Assets/Scenes/Stage2/Stage2-1.unity
+    path: Assets/Scenes/Stage2/Stage2-2.unity
     guid: 7902fb19043c5462286ad4c2b5f595e1
   - enabled: 1
     path: Assets/Scenes/Stage2/Stage2-2.unity
@@ -53,4 +53,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage2/Stage2_talk.unity
     guid: 90514a45e325f4af2a09d5979a211a2a
+  - enabled: 1
+    path: Assets/Scenes/Stage3/Stage3-1.unity
+    guid: 3f4a8f9851f494c35a95a02b99cbd728
+  - enabled: 1
+    path: Assets/Scenes/Stage3/Stage3-2.unity
+    guid: 805ed44817145416c985f4edc8b89dc5
+  - enabled: 1
+    path: Assets/Scenes/Stage3/Stage3-3.unity
+    guid: 2ec4ceff2324345d2a15b4943e7f8700
+  - enabled: 1
+    path: Assets/Scenes/Stage3/Stage3-4.unity
+    guid: 527db740ab3c54f52a1e3338a7bf748b
+  - enabled: 1
+    path: Assets/Scenes/Stage3/Stage3_Boss_talk.unity
+    guid: 5371979b334cd459c90c7a6367ae0db4
+  - enabled: 1
+    path: Assets/Scenes/Stage3/Stage3_BossClear_talk.unity
+    guid: 22c2c7e24fd94408f9c68c7f16567dfb
+  - enabled: 1
+    path: Assets/Scenes/Stage3/Stage3_talk.unity
+    guid: 63ee3fe25f08c489a9c2a2d46768b02a
   m_configObjects: {}
