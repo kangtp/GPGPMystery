@@ -576,7 +576,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_1
+        m_MethodName: GoStage4_1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -721,7 +721,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_3
+        m_MethodName: GoStage2_3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2011,7 +2011,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_1
+        m_MethodName: GoStage3_1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3215,7 +3215,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_1
+        m_MethodName: GoStage2_1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3360,7 +3360,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_3
+        m_MethodName: GoStage4_3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3956,7 +3956,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_2
+        m_MethodName: GoStage3_2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4758,7 +4758,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_4
+        m_MethodName: GoStage4_4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5131,7 +5131,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_2
+        m_MethodName: GoStage2_2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5504,7 +5504,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_4
+        m_MethodName: GoStage2_4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6531,7 +6531,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_4
+        m_MethodName: GoStage3_4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7652,7 +7652,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_2
+        m_MethodName: GoStage4_2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8170,7 +8170,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1917533247}
         m_TargetAssemblyTypeName: ManageScene, Assembly-CSharp
-        m_MethodName: GoStage1_3
+        m_MethodName: GoStage3_3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

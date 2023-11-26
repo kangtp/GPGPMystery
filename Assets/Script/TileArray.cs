@@ -135,7 +135,6 @@ public class TileArray : MonoBehaviour
         SwitchFenFire();
         makeShadow();
         MakeBright();
-        ShowMatrix();
     }
 
     void ReadtileMap()

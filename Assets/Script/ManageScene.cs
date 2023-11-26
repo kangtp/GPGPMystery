@@ -32,15 +32,15 @@ public class ManageScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") == 2)
+        if(PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 2)
         {
             stage2open = true;
         }
-        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") == 3)
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 3)
         {
             stage3open = true;
         }
-        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") == 4)
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 4)
         {
             stage4open = true;
         }
@@ -94,6 +94,18 @@ public class ManageScene : MonoBehaviour
     {
         StartCoroutine(EnterStage2_1());
     }
+    public void GoStage2_2()
+    {
+        StartCoroutine(EnterStage2_2());
+    }
+    public void GoStage2_3()
+    {
+        StartCoroutine(EnterStage2_3());
+    }
+    public void GoStage2_4()
+    {
+        StartCoroutine(EnterStage2_4());
+    }
 
     public void Stage3()
     {
@@ -109,7 +121,18 @@ public class ManageScene : MonoBehaviour
     {
         StartCoroutine(EnterStage3_1());
     }
-
+    public void GoStage3_2()
+    {
+        StartCoroutine(EnterStage3_2());
+    }
+    public void GoStage3_3()
+    {
+        StartCoroutine(EnterStage3_3());
+    }
+    public void GoStage3_4()
+    {
+        StartCoroutine(EnterStage3_4());
+    }
     public void Stage4()
     {
         if (stage4open)
@@ -123,6 +146,18 @@ public class ManageScene : MonoBehaviour
     public void GoStage4_1()
     {
         StartCoroutine(EnterStage4_1());
+    }
+    public void GoStage4_2()
+    {
+        StartCoroutine(EnterStage4_2());
+    }
+    public void GoStage4_3()
+    {
+        StartCoroutine(EnterStage4_3());
+    }
+    public void GoStage4_4()
+    {
+        StartCoroutine(EnterStage4_4());
     }
 
     public void Stage5()
@@ -181,19 +216,61 @@ public class ManageScene : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage2-1");
     }
-
+    IEnumerator EnterStage2_2()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage2-2");
+    }
+    IEnumerator EnterStage2_3()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage2-3");
+    }
+    IEnumerator EnterStage2_4()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage2-4");
+    }
     IEnumerator EnterStage3_1()
     {
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage3-1");
     }
-
+    IEnumerator EnterStage3_2()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage3-2");
+    }
+    IEnumerator EnterStage3_3()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage3-3");
+    }
+    IEnumerator EnterStage3_4()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage3-4");
+    }
     IEnumerator EnterStage4_1()
     {
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage4-1");
     }
-
+    IEnumerator EnterStage4_2()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage4-2");
+    }
+    IEnumerator EnterStage4_3()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage4-3");
+    }
+    IEnumerator EnterStage4_4()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage4-4");
+    }
     IEnumerator EnterStage5_1()
     {
         yield return new WaitForSeconds(1.0f);

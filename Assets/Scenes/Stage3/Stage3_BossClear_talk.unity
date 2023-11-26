@@ -189,6 +189,7 @@ MonoBehaviour:
   txtName: {fileID: 121174999}
   txtSentence: {fileID: 1763870664}
   txtImage: {fileID: 354770888}
+  nextStage: 4
 --- !u!82 &108404576
 AudioSource:
   m_ObjectHideFlags: 0
