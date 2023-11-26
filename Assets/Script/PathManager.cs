@@ -100,6 +100,7 @@ public class PathManager : MonoBehaviour
 
     public IEnumerator ChangeScene()
     {
+        GameObject.Find("AudioManager").GetComponent<AudioSource>().volume *= 0.0f;
         clearHunter = false;
         clearMonster = false;
         fadeinout.fadeIn();
@@ -322,7 +323,6 @@ public class PathManager : MonoBehaviour
             //Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_x, Hunter.transform.position.y - direction_y, 0);
             //yield return new WaitForSeconds(0.5f);
             clearHunter = true;
-            GameObject.Find("AudioManager").GetComponent<AudioSource>().volume *= 0.0f;
         }
     }
 
@@ -371,7 +371,6 @@ public class PathManager : MonoBehaviour
             monsterAnimation.SetInteger("Vector",1);
             yield return new WaitForSeconds(0.5f);
             clearMonster = true;
-            GameObject.Find("AudioManager").GetComponent<AudioSource>().volume = 0.0f;
         }
     }
 
