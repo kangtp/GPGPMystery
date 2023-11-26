@@ -14,8 +14,10 @@ public class ManageScene : MonoBehaviour
     public Image stage5;
     public Image stage6;
 
+    public GameObject road1;
+
     private bool stage1open = true;
-    private bool stage2open = false;
+    public bool stage2open = false;
     private bool stage3open = false;
     private bool stage4open = false;
     private bool stage5open = false;
@@ -26,13 +28,8 @@ public class ManageScene : MonoBehaviour
     {
         audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         StartCoroutine(createIcon());
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 2)
+        
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 2)
         {
             stage2open = true;
         }
@@ -44,6 +41,33 @@ public class ManageScene : MonoBehaviour
         {
             stage4open = true;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void CheckOpenStage()
+    {
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 2)
+        {
+            stage2open = true;
+        }
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 3)
+        {
+            stage3open = true;
+        }
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 4)
+        {
+            stage4open = true;
+        }
+    }
+
+    public void Go2()
+    {
+        StartCoroutine(OpenStage2());
     }
 
     public void SelectSound()
@@ -299,7 +323,7 @@ public class ManageScene : MonoBehaviour
         StopCoroutine(createIcon());
     }
 
-    IEnumerator OpenStage2()
+    public IEnumerator OpenStage2()
     {
         //열리는 효과음 넣기
         float fadeCount = 0.2f;

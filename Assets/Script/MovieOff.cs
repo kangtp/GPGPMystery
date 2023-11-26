@@ -12,6 +12,7 @@ public class MovieOff : MonoBehaviour
     void Awake()
     {
         StartCoroutine(screenOff());
+        PlayerPrefs.DeleteKey("Stage");
     }
 
     // Update is called once per frame
