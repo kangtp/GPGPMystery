@@ -105,7 +105,7 @@ public class ManageScene : MonoBehaviour
 
     public void Stage2()
     {
-        if(stage2open)
+        if(PlayerPrefs.HasKey("Stage"))
         {
             hideButton();
             GameObject.Find("Intro").transform.GetChild(1).gameObject.SetActive(true);
