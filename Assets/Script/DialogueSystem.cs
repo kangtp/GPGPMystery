@@ -71,6 +71,7 @@ public class DialogueSystem : MonoBehaviour
     {
         foreach (var letter in sentence)
         {
+            audioSource.Play();
             txtSentence.text += letter;
             yield return new WaitForSeconds(0.1f);
         }

@@ -248,7 +248,7 @@ public class PathManager : MonoBehaviour
                     Hunter.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
-                if(TileArray.Instance.tileMap[i,j] == 8)
+                else if(TileArray.Instance.tileMap[i,j] == 8)
                 {
                     GameObject prefab = Resources.Load("wayout4") as GameObject;
                     GameObject wayout = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -256,7 +256,7 @@ public class PathManager : MonoBehaviour
                     TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.8f);
                 }
 
-                if (TileArray.Instance.tileMap[i, j] == 9)
+                else if (TileArray.Instance.tileMap[i, j] == 9)
                 {
                     GameObject prefab = Resources.Load("Monster") as GameObject;
                     Monster = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -265,9 +265,8 @@ public class PathManager : MonoBehaviour
                     Monster.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
                 }
 
-                
-
-                if(TileArray.Instance.tileMap[i,j] == 10)
+            
+                else if(TileArray.Instance.tileMap[i,j] == 10)
                 {
                     GameObject prefab = Resources.Load("wayout1") as GameObject;
                     GameObject wayout = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
