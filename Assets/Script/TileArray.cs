@@ -17,6 +17,8 @@ public class TileArray : MonoBehaviour
     AudioSource audioSource;
     public AudioClip dragWood;
     public AudioClip dragfirefly;
+    public AudioClip fenfireOn;
+    public AudioClip fenfireOff;
     public enum TileType
     {
         shadow, ground, rock, fire, upDownWood, leftRightWood, none, hunterStart, hunterGoal, monsterStart, monsterGoal,
@@ -551,6 +553,8 @@ public class TileArray : MonoBehaviour
                 if (isOnFenFire && hit.collider.CompareTag("fenfire"))
                 {
                     Debug.Log("turn off the fenfire");
+                    audioSource.clip = fenfireOff; audioSource.Play();
+
                     get_Wall = hit.transform.gameObject;
                     getWall_x = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_X();
                     getWall_y = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_Y();
@@ -563,6 +567,8 @@ public class TileArray : MonoBehaviour
                 else if (!isOnFenFire && hit.collider.CompareTag("fenfire"))
                 {
                     Debug.Log("turn on the fenfire");
+                    audioSource.clip = fenfireOn; audioSource.Play();
+
                     get_Wall = hit.transform.gameObject;
                     getWall_x = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_X();
                     getWall_y = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_Y();

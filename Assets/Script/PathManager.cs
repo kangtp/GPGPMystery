@@ -8,7 +8,6 @@ public class PathManager : MonoBehaviour
     AudioSource audioSource;
     public AudioClip failSound;
     public AudioClip successSound;
-    public AudioClip walkSound;
     Fadeinout fadeinout;
 
     public string nextScene;
