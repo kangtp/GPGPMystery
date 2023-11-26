@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class DialogueSystem : MonoBehaviour
 {
-    AudioSource audioSource;
     public string nextScene;
     public TMP_Text txtName;
     public TMP_Text txtSentence;
@@ -20,12 +19,11 @@ public class DialogueSystem : MonoBehaviour
     Queue<GameObject> images = new Queue<GameObject>();
     Fadeinout fadeinout;
 
-
+    public int nextStage;
     void Awake()
     {
         fadeinout = FindAnyObjectByType<Fadeinout>();
         fadeinout.fadeOut();
-        audioSource = GetComponent<AudioSource>();
     }
 
     public void Begin(Dialogue info)
@@ -58,7 +56,6 @@ public class DialogueSystem : MonoBehaviour
             End();
             return;
         }
-        audioSource.Play();
         //txtSentence.text = sentences.Dequeue();
         txtName.text = string.Empty;
         txtSentence.text = string.Empty;
@@ -81,9 +78,9 @@ public class DialogueSystem : MonoBehaviour
 
     private void End()
     {
+        PlayerPrefs.SetInt("Stage", nextStage);
+        Debug.Log("save : " + nextStage);
         SceneManager.LoadScene(nextScene);
     }
-
-   
 
 }

@@ -13,6 +13,14 @@ public class ManageScene : MonoBehaviour
     public Image stage4;
     public Image stage5;
     public Image stage6;
+
+    private bool stage1open = true;
+    private bool stage2open = false;
+    private bool stage3open = false;
+    private bool stage4open = false;
+    private bool stage5open = false;
+    private bool stage6open = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +32,18 @@ public class ManageScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") == 2)
+        {
+            stage2open = true;
+        }
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") == 3)
+        {
+            stage3open = true;
+        }
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") == 4)
+        {
+            stage4open = true;
+        }
     }
 
     public void SelectSound()
@@ -35,7 +54,6 @@ public class ManageScene : MonoBehaviour
 
     public void Stage1()
     {
-        
         hideButton();
         GameObject.Find("Intro").transform.GetChild(0).gameObject.SetActive(true);
     }
@@ -63,8 +81,13 @@ public class ManageScene : MonoBehaviour
 
     public void Stage2()
     {
-        hideButton();
-        GameObject.Find("Intro").transform.GetChild(1).gameObject.SetActive(true);
+        if(stage2open)
+        {
+            hideButton();
+            GameObject.Find("Intro").transform.GetChild(1).gameObject.SetActive(true);
+            return;
+        }
+        Debug.Log("Not open");
     }
 
     public void GoStage2_1()
@@ -74,8 +97,12 @@ public class ManageScene : MonoBehaviour
 
     public void Stage3()
     {
-        hideButton();
-        GameObject.Find("Intro").transform.GetChild(2).gameObject.SetActive(true);
+        if (stage3open)
+        {
+            hideButton();
+            GameObject.Find("Intro").transform.GetChild(2).gameObject.SetActive(true);
+        }
+        Debug.Log("Not open");
     }
 
     public void GoStage3_1()
@@ -85,8 +112,12 @@ public class ManageScene : MonoBehaviour
 
     public void Stage4()
     {
-        hideButton();
-        GameObject.Find("Intro").transform.GetChild(3).gameObject.SetActive(true);
+        if (stage4open)
+        {
+            hideButton();
+            GameObject.Find("Intro").transform.GetChild(3).gameObject.SetActive(true);
+        }
+        Debug.Log("Not open");
     }
 
     public void GoStage4_1()
@@ -96,8 +127,12 @@ public class ManageScene : MonoBehaviour
 
     public void Stage5()
     {
-        hideButton();
-        GameObject.Find("Intro").transform.GetChild(4).gameObject.SetActive(true);
+        if (stage5open)
+        {
+            hideButton();
+            GameObject.Find("Intro").transform.GetChild(4).gameObject.SetActive(true);
+        }
+        Debug.Log("Not open");
     }
 
     public void GoStage5_1()
@@ -107,8 +142,12 @@ public class ManageScene : MonoBehaviour
 
     public void Stage6()
     {
-        hideButton();
-        GameObject.Find("Intro").transform.GetChild(5).gameObject.SetActive(true);
+        if (stage6open)
+        {
+            hideButton();
+            GameObject.Find("Intro").transform.GetChild(5).gameObject.SetActive(true);
+        }
+        Debug.Log("Not open");
     }
 
     public void GoStage6_1()
@@ -180,6 +219,20 @@ public class ManageScene : MonoBehaviour
             stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
             stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
         }
+        StopCoroutine(createIcon());
+    }
+
+    IEnumerator OpenStage2()
+    {
+        //열리는 효과음 넣기
+        float fadeCount = 0.2f;
+        while (fadeCount < 1.0f)
+        {
+            fadeCount += 0.005f;
+            yield return new WaitForSeconds(0.01f);
+            stage2.color = new Color(0, 0, 0, fadeCount);
+        }
+        StopCoroutine(OpenStage2());
     }
 
     public void hideButton()

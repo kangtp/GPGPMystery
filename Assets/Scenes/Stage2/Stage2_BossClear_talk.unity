@@ -188,6 +188,7 @@ MonoBehaviour:
   txtName: {fileID: 121174999}
   txtSentence: {fileID: 1763870664}
   txtImage: {fileID: 354770888}
+  nextStage: 3
 --- !u!1 &121174997
 GameObject:
   m_ObjectHideFlags: 0

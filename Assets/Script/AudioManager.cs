@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     AudioSource audioSource;
     public AudioClip back;
     public AudioClip select;
+    public AudioClip fail;
     // Start is called before the first frame update
     void Start()
     {

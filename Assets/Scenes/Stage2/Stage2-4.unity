@@ -1126,7 +1126,6 @@ GameObject:
   m_Component:
   - component: {fileID: 760325244}
   - component: {fileID: 760325245}
-  - component: {fileID: 760325246}
   m_Layer: 0
   m_Name: TileManager
   m_TagString: Untagged
@@ -1161,8 +1160,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d015033d2d38df44a173353fc430b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMap_path: Data/Stage2-4-tileMap
-  wallMap_path: Data/Stage2-4-wallMap
+  tileMap_path: Data/Stage2/Stage2-4-tileMap
+  wallMap_path: Data/Stage2/Stage2-4-wallMap
+  dragWood: {fileID: 0}
+  dragfirefly: {fileID: 0}
+  fenfireOn: {fileID: 0}
+  fenfireOff: {fileID: 0}
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -5, y: 5}
@@ -1175,21 +1178,6 @@ MonoBehaviour:
   boss: {fileID: 0}
   player: {fileID: 0}
   isBoss: 1
---- !u!114 &760325246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760325242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c33fbfeb2fffc54418117933e4629276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_count: 8
-  boss: {fileID: 0}
-  player: {fileID: 0}
 --- !u!1 &855925796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,7 +1498,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   failSound: {fileID: 8300000, guid: 38be1064fcd2e7943829de4136e4ba7d, type: 3}
   successSound: {fileID: 8300000, guid: 1ef1b5b494c19c34aba5294c1226aa75, type: 3}
-  walkSound: {fileID: 8300000, guid: d1cedcdf2f18f2841b8936efc2a8d0de, type: 3}
   nextScene: Stage2_BossClear_talk
   movespeed: 0
   count: 0
