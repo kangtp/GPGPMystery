@@ -316,11 +316,13 @@ public class PathManager : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
                 Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_x, Hunter.transform.position.y - direction_y, 0);
             }
+            hunterAnimation.SetBool("Idle",true);
+            hunterAnimation.SetInteger("Vector",-1);
             yield return new WaitForSeconds(0.5f);
             //Hunter.transform.position = new Vector3(Hunter.transform.position.x + direction_x, Hunter.transform.position.y - direction_y, 0);
             //yield return new WaitForSeconds(0.5f);
             clearHunter = true;
-            GameObject.Find("AudioManager").GetComponent<AudioSource>().volume *= 0.4f;
+            GameObject.Find("AudioManager").GetComponent<AudioSource>().volume *= 0.0f;
         }
     }
 
@@ -365,9 +367,11 @@ public class PathManager : MonoBehaviour
             }
             //yield return new WaitForSeconds(0.5f);
             //Monster.transform.position = new Vector3(Monster.transform.position.x + direction_x, Monster.transform.position.y - direction_y, 0);
+            yield return new WaitForSeconds(0.2f);
+            monsterAnimation.SetInteger("Vector",1);
             yield return new WaitForSeconds(0.5f);
             clearMonster = true;
-            GameObject.Find("AudioManager").GetComponent<AudioSource>().volume = 0.4f;
+            GameObject.Find("AudioManager").GetComponent<AudioSource>().volume = 0.0f;
         }
     }
 

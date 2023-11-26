@@ -11,6 +11,8 @@ public class DialogueSystem : MonoBehaviour
     public TMP_Text txtName;
     public TMP_Text txtSentence;
 
+    private AudioSource audioSource;
+
     public GameObject txtImage;
 
     Queue<string> sentences = new Queue<string>();
@@ -22,6 +24,7 @@ public class DialogueSystem : MonoBehaviour
     public int nextStage;
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         fadeinout = FindAnyObjectByType<Fadeinout>();
         fadeinout.fadeOut();
     }
@@ -71,7 +74,7 @@ public class DialogueSystem : MonoBehaviour
     {
         foreach (var letter in sentence)
         {
-            //audioSource.Play();
+            audioSource.Play();
             txtSentence.text += letter;
             yield return new WaitForSeconds(0.1f);
         }
