@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ManageScene : MonoBehaviour
 {
+    AudioSource audioSource;
     public Image stage1;
     public Image stage2;
     public Image stage3;
@@ -15,6 +16,7 @@ public class ManageScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         StartCoroutine(createIcon());
 
     }
@@ -25,8 +27,15 @@ public class ManageScene : MonoBehaviour
         
     }
 
+    public void SelectSound()
+    {
+        audioSource.clip = FindObjectOfType<AudioManager>().select;
+        audioSource.Play();
+    }
+
     public void Stage1()
     {
+        
         hideButton();
         GameObject.Find("Intro").transform.GetChild(0).gameObject.SetActive(true);
     }
@@ -165,13 +174,12 @@ public class ManageScene : MonoBehaviour
             fadeCount += 0.005f;
             yield return new WaitForSeconds(0.01f);
             stage1.color = new Color(0, 0, 0, fadeCount);
-            stage2.color = new Color(0, 0, 0, fadeCount);
-            stage3.color = new Color(0, 0, 0, fadeCount);
-            stage4.color = new Color(0, 0, 0, fadeCount);
-            stage5.color = new Color(0, 0, 0, fadeCount);
-            stage6.color = new Color(0, 0, 0, fadeCount);
+            stage2.color = new Color(0, 0, 0, fadeCount * 0.2f);
+            stage3.color = new Color(0, 0, 0, fadeCount * 0.2f);
+            stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
+            stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
+            stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
         }
-
     }
 
     public void hideButton()
