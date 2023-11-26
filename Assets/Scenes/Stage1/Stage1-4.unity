@@ -1126,7 +1126,6 @@ GameObject:
   m_Component:
   - component: {fileID: 760325244}
   - component: {fileID: 760325245}
-  - component: {fileID: 760325246}
   - component: {fileID: 760325247}
   m_Layer: 0
   m_Name: TileManager
@@ -1164,6 +1163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMap_path: Data/Stage1-4-tileMap
   wallMap_path: Data/Stage1-4-wallMap
+  dragWood: {fileID: 8300000, guid: de01ad841397c2d47a710d23f5a01374, type: 3}
+  dragfirefly: {fileID: 8300000, guid: 8b788ddc44e98d94faf5a56318df8dd4, type: 3}
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -5, y: 5}
@@ -1176,21 +1177,6 @@ MonoBehaviour:
   boss: {fileID: 0}
   player: {fileID: 0}
   isBoss: 1
---- !u!114 &760325246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760325242}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c33fbfeb2fffc54418117933e4629276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_count: 8
-  boss: {fileID: 0}
-  player: {fileID: 0}
 --- !u!82 &760325247
 AudioSource:
   m_ObjectHideFlags: 0

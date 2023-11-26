@@ -14,7 +14,9 @@ public class TileArray : MonoBehaviour
     public string tileMap_path;
     public string wallMap_path;
 
-    AudioSource dragWood;
+    AudioSource audioSource;
+    public AudioClip dragWood;
+    public AudioClip dragfirefly;
     public enum TileType
     {
         shadow, ground, rock, fire, upDownWood, leftRightWood, none, hunterStart, hunterGoal, monsterStart, monsterGoal,
@@ -120,7 +122,7 @@ public class TileArray : MonoBehaviour
         PopulateTileMap();
         PopulatewallMap();
 
-        dragWood = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -381,7 +383,8 @@ public class TileArray : MonoBehaviour
                             tileMap[x - 1, y] = 4;
                             tileMap[x, y] = 0;
                             tilePrefab[x -1, y].GetComponent<SpriteRenderer>().sprite = shadowSprite;
-                            dragWood.Play();
+                            audioSource.clip = dragWood;
+                            audioSource.Play();
                         }
                         else if (tileMap[x, y] == 5)
                         {
@@ -390,7 +393,8 @@ public class TileArray : MonoBehaviour
                             tileMap[x - 1, y] = 5;
                             tileMap[x, y] = 0;
                             tilePrefab[x - 1, y].GetComponent<SpriteRenderer>().sprite = shadowSprite;
-                            dragWood.Play();
+                            audioSource.clip = dragWood;
+                            audioSource.Play();
                         }
                         else if (wallMap[x, y] == 11)
                         {
@@ -398,6 +402,8 @@ public class TileArray : MonoBehaviour
                             wallMap[x, y] = 0;
                             tileMap[x - 1, y] = 1;
                             tileMap[x, y] = 1;
+                            audioSource.clip = dragfirefly;
+                            audioSource.Play();
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x - 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y + 1, 0);
@@ -417,7 +423,8 @@ public class TileArray : MonoBehaviour
                             tileMap[x + 1, y] = 4;
                             tileMap[x, y] = 0;
                             tilePrefab[x + 1, y].GetComponent<SpriteRenderer>().sprite = shadowSprite;
-                            dragWood.Play();
+                            audioSource.clip = dragWood;
+                            audioSource.Play();
                         }
                         else if (tileMap[x, y] == 5)
                         {
@@ -426,7 +433,8 @@ public class TileArray : MonoBehaviour
                             tileMap[x + 1, y] = 5;
                             tileMap[x, y] = 0;
                             tilePrefab[x + 1, y].GetComponent<SpriteRenderer>().sprite = shadowSprite;
-                            dragWood.Play();
+                            audioSource.clip = dragWood;
+                            audioSource.Play();
                         }
                         else if (wallMap[x, y] == 11)
                         {
@@ -434,6 +442,8 @@ public class TileArray : MonoBehaviour
                             wallMap[x, y] = 0;
                             tileMap[x + 1, y] = 1;
                             tileMap[x, y] = 1;
+                            audioSource.clip = dragfirefly;
+                            audioSource.Play();
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x + 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y - 1, 0);
@@ -453,7 +463,8 @@ public class TileArray : MonoBehaviour
                             tileMap[x, y + 1] = 4;
                             tileMap[x, y] = 0;
                             tilePrefab[x, y + 1].GetComponent<SpriteRenderer>().sprite = shadowSprite;
-                            dragWood.Play();
+                            audioSource.clip = dragWood;
+                            audioSource.Play();
                         }
                         else if (tileMap[x, y] == 5)
                         {
@@ -462,7 +473,8 @@ public class TileArray : MonoBehaviour
                             tileMap[x, y + 1] = 5;
                             tileMap[x, y] = 0;
                             tilePrefab[x, y + 1].GetComponent<SpriteRenderer>().sprite = shadowSprite;
-                            dragWood.Play();
+                            audioSource.clip = dragWood;
+                            audioSource.Play();
                         }
                         else if (wallMap[x, y] == 11)
                         {
@@ -470,6 +482,8 @@ public class TileArray : MonoBehaviour
                             wallMap[x, y] = 0;
                             tileMap[x, y + 1] = 1;
                             tileMap[x, y] = 1;
+                            audioSource.clip = dragfirefly;
+                            audioSource.Play();
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x, y + 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x + 1, get_Wall.transform.position.y, 0);
@@ -489,7 +503,8 @@ public class TileArray : MonoBehaviour
                             tileMap[x, y - 1] = 4;
                             tileMap[x, y] = 0;
                             tilePrefab[x, y - 1].GetComponent<SpriteRenderer>().sprite = shadowSprite;
-                            dragWood.Play();
+                            audioSource.clip = dragWood;
+                            audioSource.Play();
                         }
                         else if (tileMap[x, y] == 5)
                         {
@@ -498,7 +513,8 @@ public class TileArray : MonoBehaviour
                             tileMap[x, y - 1] = 5;
                             tileMap[x, y] = 0;
                             tilePrefab[x, y - 1].GetComponent<SpriteRenderer>().sprite = shadowSprite;
-                            dragWood.Play();
+                            audioSource.clip = dragWood;
+                            audioSource.Play();
                         }
                         else if (wallMap[x, y] == 11)
                         {
@@ -506,6 +522,8 @@ public class TileArray : MonoBehaviour
                             wallMap[x, y] = 0;
                             tileMap[x, y - 1] = 1;
                             tileMap[x, y] = 1;
+                            audioSource.clip = dragfirefly;
+                            audioSource.Play();
                         }
                         get_Wall.GetComponent<wall_Info>().Set(x, y - 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x - 1, get_Wall.transform.position.y, 0);
