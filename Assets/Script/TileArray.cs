@@ -554,7 +554,7 @@ public class TileArray : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.transform.gameObject.GetComponent<FenFire>().isOnFenFire == true && hit.collider.CompareTag("fenfire"))
+                if (hit.collider.CompareTag("fenfire") && hit.transform.gameObject.GetComponent<FenFire>().isOnFenFire == true)
                 {
                     Debug.Log("turn off the fenfire");
                     audioSource.clip = fenfireOff; audioSource.Play();
@@ -567,7 +567,7 @@ public class TileArray : MonoBehaviour
                         (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Ani\\goblinfire1off",typeof(RuntimeAnimatorController)));
                     get_Wall.GetComponent<FenFire>().isOnFenFire = false;
                 }
-                else if (hit.transform.gameObject.GetComponent<FenFire>().isOnFenFire == false && hit.collider.CompareTag("fenfire"))
+                else if (hit.collider.CompareTag("fenfire") && hit.transform.gameObject.GetComponent<FenFire>().isOnFenFire == false )
                 {
                     Debug.Log("turn on the fenfire");
                     audioSource.clip = fenfireOn; audioSource.Play();
