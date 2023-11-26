@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6803564152080401286}
   - component: {fileID: 219453289863625146}
   - component: {fileID: -2589382537225364152}
+  - component: {fileID: -4133967136695893244}
   m_Layer: 0
   m_Name: tile_13
   m_TagString: fenfire
@@ -133,3 +134,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-4133967136695893244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8367235115188408015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca2a18e6efd2324aa6f3bbfc84ca0a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnFenFire: 1
+  groundSprite: {fileID: 849118353, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
+  shadowSprite: {fileID: -960234240, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
