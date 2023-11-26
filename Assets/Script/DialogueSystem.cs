@@ -58,7 +58,6 @@ public class DialogueSystem : MonoBehaviour
             End();
             return;
         }
-        audioSource.Play();
         //txtSentence.text = sentences.Dequeue();
         txtName.text = string.Empty;
         txtSentence.text = string.Empty;
@@ -74,6 +73,7 @@ public class DialogueSystem : MonoBehaviour
     {
         foreach (var letter in sentence)
         {
+            audioSource.Play();
             txtSentence.text += letter;
             yield return new WaitForSeconds(0.1f);
         }

@@ -33,17 +33,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage1/Stage1_talk.unity
     guid: 7527252e6065045f3ab92e57b93ff4a5
   - enabled: 1
+    path: Assets/Scenes/Stage2/Stage2-1.unity
+    guid: 254b651d346c640c495e5003f1db5abf
+  - enabled: 1
     path: Assets/Scenes/Stage2/Stage2-2.unity
     guid: 7902fb19043c5462286ad4c2b5f595e1
   - enabled: 1
-    path: Assets/Scenes/Stage2/Stage2-2.unity
-    guid: 203adc1792fa84f9eac48fb2cc1a54d0
-  - enabled: 1
     path: Assets/Scenes/Stage2/Stage2-3.unity
-    guid: 4ebfbc60ee11941549e37d7ffea637ff
+    guid: 78a80878f872b4890bb86ab3815bd499
   - enabled: 1
     path: Assets/Scenes/Stage2/Stage2-4.unity
-    guid: d1516ed098f414f4f9478eec5b0d7256
+    guid: 20be2a64b0a22451ab5d5df79a3ce065
   - enabled: 1
     path: Assets/Scenes/Stage2/Stage2_Boss_talk.unity
     guid: 8b085c7b653b94143bce0db78f9a93e4
@@ -64,7 +64,7 @@ EditorBuildSettings:
     guid: 2ec4ceff2324345d2a15b4943e7f8700
   - enabled: 1
     path: Assets/Scenes/Stage3/Stage3-4.unity
-    guid: 527db740ab3c54f52a1e3338a7bf748b
+    guid: 7143cd9c9d8004ec58c73d438c75c5bf
   - enabled: 1
     path: Assets/Scenes/Stage3/Stage3_Boss_talk.unity
     guid: 5371979b334cd459c90c7a6367ae0db4
@@ -74,4 +74,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage3/Stage3_talk.unity
     guid: 63ee3fe25f08c489a9c2a2d46768b02a
+  - enabled: 1
+    path: Assets/Scenes/Stage4/Stage4-1.unity
+    guid: 388686d7b7c684a71862e7cd49f2cbf7
+  - enabled: 1
+    path: Assets/Scenes/Stage4/Stage4-2.unity
+    guid: b7bec4496ef294a3b8cbf38c742b99d7
+  - enabled: 1
+    path: Assets/Scenes/Stage4/Stage4-3.unity
+    guid: 27c7f6c46086a42b48e78834df38199b
+  - enabled: 1
+    path: Assets/Scenes/Stage4/Stage4-4.unity
+    guid: 9e4d90587cdbc4d8eb4ee4db4453aeb3
+  - enabled: 1
+    path: Assets/Scenes/Stage4/Stage4_Boss_talk.unity
+    guid: 0db726dc6c35e4424acba7cbaee1ae49
+  - enabled: 1
+    path: Assets/Scenes/Stage4/Stage4_BossClear_talk.unity
+    guid: c04d888e374724da6b6568728b60f4a9
+  - enabled: 1
+    path: Assets/Scenes/Stage4/Stage4_talk.unity
+    guid: 28c7bdbf5fd23400f969600d45bef9c4
   m_configObjects: {}

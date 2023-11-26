@@ -586,8 +586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d015033d2d38df44a173353fc430b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMap_path: Data/Stage1-1-tileMap
-  wallMap_path: Data/Stage1-1-wallMap
+  tileMap_path: Data/Stage1/Stage1-1-tileMap
+  wallMap_path: Data/Stage1/Stage1-1-wallMap
   dragWood: {fileID: 8300000, guid: de01ad841397c2d47a710d23f5a01374, type: 3}
   dragfirefly: {fileID: 8300000, guid: 8b788ddc44e98d94faf5a56318df8dd4, type: 3}
   fenfireOn: {fileID: 8300000, guid: 54603bb784bacd5418b58e8c61f890af, type: 3}

@@ -154,6 +154,7 @@ public class TileArray : MonoBehaviour
             for(int j = 0; j < 10; j++)
             {
                 tileMap[i,j] = int.Parse(line.Split(',')[j]);
+                Debug.Log(tileMap[i,j] + ",");
             }
             i++;
         }
