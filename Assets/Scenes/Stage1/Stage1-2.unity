@@ -1225,8 +1225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d015033d2d38df44a173353fc430b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMap_path: Data/Stage1-2-tileMap
-  wallMap_path: Data/Stage1-2-wallMap
+  tileMap_path: Data/Stage1/Stage1-2-tileMap
+  wallMap_path: Data/Stage1/Stage1-2-wallMap
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -5, y: 5}
@@ -1238,6 +1238,7 @@ MonoBehaviour:
   isOnFenFire: 1
   boss: {fileID: 0}
   player: {fileID: 0}
+  isBoss: 0
 --- !u!114 &760325246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1253,8 +1254,6 @@ MonoBehaviour:
   boss_count: 0
   boss: {fileID: 0}
   player: {fileID: 0}
-  anim: {fileID: 0}
-  move: 0
 --- !u!1 &855925796
 GameObject:
   m_ObjectHideFlags: 0

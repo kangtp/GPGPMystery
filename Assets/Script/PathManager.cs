@@ -64,6 +64,9 @@ public class PathManager : MonoBehaviour
 
     public float size;
 
+    private int saveLastposX;
+    private int saveLastposY;
+
     private void Start()
     {
         clearHunter = false;
@@ -241,7 +244,7 @@ public class PathManager : MonoBehaviour
                     GameObject prefab = Resources.Load("wayout4") as GameObject;
                     GameObject wayout = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     wayout.transform.position = new Vector2(TileArray.Instance.tilePrefab[i, j].transform.position.x,
-                    TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.5f);
+                    TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.8f);
                 }
 
                 if(TileArray.Instance.tileMap[i,j] == 10)
@@ -249,7 +252,7 @@ public class PathManager : MonoBehaviour
                     GameObject prefab = Resources.Load("wayout1") as GameObject;
                     GameObject wayout = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     wayout.transform.position = new Vector2(TileArray.Instance.tilePrefab[i, j].transform.position.x,
-                    TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.5f);
+                    TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.8f);
                 }
 
             }
@@ -264,25 +267,28 @@ public class PathManager : MonoBehaviour
             int direction_x = 0;
             int direction_y = 0;
 
+            int last_direction_x = 0;
+            int last_direction_y = 0;
+
             for (int i = 0; i < path.Count - 1; i++)
             {
                 direction_x = path[i + 1].X - path[i].X;
                 direction_y = path[i + 1].Y - path[i].Y;
 
-                Debug.Log("an : " + hunterAnimation.GetInteger("Vector"));
-                if(direction_y == 1)
+                //Debug.Log("an : " + hunterAnimation.GetInteger("Vector"));
+                if(direction_y == 1 || last_direction_y == 1)
                 {
                     hunterAnimation.SetInteger("Vector",1);
                 }
-                else if(direction_y == -1)
+                else if(direction_y == -1 || last_direction_y == -1)
                 {
                      hunterAnimation.SetInteger("Vector",0);
                 }
-                else if(direction_x == -1)
+                else if(direction_x == -1 || last_direction_x == -1)
                 {
                      hunterAnimation.SetInteger("Vector",2);
                 }
-                else if(direction_x == 1)
+                else if(direction_x == 1 || last_direction_x == 1)
                 {
                      hunterAnimation.SetInteger("Vector",3);
                 }
@@ -469,6 +475,11 @@ public class PathManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void calculate_Lastdir(int goal_posx, int goal_posy)
+    {
+        
     }
 
 

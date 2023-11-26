@@ -1161,8 +1161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d015033d2d38df44a173353fc430b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMap_path: Data/Stage1-4-tileMap
-  wallMap_path: Data/Stage1-4-wallMap
+  tileMap_path: Data/Stage1/Stage1-4-tileMap
+  wallMap_path: Data/Stage1/Stage1-4-wallMap
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -5, y: 5}
@@ -1187,7 +1187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33fbfeb2fffc54418117933e4629276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_count: 8
+  boss_count: 10
   boss: {fileID: 0}
   player: {fileID: 0}
 --- !u!1 &855925796
