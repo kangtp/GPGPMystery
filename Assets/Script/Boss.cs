@@ -18,16 +18,15 @@ public class Boss : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         boss = FindObjectOfType<TileArray>().boss;
         player = FindObjectOfType<TileArray>().player;
+
+        count.Instance.fixMaxValue(boss_count);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //CheckCount();
-    }
 
-    private void FixedUpdate()
+    public void reduceCount()
     {
+        boss_count -= 1;
+        count.Instance.fillBar();
         CheckCount();
     }
 
@@ -37,12 +36,10 @@ public class Boss : MonoBehaviour
         {
             TileArray.Instance.Touchable = false;
             FindObjectOfType<count>().isOver = true;
-            //È£¶ûÀÌ °ø°Ý
+            //È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             audioSource.Play();
             StartCoroutine(MoveBoss());
             GameOver();
-
-            //°ÔÀÓ ¿À¹ö
             boss_count = -2;
         }
     }

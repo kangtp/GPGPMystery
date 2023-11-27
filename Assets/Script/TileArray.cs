@@ -414,7 +414,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x - 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y + 1, 0);
                         if(isBoss)
-                            FindObjectOfType<Boss>().boss_count -= 1;
+                            FindObjectOfType<Boss>().reduceCount();
                     }
                 }
                 break;
@@ -454,7 +454,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x + 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y - 1, 0);
                         if (isBoss)
-                            FindObjectOfType<Boss>().boss_count -= 1;
+                            FindObjectOfType<Boss>().reduceCount();
                     }
                 }
                 break;
@@ -494,7 +494,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x, y + 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x + 1, get_Wall.transform.position.y, 0);
                         if (isBoss)
-                            FindObjectOfType<Boss>().boss_count -= 1;
+                            FindObjectOfType<Boss>().reduceCount();
                     }
                 }
                 break;
@@ -534,7 +534,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x, y - 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x - 1, get_Wall.transform.position.y, 0);
                         if (isBoss)
-                            FindObjectOfType<Boss>().boss_count -= 1;
+                            FindObjectOfType<Boss>().reduceCount();
                     }
                 }
                 break;
@@ -549,13 +549,16 @@ public class TileArray : MonoBehaviour
     public void SwitchFenFire()
     {
         if (Input.GetMouseButtonDown(0) && Touchable)
-        {
+        {       
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.CompareTag("fenfire") && hit.transform.gameObject.GetComponent<FenFire>().isOnFenFire == true)
                 {
+                    if (isBoss)
+                      FindObjectOfType<Boss>().reduceCount();
+
                     Debug.Log("turn off the fenfire");
                     audioSource.clip = fenfireOff; audioSource.Play();
 
@@ -569,6 +572,9 @@ public class TileArray : MonoBehaviour
                 }
                 else if (hit.collider.CompareTag("fenfire") && hit.transform.gameObject.GetComponent<FenFire>().isOnFenFire == false )
                 {
+                    if (isBoss)
+                      FindObjectOfType<Boss>().reduceCount();
+                    
                     Debug.Log("turn on the fenfire");
                     audioSource.clip = fenfireOn; audioSource.Play();
 
