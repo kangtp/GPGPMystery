@@ -69,6 +69,7 @@ public class Boss : MonoBehaviour
             boss.transform.Translate(direction * 100 * Time.deltaTime);
             if (distance < 1)
             {
+                ShakeScreen.Instance.Callshake(); // 화면 흔들림 함수 호출
                 yield return new WaitForSeconds(2f);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
