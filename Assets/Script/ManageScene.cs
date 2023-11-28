@@ -28,46 +28,69 @@ public class ManageScene : MonoBehaviour
     {
         audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         StartCoroutine(createIcon());
-        
-        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 2)
+
+        if (PlayerPrefs.HasKey("OpenAni") && PlayerPrefs.GetInt("OpenAni") >= 2)
         {
-            stage2open = true;
+            Go(2);
         }
-        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 3)
+        if (PlayerPrefs.HasKey("OpenAni") && PlayerPrefs.GetInt("OpenAni") >= 3)
         {
-            stage3open = true;
+            Go(3);
         }
-        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 4)
+        if (PlayerPrefs.HasKey("OpenAni") && PlayerPrefs.GetInt("OpenAni") >= 4)
         {
-            stage4open = true;
+            Go(4);
         }
+        //if (PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 2)
+        //{
+        //    Go(2);
+
+        //}
+        //if (PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 3)
+        //{
+        //    Go(3);
+        //}
+        //if (PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 4)
+        //{
+        //    Go(4);
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
+        //if(PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 2)
+        //{
+        //    Go(2);
+
+        //}
+        //if (PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 3)
+        //{
+        //    Go(3);
+        //}
+        //if (PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 4)
+        //{
+        //    Go(4);
+        //}
+    }
+
+
+    public void Go(int num)
+    {
+        switch (num)
+        {
+            case 2: 
+                StartCoroutine(OpenStage2());
+                break;
+            case 3:
+                StartCoroutine(OpenStage3());
+                break;
+            case 4:
+                StartCoroutine(OpenStage4());
+                break;
+            default: break;
+        }
         
-    }
-
-    public void CheckOpenStage()
-    {
-        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 2)
-        {
-            stage2open = true;
-        }
-        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 3)
-        {
-            stage3open = true;
-        }
-        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 4)
-        {
-            stage4open = true;
-        }
-    }
-
-    public void Go2()
-    {
-        StartCoroutine(OpenStage2());
     }
 
     public void SelectSound()
@@ -105,7 +128,7 @@ public class ManageScene : MonoBehaviour
 
     public void Stage2()
     {
-        if(PlayerPrefs.HasKey("Stage"))
+        if(PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 2)
         {
             hideButton();
             GameObject.Find("Intro").transform.GetChild(1).gameObject.SetActive(true);
@@ -133,7 +156,7 @@ public class ManageScene : MonoBehaviour
 
     public void Stage3()
     {
-        if (stage3open)
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 3)
         {
             hideButton();
             GameObject.Find("Intro").transform.GetChild(2).gameObject.SetActive(true);
@@ -159,7 +182,7 @@ public class ManageScene : MonoBehaviour
     }
     public void Stage4()
     {
-        if (stage4open)
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 4)
         {
             hideButton();
             GameObject.Find("Intro").transform.GetChild(3).gameObject.SetActive(true);
@@ -314,28 +337,78 @@ public class ManageScene : MonoBehaviour
             fadeCount += 0.005f;
             yield return new WaitForSeconds(0.01f);
             stage1.color = new Color(0, 0, 0, fadeCount);
-            stage2.color = new Color(0, 0, 0, fadeCount * 0.2f);
-            stage3.color = new Color(0, 0, 0, fadeCount * 0.2f);
-            stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
-            stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
-            stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
+            //OpenAni가 없으면 실행 깬 스테이지가 없다는 뜻
+            if (!PlayerPrefs.HasKey("OpenAni"))
+            {
+                //깬 스테이지가 없으니 아직 0.2
+                stage2.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                stage3.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
+            }
+            //OpenAni가 있어
+            else if (PlayerPrefs.HasKey("OpenAni"))
+            {
+                if(PlayerPrefs.GetInt("OpenAni") == 2)
+                {
+                    stage3.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                    stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                    stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                    stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                }
+                if(PlayerPrefs.GetInt("OpenAni") == 3)
+                {
+                    stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                    stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                    stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                }
+                if (PlayerPrefs.GetInt("OpenAni") == 4)
+                {
+                    stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                    stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                }
+            }
+            
         }
-        StopCoroutine(createIcon());
     }
 
     public IEnumerator OpenStage2()
     {
         //열리는 효과음 넣기
-        float fadeCount = 0.2f;
+        float fadeCount = 0.0f;
         while (fadeCount < 1.0f)
         {
             fadeCount += 0.005f;
             yield return new WaitForSeconds(0.01f);
             stage2.color = new Color(0, 0, 0, fadeCount);
         }
-        
+        PlayerPrefs.DeleteKey("flag");
     }
-
+    public IEnumerator OpenStage3()
+    {
+        //열리는 효과음 넣기
+        float fadeCount = 0.0f;
+        while (fadeCount < 1.0f)
+        {
+            fadeCount += 0.005f;
+            yield return new WaitForSeconds(0.01f);
+            stage3.color = new Color(0, 0, 0, fadeCount);
+        }
+        PlayerPrefs.DeleteKey("flag");
+    }
+    public IEnumerator OpenStage4()
+    {
+        //열리는 효과음 넣기
+        float fadeCount = 0.0f;
+        while (fadeCount < 1.0f)
+        {
+            fadeCount += 0.005f;
+            yield return new WaitForSeconds(0.01f);
+            stage4.color = new Color(0, 0, 0, fadeCount);
+        }
+        PlayerPrefs.DeleteKey("flag");
+    }
     public void hideButton()
     {
         GameObject.Find("Stage1").SetActive(false);

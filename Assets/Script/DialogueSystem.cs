@@ -83,8 +83,9 @@ public class DialogueSystem : MonoBehaviour
     private void End()
     {
         PlayerPrefs.SetInt("Stage", nextStage);
+        PlayerPrefs.SetInt("OpenAni", nextStage);
+        PlayerPrefs.SetInt("flag", nextStage);
         Debug.Log("save : " + nextStage);
-        FindObjectOfType<ManageScene>().Go2();
         SceneManager.LoadScene(nextScene);
     }
 
