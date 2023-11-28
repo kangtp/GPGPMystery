@@ -23,7 +23,7 @@ public class ShakeScreen : MonoBehaviour
 
     }
 
-    public IEnumerator Shake(float duration = 1.0f, float magnitudePos = 0.03f, float magnitudeRot = 0.1f)
+    public IEnumerator Shake(float duration = 1.0f, float magnitudePos = 0.05f, float magnitudeRot = 0.1f)
     {
         // 지나간 시간을 누적할 변수
         float passTime = 0.0f;
