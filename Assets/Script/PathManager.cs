@@ -247,6 +247,7 @@ public class PathManager : MonoBehaviour
                     hunterAnimation = Hunter.GetComponent<Animator>();
                     hunterAnimation.SetInteger("First",1);
                     Hunter.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
+                    TileArray.Instance.tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = TileArray.Instance.groundSprite;
                 }
 
                 else if(TileArray.Instance.tileMap[i,j] == 8)
@@ -255,6 +256,7 @@ public class PathManager : MonoBehaviour
                     GameObject wayout = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     wayout.transform.position = new Vector2(TileArray.Instance.tilePrefab[i, j].transform.position.x,
                     TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.8f);
+                    TileArray.Instance.tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = TileArray.Instance.groundSprite;
                 }
 
                 else if (TileArray.Instance.tileMap[i, j] == 9)
@@ -264,6 +266,7 @@ public class PathManager : MonoBehaviour
                     monsterAnimation = Monster.GetComponent<Animator>();
                     monsterAnimation.SetInteger("Vector",1);
                     Monster.transform.position = TileArray.Instance.tilePrefab[i, j].transform.position;
+                    TileArray.Instance.tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = TileArray.Instance.shadowSprite;
                 }
 
             
@@ -273,6 +276,7 @@ public class PathManager : MonoBehaviour
                     GameObject wayout = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     wayout.transform.position = new Vector2(TileArray.Instance.tilePrefab[i, j].transform.position.x,
                     TileArray.Instance.tilePrefab[i, j].transform.position.y + 0.8f);
+                    TileArray.Instance.tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = TileArray.Instance.shadowSprite;
                 }
 
             }

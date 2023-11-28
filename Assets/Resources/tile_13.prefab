@@ -147,5 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnFenFire: 1
-  groundSprite: {fileID: 849118353, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
-  shadowSprite: {fileID: -960234240, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
+  groundSprite: {fileID: 21300000, guid: a7894751329c9430396d0740188a8895, type: 3}
+  shadowSprite: {fileID: 21300000, guid: e925514eaa1fc4e8088e5fa5e6dd6fc6, type: 3}
