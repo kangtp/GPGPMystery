@@ -333,7 +333,7 @@ public class ManageScene : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             stage2.color = new Color(0, 0, 0, fadeCount);
         }
-        StopCoroutine(OpenStage2());
+        
     }
 
     public void hideButton()
