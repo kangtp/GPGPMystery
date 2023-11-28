@@ -15,63 +15,84 @@ public class ManageScene : MonoBehaviour
     public Image stage6;
 
     public GameObject road1;
+    public GameObject road2;
+    public GameObject road3;
+    public GameObject road4;
+    public GameObject road5;
 
-    private bool stage1open = true;
-    public bool stage2open = false;
-    private bool stage3open = false;
-    private bool stage4open = false;
-    private bool stage5open = false;
-    private bool stage6open = false;
-
+    private int exist = 2;
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         StartCoroutine(createIcon());
 
-        if (PlayerPrefs.HasKey("OpenAni") && PlayerPrefs.GetInt("OpenAni") >= 2)
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 2)
         {
-            Go(2);
-        }
-        if (PlayerPrefs.HasKey("OpenAni") && PlayerPrefs.GetInt("OpenAni") >= 3)
-        {
-            Go(3);
-        }
-        if (PlayerPrefs.HasKey("OpenAni") && PlayerPrefs.GetInt("OpenAni") >= 4)
-        {
-            Go(4);
-        }
-        //if (PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 2)
-        //{
-        //    Go(2);
+            if(PlayerPrefs.HasKey("Exist") && PlayerPrefs.GetInt("Exist") >= 2)
+            {
+                StartCoroutine(ExistStage(stage2, road1));
+            }
+            else
+            {
 
-        //}
-        //if (PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 3)
-        //{
-        //    Go(3);
-        //}
-        //if (PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 4)
-        //{
-        //    Go(4);
-        //}
+                Go(2);
+            }
+        }
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 3)
+        {
+            if (PlayerPrefs.HasKey("Exist") && PlayerPrefs.GetInt("Exist") >= 3)
+            {
+                StartCoroutine(ExistStage(stage3, road2));
+            }
+            else
+            {
+
+                Go(3);
+            }
+        }
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 4)
+        {
+            if (PlayerPrefs.HasKey("Exist") && PlayerPrefs.GetInt("Exist") >= 4)
+            {
+                StartCoroutine(ExistStage(stage4, road3));
+            }
+            else
+            {
+
+                Go(4);
+            }
+        }
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 5)
+        {
+            if (PlayerPrefs.HasKey("Exist") && PlayerPrefs.GetInt("Exist") >= 5)
+            {
+                StartCoroutine(ExistStage(stage5, road4));
+            }
+            else
+            {
+
+                Go(5);
+            }
+        }
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 6)
+        {
+            if (PlayerPrefs.HasKey("Exist") && PlayerPrefs.GetInt("Exist") >= 6)
+            {
+                StartCoroutine(ExistStage(stage6, road5));
+            }
+            else
+            {
+
+                Go(6);
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 2)
-        //{
-        //    Go(2);
-
-        //}
-        //if (PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 3)
-        //{
-        //    Go(3);
-        //}
-        //if (PlayerPrefs.HasKey("flag") && PlayerPrefs.GetInt("flag") == 4)
-        //{
-        //    Go(4);
-        //}
+        
     }
 
 
@@ -80,13 +101,19 @@ public class ManageScene : MonoBehaviour
         switch (num)
         {
             case 2: 
-                StartCoroutine(OpenStage2());
+                StartCoroutine(OpenStage(stage2, road1));
                 break;
             case 3:
-                StartCoroutine(OpenStage3());
+                StartCoroutine(OpenStage(stage3, road2));
                 break;
             case 4:
-                StartCoroutine(OpenStage4());
+                StartCoroutine(OpenStage(stage4, road3));
+                break;
+            case 5:
+                StartCoroutine(OpenStage(stage5, road4));
+                break;
+            case 6:
+                StartCoroutine(OpenStage(stage6, road5));
                 break;
             default: break;
         }
@@ -160,6 +187,7 @@ public class ManageScene : MonoBehaviour
         {
             hideButton();
             GameObject.Find("Intro").transform.GetChild(2).gameObject.SetActive(true);
+            return;
         }
         Debug.Log("Not open");
     }
@@ -186,6 +214,7 @@ public class ManageScene : MonoBehaviour
         {
             hideButton();
             GameObject.Find("Intro").transform.GetChild(3).gameObject.SetActive(true);
+            return;
         }
         Debug.Log("Not open");
     }
@@ -209,10 +238,11 @@ public class ManageScene : MonoBehaviour
 
     public void Stage5()
     {
-        if (stage5open)
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 5)
         {
             hideButton();
             GameObject.Find("Intro").transform.GetChild(4).gameObject.SetActive(true);
+            return;
         }
         Debug.Log("Not open");
     }
@@ -221,13 +251,26 @@ public class ManageScene : MonoBehaviour
     {
         StartCoroutine(EnterStage5_1());
     }
+    public void GoStage5_2()
+    {
+        StartCoroutine(EnterStage5_2());
+    }
+    public void GoStage5_3()
+    {
+        StartCoroutine(EnterStage5_3());
+    }
+    public void GoStage5_4()
+    {
+        StartCoroutine(EnterStage5_4());
+    }
 
     public void Stage6()
     {
-        if (stage6open)
+        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 6)
         {
             hideButton();
             GameObject.Find("Intro").transform.GetChild(5).gameObject.SetActive(true);
+            return;
         }
         Debug.Log("Not open");
     }
@@ -236,6 +279,19 @@ public class ManageScene : MonoBehaviour
     {
         StartCoroutine(EnterStage6_1());
     }
+    public void GoStage6_2()
+    {
+        StartCoroutine(EnterStage6_2());
+    }
+    public void GoStage6_3()
+    {
+        StartCoroutine(EnterStage6_3());
+    }
+    public void GoStage6_4()
+    {
+        StartCoroutine(EnterStage6_4());
+    }
+
 
     IEnumerator EnterStage1_1()
     {
@@ -278,6 +334,7 @@ public class ManageScene : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage2-4");
     }
+
     IEnumerator EnterStage3_1()
     {
         yield return new WaitForSeconds(1.0f);
@@ -298,6 +355,7 @@ public class ManageScene : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage3-4");
     }
+
     IEnumerator EnterStage4_1()
     {
         yield return new WaitForSeconds(1.0f);
@@ -318,10 +376,26 @@ public class ManageScene : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage4-4");
     }
+
     IEnumerator EnterStage5_1()
     {
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage5-1");
+    }
+    IEnumerator EnterStage5_2()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage5-2");
+    }
+    IEnumerator EnterStage5_3()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage5-3");
+    }
+    IEnumerator EnterStage5_4()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage5-4");
     }
 
     IEnumerator EnterStage6_1()
@@ -329,6 +403,22 @@ public class ManageScene : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene("Stage6-1");
     }
+    IEnumerator EnterStage6_2()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage6-2");
+    }
+    IEnumerator EnterStage6_3()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage6-3");
+    }
+    IEnumerator EnterStage6_4()
+    {
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene("Stage6-4");
+    }
+
     IEnumerator createIcon()
     {
         float fadeCount = 0;
@@ -337,7 +427,7 @@ public class ManageScene : MonoBehaviour
             fadeCount += 0.005f;
             yield return new WaitForSeconds(0.01f);
             stage1.color = new Color(0, 0, 0, fadeCount);
-            //OpenAni가 없으면 실행 깬 스테이지가 없다는 뜻
+            //OpenAni가 없으면 실행. 깬 스테이지가 없다는 뜻
             if (!PlayerPrefs.HasKey("OpenAni"))
             {
                 //깬 스테이지가 없으니 아직 0.2
@@ -357,23 +447,28 @@ public class ManageScene : MonoBehaviour
                     stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 }
-                if(PlayerPrefs.GetInt("OpenAni") == 3)
+                else if(PlayerPrefs.GetInt("OpenAni") == 3)
                 {
                     stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 }
-                if (PlayerPrefs.GetInt("OpenAni") == 4)
+                else if (PlayerPrefs.GetInt("OpenAni") == 4)
                 {
                     stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 }
+                else if (PlayerPrefs.GetInt("OpenAni") == 5)
+                {
+                    stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
+                }
+
             }
             
         }
     }
 
-    public IEnumerator OpenStage2()
+    public IEnumerator OpenStage(Image img, GameObject road)
     {
         //열리는 효과음 넣기
         float fadeCount = 0.0f;
@@ -381,34 +476,34 @@ public class ManageScene : MonoBehaviour
         {
             fadeCount += 0.005f;
             yield return new WaitForSeconds(0.01f);
-            stage2.color = new Color(0, 0, 0, fadeCount);
+            img.color = new Color(0, 0, 0, fadeCount);
         }
-        PlayerPrefs.DeleteKey("flag");
+        
+        for(int i = 0; i < road.transform.childCount; i++)
+        {
+            yield return new WaitForSeconds(0.5f);
+            road.transform.GetChild(i).gameObject.SetActive(true);
+        }
+        PlayerPrefs.SetInt("Exist", exist++);
     }
-    public IEnumerator OpenStage3()
+
+    public IEnumerator ExistStage(Image img, GameObject road)
     {
-        //열리는 효과음 넣기
+        
         float fadeCount = 0.0f;
         while (fadeCount < 1.0f)
         {
             fadeCount += 0.005f;
             yield return new WaitForSeconds(0.01f);
-            stage3.color = new Color(0, 0, 0, fadeCount);
+            img.color = new Color(0, 0, 0, fadeCount);
         }
-        PlayerPrefs.DeleteKey("flag");
-    }
-    public IEnumerator OpenStage4()
-    {
-        //열리는 효과음 넣기
-        float fadeCount = 0.0f;
-        while (fadeCount < 1.0f)
+        for (int i = 0; i < road.transform.childCount; i++)
         {
-            fadeCount += 0.005f;
-            yield return new WaitForSeconds(0.01f);
-            stage4.color = new Color(0, 0, 0, fadeCount);
+            road.transform.GetChild(i).GetComponent<Image>().color = new Color(0, 0, 0, fadeCount);
+            road.transform.GetChild(i).gameObject.SetActive(true);
         }
-        PlayerPrefs.DeleteKey("flag");
     }
+
     public void hideButton()
     {
         GameObject.Find("Stage1").SetActive(false);
@@ -417,6 +512,11 @@ public class ManageScene : MonoBehaviour
         GameObject.Find("Stage4").SetActive(false);
         GameObject.Find("Stage5").SetActive(false);
         GameObject.Find("Stage6").SetActive(false);
+        road1.SetActive(false);
+        road2.SetActive(false);
+        road3.SetActive(false);
+        road4.SetActive(false);
+        road5.SetActive(false);
     }
 
     

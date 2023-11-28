@@ -30,6 +30,12 @@ public class BackButton : MonoBehaviour
         GameObject.Find("Stages").transform.GetChild(3).gameObject.SetActive(true);
         GameObject.Find("Stages").transform.GetChild(4).gameObject.SetActive(true);
         GameObject.Find("Stages").transform.GetChild(5).gameObject.SetActive(true);
+
+        GameObject.Find("Stages").transform.GetChild(6).gameObject.SetActive(true);
+        GameObject.Find("Stages").transform.GetChild(7).gameObject.SetActive(true);
+        GameObject.Find("Stages").transform.GetChild(8).gameObject.SetActive(true);
+        GameObject.Find("Stages").transform.GetChild(9).gameObject.SetActive(true);
+        GameObject.Find("Stages").transform.GetChild(10).gameObject.SetActive(true);
         currentWindow.SetActive(false);
     }
 }

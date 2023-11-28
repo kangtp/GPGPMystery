@@ -13,7 +13,7 @@ public class MovieOff : MonoBehaviour
     {
         StartCoroutine(screenOff());
         PlayerPrefs.DeleteKey("Stage");
-        PlayerPrefs.DeleteKey("OpenAni");
+        PlayerPrefs.DeleteKey("Exist");
     }
 
     // Update is called once per frame
