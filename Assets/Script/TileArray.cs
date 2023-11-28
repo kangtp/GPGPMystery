@@ -212,6 +212,10 @@ public class TileArray : MonoBehaviour
                 {
                     player = tile;
                 }
+                if(tileMap[i,j] == 9)
+                {
+                    player = tile;
+                }
             }
         }
     }

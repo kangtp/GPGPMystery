@@ -566,8 +566,8 @@ MonoBehaviour:
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -5, y: 5}
-  shadowSprite: {fileID: -960234240, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
-  groundSprite: {fileID: 849118353, guid: 4abd6a9348916524184f009503bad2fa, type: 3}
+  shadowSprite: {fileID: 21300000, guid: e925514eaa1fc4e8088e5fa5e6dd6fc6, type: 3}
+  groundSprite: {fileID: 21300000, guid: a7894751329c9430396d0740188a8895, type: 3}
   offFenFireSprite: {fileID: 21300000, guid: b4ac83af1966d0940a48eb32c5d03014, type: 3}
   onFenFireSprite: {fileID: 21300000, guid: f8b4901a6c64c2e4e9cefcd5c1e313be, type: 3}
   Touchable: 0

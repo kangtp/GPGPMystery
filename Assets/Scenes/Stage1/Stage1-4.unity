@@ -4791,6 +4791,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 24219655, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1162199685, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1995551495, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4895,34 +4903,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2460124277087864062, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
---- !u!1 &1930140148 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7384293845443266620, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-  m_PrefabInstance: {fileID: 1930140147}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1930140149
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1930140148}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e12cc4ebaec0a4e5cb52a65f31866851, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1932544389
 GameObject:
   m_ObjectHideFlags: 0
