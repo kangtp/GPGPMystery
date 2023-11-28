@@ -84,6 +84,7 @@ public class DialogueSystem : MonoBehaviour
     {
         PlayerPrefs.SetInt("Stage", nextStage);
         Debug.Log("save : " + nextStage);
+        FindObjectOfType<ManageScene>().Go2();
         SceneManager.LoadScene(nextScene);
     }
 

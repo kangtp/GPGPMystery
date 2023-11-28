@@ -739,7 +739,7 @@ public class TileArray : MonoBehaviour
                     {
                         if (tileMap[k, j] != 0 && tileMap[k, j] != 1)
                         {
-                            if (tileMap[k, j] == 13 && !isOnFenFire)
+                            if (tileMap[k, j] == 13 && fenfirePrefab[k, j].GetComponent<FenFire>().isOnFenFire == false)
                             {
                                 tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
                             }
@@ -758,7 +758,7 @@ public class TileArray : MonoBehaviour
                     {
                         if (tileMap[k, j] != 0 && tileMap[k, j] != 1)
                         {
-                            if (tileMap[k, j] == 13 && !isOnFenFire)
+                            if (tileMap[k, j] == 13 && fenfirePrefab[k, j].GetComponent<FenFire>().isOnFenFire == false)
                             {
                                 tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
                             }
@@ -777,7 +777,7 @@ public class TileArray : MonoBehaviour
                     {
                         if (tileMap[i, k] != 0 && tileMap[i, k] != 1)
                         {
-                            if (tileMap[i, k] == 13 && !isOnFenFire)
+                            if (tileMap[i, k] == 13 && fenfirePrefab[i, k].GetComponent<FenFire>().isOnFenFire == false)
                             {
                                 tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
                             }
@@ -796,7 +796,7 @@ public class TileArray : MonoBehaviour
                     {
                         if (tileMap[i, k] != 0 && tileMap[i, k] != 1)
                         {
-                            if (tileMap[i, k] == 13 && !isOnFenFire)
+                            if (tileMap[i, k] == 13 && fenfirePrefab[i, k].GetComponent<FenFire>().isOnFenFire == false)
                             {
                                 tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
                             }
