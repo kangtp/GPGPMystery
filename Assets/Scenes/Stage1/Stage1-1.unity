@@ -604,6 +604,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 24219655, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1162199685, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2460124275493902185, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -703,6 +711,18 @@ PrefabInstance:
     - target: {fileID: 2460124276120501629, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_Name
       value: GameCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460124277087864060, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a42a87da1ab323f42822b699a738b46f, type: 3}
+    - target: {fileID: 2460124277087864062, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851087724201186307, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
