@@ -1303,6 +1303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348419b32e5994c8f970609ab5a8948e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSound: {fileID: 0}
   failSound: {fileID: 8300000, guid: 38be1064fcd2e7943829de4136e4ba7d, type: 3}
   successSound: {fileID: 8300000, guid: 1ef1b5b494c19c34aba5294c1226aa75, type: 3}
   nextScene: Stage3_BossClear_talk
@@ -5110,6 +5111,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 674750074, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: de1b578a574ff42b8bc70ee371dbc865, type: 3}
     - target: {fileID: 1162199685, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_IsActive
       value: 1
