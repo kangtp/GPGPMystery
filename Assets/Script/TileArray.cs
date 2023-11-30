@@ -114,6 +114,7 @@ public class TileArray : MonoBehaviour
         Instance = this;
         ReadtileMap();
         ReadwallMap();
+        Time.timeScale = 1;
     }
 
     // Use this for initialization
