@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 347714162}
   - component: {fileID: 347714161}
   m_Layer: 0
-  m_Name: nulltile
+  m_Name: nulltile_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
