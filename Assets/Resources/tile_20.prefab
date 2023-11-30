@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c33fbfeb2fffc54418117933e4629276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_count: 80
+  boss_count: 9
   boss: {fileID: 0}
   player: {fileID: 0}
 --- !u!82 &6044406254433937171
