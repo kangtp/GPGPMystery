@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class PathManager : MonoBehaviour
 {
+    static public PathManager Instance;
     AudioSource audioSource;
+
+    public AudioSource walkSound;
     public AudioClip failSound;
     public AudioClip successSound;
     Fadeinout fadeinout;
@@ -71,6 +74,7 @@ public class PathManager : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         clearHunter = false;
         clearMonster = false;
         fadeinout = FindAnyObjectByType<Fadeinout>();
@@ -79,6 +83,7 @@ public class PathManager : MonoBehaviour
         Get_tilemap();
         PopulatePathmap();
         audioSource = GetComponent<AudioSource>();
+        walkSound = GameObject.Find("AudioManager").GetComponent<AudioSource>();
     }
 
     private void Update() 
@@ -101,6 +106,7 @@ public class PathManager : MonoBehaviour
     public IEnumerator ChangeScene()
     {
         GameObject.Find("AudioManager").GetComponent<AudioSource>().volume *= 0.0f;
+        fastView.Instance.originScreen();
         clearHunter = false;
         clearMonster = false;
         fadeinout.fadeIn();
@@ -121,6 +127,7 @@ public class PathManager : MonoBehaviour
                         if (checkPathable(count))
                         {
                             audioSource.clip = successSound; audioSource.Play();
+                            fastView.Instance.switchBtn();
                             StartCoroutine(move_monster());
                         }
                         else
@@ -135,6 +142,7 @@ public class PathManager : MonoBehaviour
                         if (checkPathable(count))
                         {
                             audioSource.clip = successSound; audioSource.Play();
+                            fastView.Instance.switchBtn();
                             StartCoroutine(move_hunter());
                         }
                         else
@@ -152,6 +160,7 @@ public class PathManager : MonoBehaviour
                         if (checkPathable(count))
                         {
                             audioSource.clip = successSound; audioSource.Play();
+                            fastView.Instance.switchBtn();
                             StartCoroutine(move_hunter());
                             StartCoroutine(move_monster());
                         }
