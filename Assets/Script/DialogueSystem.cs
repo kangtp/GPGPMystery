@@ -24,6 +24,7 @@ public class DialogueSystem : MonoBehaviour
     public int nextStage;
     void Awake()
     {
+        Time.timeScale = 1f;
         audioSource = GetComponent<AudioSource>();
         fadeinout = FindAnyObjectByType<Fadeinout>();
         fadeinout.fadeOut();

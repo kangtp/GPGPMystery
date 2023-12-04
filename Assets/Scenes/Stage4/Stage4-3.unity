@@ -362,7 +362,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 760325242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -389,7 +389,7 @@ MonoBehaviour:
   fenfireOff: {fileID: 8300000, guid: 8af07a5b17ca710488d09732eaaebdfc, type: 3}
   TileSize: 0
   wallSize: 0
-  StartPoint: {x: -5, y: 5}
+  StartPoint: {x: -6, y: 5}
   shadowSprite: {fileID: 21300000, guid: e925514eaa1fc4e8088e5fa5e6dd6fc6, type: 3}
   groundSprite: {fileID: 21300000, guid: a7894751329c9430396d0740188a8895, type: 3}
   offFenFireSprite: {fileID: 21300000, guid: b4ac83af1966d0940a48eb32c5d03014, type: 3}
@@ -514,6 +514,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1400815691, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 22.904
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400815691, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 24.369
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400815691, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 744
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400815691, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400815692, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2460124275493902185, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -613,6 +633,10 @@ PrefabInstance:
     - target: {fileID: 2460124276120501629, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_Name
       value: GameCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460124277087864062, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
