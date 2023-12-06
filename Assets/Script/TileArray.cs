@@ -150,7 +150,7 @@ public class TileArray : MonoBehaviour
         while (stringReader != null)
         {
             string line = stringReader.ReadLine();
-            Debug.Log(line);
+           
 
             if(line == null)
             break;
@@ -158,7 +158,7 @@ public class TileArray : MonoBehaviour
             for(int j = 0; j < 10; j++)
             {
                 tileMap[i,j] = int.Parse(line.Split(',')[j]);
-                Debug.Log(tileMap[i,j] + ",");
+               
             }
             i++;
         }
@@ -170,12 +170,11 @@ public class TileArray : MonoBehaviour
     {
         TextAsset textfile = Resources.Load(wallMap_path) as TextAsset;
         StringReader stringReader = new StringReader(textfile.text);
-        int i = 0;
+        int i = 0; 
 
         while (stringReader != null)
         {
             string line = stringReader.ReadLine();
-            Debug.Log(line);
 
             if(line == null)
             break;

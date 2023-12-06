@@ -1,20 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioPlay : MonoBehaviour
 {
-    GameObject BackgroundMusic;
-   private AudioSource audioSource;
 
-   private void Awake() {
-    BackgroundMusic = GameObject.Find("MusicManager");
-    audioSource = BackgroundMusic.GetComponent<AudioSource>();
-    if(audioSource.isPlaying) return;
-    else
+    [SerializeField]
+    private AudioSource bgm;
+
+    static public AudioPlay Instance;
+
+    private void Awake()
     {
-        audioSource.Play();
-        DontDestroyOnLoad(BackgroundMusic);
+        Instance = this;
+        var SoundManager = FindObjectsOfType<AudioPlay>();
+
+        if (SoundManager.Length == 1)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
-   }
+
+    private void Start()
+    {
+        bgm.Play();
+    }
+
 }

@@ -23,7 +23,7 @@ public class Boss_goblinKing : MonoBehaviour
         player = FindObjectOfType<TileArray>().player;
         boss = FindObjectOfType<TileArray>().boss;
         GameObject prefab = Resources.Load("goblinRock") as GameObject;
-        goblinRock = Instantiate(prefab, new Vector3(-4.47f,8f,0), Quaternion.identity) as GameObject;
+        goblinRock = Instantiate(prefab, new Vector3(-4.47f, 8f, 0), Quaternion.identity) as GameObject;
 
         origin = Vector3.Distance(boss.transform.position, player.transform.position);
         count.Instance.fixMaxValue(boss_count);
@@ -53,7 +53,7 @@ public class Boss_goblinKing : MonoBehaviour
 
             if (distance < 1.5f)
             {
-                ShakeScreen.Instance.Callshake(); // 화면 흔들림 함수 호출
+                ShakeScreen.Instance.Callshake(); // ȭ�� ��鸲 �Լ� ȣ��
                 yield return new WaitForSeconds(2f);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
