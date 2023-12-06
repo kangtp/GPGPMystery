@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6803564152080401286}
   - component: {fileID: 219453289863625146}
   - component: {fileID: 4126899453632311947}
+  - component: {fileID: 7385203325914984192}
   - component: {fileID: 6044406254433937171}
   - component: {fileID: -2826815877486510929}
   m_Layer: 0
@@ -121,7 +122,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8367235115188408015}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c33fbfeb2fffc54418117933e4629276, type: 3}
   m_Name: 
@@ -129,6 +130,22 @@ MonoBehaviour:
   boss_count: 10
   boss: {fileID: 0}
   player: {fileID: 0}
+--- !u!114 &7385203325914984192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8367235115188408015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920364634f7921a458fed6173c6d0cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_count: 4
+  player: {fileID: 0}
+  boss: {fileID: 0}
+  goblinRock: {fileID: 21300000, guid: 98c9944d24b3a3c42a03f5a974765553, type: 3}
 --- !u!82 &6044406254433937171
 AudioSource:
   m_ObjectHideFlags: 0
@@ -235,7 +252,7 @@ Animator:
   m_GameObject: {fileID: 8367235115188408015}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 59cd854218bb4b7448e17a543207e081, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
