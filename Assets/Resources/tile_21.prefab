@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6803564152080401286}
   - component: {fileID: 219453289863625146}
   - component: {fileID: 4126899453632311947}
+  - component: {fileID: -3657551309643279659}
   - component: {fileID: 6044406254433937171}
   - component: {fileID: -2826815877486510929}
   m_Layer: 0
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 39fe5b89a73b440af9613aa6abf74bea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -121,14 +122,34 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8367235115188408015}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c33fbfeb2fffc54418117933e4629276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_count: 50
+  boss_count: 4
   boss: {fileID: 0}
   player: {fileID: 0}
+--- !u!114 &-3657551309643279659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8367235115188408015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec0bafabc848944c9f618c6ac06f6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_count: 4
+  player: {fileID: 0}
+  boss: {fileID: 0}
+  fire: {fileID: 0}
+  hunterSide: {fileID: 21300000, guid: 41892449a94325e479d812df0a88d41d, type: 3}
+  target: {fileID: 0}
+  firingAngle: 45
+  gravity: 9.8
 --- !u!82 &6044406254433937171
 AudioSource:
   m_ObjectHideFlags: 0
@@ -235,7 +256,7 @@ Animator:
   m_GameObject: {fileID: 8367235115188408015}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba05a7e9989397245ae8f3b355bce24d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -23,38 +23,6 @@ public class Boss : MonoBehaviour
         count.Instance.fixMaxValue(boss_count);
     }
 
-    //private void FixedUpdate()
-    //{
-    //    if (move)
-    //    {
-    //        const float scaleFactor = 1.1f;
-    //        const float minScaleFactor = 0.9f;
-    //        const float moveSpeed = 10f;
-    //        //const float waitTime = 0.1f;
-    //        const float minDistance = 1f;
-    //        Vector3 direction = player.transform.position - boss.transform.position;
-    //        direction.Normalize();
-    //        float distance = Vector3.Distance(boss.transform.position, player.transform.position);
-
-    //        if (distance > (origin * 0.5))
-    //        {
-    //            boss.transform.localScale *= scaleFactor;
-    //        }
-    //        else
-    //        {
-    //            boss.transform.localScale *= minScaleFactor;
-    //        }
-
-    //        boss.transform.Translate(direction * moveSpeed);
-
-    //        if (distance < minDistance)
-    //        {
-    //            move = false;
-    //            ShakeScreen.Instance.Callshake();
-    //            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    //        }
-    //    }
-    //}
 
     public void reduceCount()
     {
@@ -69,7 +37,7 @@ public class Boss : MonoBehaviour
         {
             TileArray.Instance.Touchable = false;
             FindObjectOfType<count>().isOver = true;
-            audioSource.Play();
+            //audioSource.Play();
             
             move = true;
             StartCoroutine(MoveBoss());
@@ -87,10 +55,8 @@ public class Boss : MonoBehaviour
     {
         while (true)
         {
-            //yield return new WaitForSeconds(0.05f);
             Vector3 direction = player.transform.position - boss.transform.position;
             direction.Normalize();
-            //float distance = Vector3.Distance(boss.transform.position, player.transform.position);
             yield return new WaitForSeconds(0.03f);
             float distance = Vector3.Distance(boss.transform.position, player.transform.position);
             if (distance > (origin * 0.5))
@@ -101,7 +67,6 @@ public class Boss : MonoBehaviour
             {
                 boss.transform.localScale *= 0.9f;
             }
-            //yield return new WaitForSeconds(0.05f);
             boss.transform.Translate(direction * 100 * Time.deltaTime);
             
             if (distance < 1)

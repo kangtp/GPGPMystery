@@ -446,7 +446,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x - 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y + 1, 0);
                         if(isBoss)
-                            FindObjectOfType<Boss>().reduceCount();
+                            FindObjectOfType<Boss_littleHunter>().reduceCount();
                     }
                 }
                 break;
@@ -486,7 +486,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x + 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y - 1, 0);
                         if (isBoss)
-                            FindObjectOfType<Boss>().reduceCount();
+                            FindObjectOfType<Boss_littleHunter>().reduceCount();
                     }
                 }
                 break;
@@ -526,7 +526,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x, y + 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x + 1, get_Wall.transform.position.y, 0);
                         if (isBoss)
-                            FindObjectOfType<Boss>().reduceCount();
+                            FindObjectOfType<Boss_littleHunter>().reduceCount();
                     }
                 }
                 break;
@@ -566,7 +566,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x, y - 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x - 1, get_Wall.transform.position.y, 0);
                         if (isBoss)
-                            FindObjectOfType<Boss>().reduceCount();
+                            FindObjectOfType<Boss_littleHunter>().reduceCount();
                     }
                 }
                 break;
