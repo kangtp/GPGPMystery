@@ -58,7 +58,7 @@ public class Boss : MonoBehaviour
             {
                 boss.transform.localScale *= 0.9f;
             }
-            boss.transform.Translate(direction * 100 * Time.deltaTime);
+            boss.transform.Translate(direction * 50 * Time.deltaTime);
             
             if (distance < 1)
             {
