@@ -2869,10 +2869,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1016835375}
-    - target: {fileID: 2460124275493902185, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Go_Button
-      objectReference: {fileID: 0}
     - target: {fileID: 2460124276120501624, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: paperAnimation
       value: 

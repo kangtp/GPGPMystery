@@ -534,6 +534,10 @@ PrefabInstance:
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2077433648, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f299ee18cbf74b05b4028bbf8875c9e, type: 3}
     - target: {fileID: 2460124275493902185, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
