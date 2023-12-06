@@ -565,7 +565,7 @@ MonoBehaviour:
   fenfireOff: {fileID: 8300000, guid: 8af07a5b17ca710488d09732eaaebdfc, type: 3}
   TileSize: 0
   wallSize: 0
-  StartPoint: {x: -5, y: 5}
+  StartPoint: {x: -6, y: 5}
   shadowSprite: {fileID: 21300000, guid: e925514eaa1fc4e8088e5fa5e6dd6fc6, type: 3}
   groundSprite: {fileID: 21300000, guid: a7894751329c9430396d0740188a8895, type: 3}
   offFenFireSprite: {fileID: 21300000, guid: b4ac83af1966d0940a48eb32c5d03014, type: 3}
@@ -702,6 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348419b32e5994c8f970609ab5a8948e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSound: {fileID: 0}
   failSound: {fileID: 8300000, guid: 38be1064fcd2e7943829de4136e4ba7d, type: 3}
   successSound: {fileID: 8300000, guid: 1ef1b5b494c19c34aba5294c1226aa75, type: 3}
   nextScene: Stage4-3
