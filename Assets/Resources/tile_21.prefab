@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec0bafabc848944c9f618c6ac06f6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_count: 50
+  boss_count: 5
   player: {fileID: 0}
   boss: {fileID: 0}
   fire: {fileID: 0}

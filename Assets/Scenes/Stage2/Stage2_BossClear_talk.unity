@@ -532,7 +532,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 717, y: 379}
+  m_AnchoredPosition: {x: -656, y: 379}
   m_SizeDelta: {x: 369.2365, y: 429.5454}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523094305
@@ -688,19 +688,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info:
     name:
+    - "\uC5B4\uB451\uC2DC\uB2C8"
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
+    - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
+    - "\uC5B4\uB451\uC2DC\uB2C8"
+    - "\uD638\uB791\uC774"
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
     - "\uD638\uB791\uC774"
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
+    - "\uC5B4\uB451\uC2DC\uB2C8"
+    - "\uD638\uB791\uC774"
+    - "\uD638\uB791\uC774"
+    - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
+    - "\uC5B4\uB451\uC2DC\uB2C8"
+    - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
+    - "\uC0AC\uB0E5\uAFBC2"
+    - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
+    - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
+    - "\uC0AC\uB0E5\uAFBC2"
+    - "\uC0AC\uB0E5\uAFBC2"
+    - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
+    - "\uC5B4\uB451\uC2DC\uB2C8"
+    - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
     sentences:
-    - "\uD5C9\uD5C9"
-    - "\uC557! \uC808\uBCBD\uC774?"
-    - "\uADF8\uB974\uB974~"
-    - "\uC5D0\uB77C, \uBAA8\uB974\uACA0\uB2E4!!!!"
+    - "\uC7A0\uAE50\uB9CC \uB0B4\uAC00 \uBB50\uD588\uB2E4\uACE0 \uB098\uB97C \uC7A1\uB294\uAC74\uB370!!"
+    - "\uC774 \uB098\uC05C \uC694\uAD34... \uC21C\uC21C\uD788 \uD56D\uBCF5\uD558\uB294
+      \uAC8C \uC88B\uC744 \uAC70\uB2E4!!"
+    - "\uC5EC\uAE30\uC5D4 \uB098\uBFD0\uB9CC \uC544\uB2C8\uB77C \uBCA0\uD14C\uB791
+      \uC0AC\uB0E5\uAFBC\uB4E4\uC774 \uB9CE\uC774 \uC654\uB2E4\uACE0"
+    - "\uC544\uB2C8 \uB0B4\uAC00 \uC65C \uB098\uC05C \uC694\uAD34\uC778...\uC751???"
+    - "\uD06C\uB974\uB974\uB974...."
+    - "\uC124\uB9C8 \uC544\uAE4C \uADF8 \uD638\uB791\uC774??!!"
+    - "\uC5B4\uD765!!!!!"
+    - "\uC0AC..\uC0AC...\uC0AC\uB78C\uC0B4\uB824!!!"
+    - "\uB07C\uC694\uC694\uC624\uC624\uC624\uC624\uC637!!!!!!!!!!"
+    - "(\uBA48\uCE6B) \uADF8\uB974\uB974\uB974...."
+    - "(\uB3C4\uB9DD)"
+    - "\uC73C\uC751...? \uB108\uAC00 \uC65C \uB098\uB97C....?"
+    - "\uAD1C\uCC2E\uC544...?"
+    - .......
+    - "\uC65C \uC774\uB807\uAC8C \uC18C\uB780\uC2A4\uB7EC\uC6CC. \uC5B4\uB451\uC2DC\uB2C8\uB77C\uB3C4
+      \uCC3E\uC740\uAC8C\uB0D0?"
+    - "(\uC5B4\uB451\uC2DC\uB2C8\uC57C \uC7A0\uAE50 \uB4A4\uB85C \uAC00\uC788\uC5B4\uBD10...)"
+    - "\uADF8...\uADF8\uAC8C... \uC544\uC9C1 \uBABB \uCC3E\uC558\uC2B5\uB2C8\uB2E4!!"
+    - "\uADF8\uB7FC \uAFB8\uBB3C\uB300\uC9C0 \uB9D0\uACE0 \uC5B4\uC11C \uCC3E\uC544."
+    - "(\uD130\uBC85\uD130\uBC85)"
+    - "\uB108 \uC815\uB9D0 \uB098\uC05C \uC694\uAD34\uAC00 \uC544\uB2C8\uC57C??"
+    - "\uB09C \uC0AC\uB78C\uB4E4 \uAD34\uB86D\uD78C \uC801\uC774 \uC5C6\uB2E4\uACE0.."
+    - "\uADF8\uB7FC \uC77C\uB2E8 \uC870\uC6A9\uD788 \uB530\uB77C\uC640"
     images:
+    - {fileID: 523094303}
     - {fileID: 1810987626}
+    - {fileID: 1810987626}
+    - {fileID: 523094303}
+    - {fileID: 354770888}
     - {fileID: 1810987626}
     - {fileID: 354770888}
+    - {fileID: 1810987626}
+    - {fileID: 523094303}
+    - {fileID: 354770888}
+    - {fileID: 354770888}
+    - {fileID: 1810987626}
+    - {fileID: 523094303}
+    - {fileID: 1810987626}
+    - {fileID: 1466061182}
+    - {fileID: 1810987626}
+    - {fileID: 1810987626}
+    - {fileID: 1466061182}
+    - {fileID: 1466061182}
+    - {fileID: 1810987626}
+    - {fileID: 523094303}
     - {fileID: 1810987626}
 --- !u!4 &952959519
 Transform:
@@ -1330,7 +1387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -727, y: 426}
+  m_AnchoredPosition: {x: 660, y: 426}
   m_SizeDelta: {x: 369.2365, y: 429.5454}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1810987628

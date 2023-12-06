@@ -189,6 +189,7 @@ MonoBehaviour:
   txtName: {fileID: 121174999}
   txtSentence: {fileID: 1763870664}
   txtImage: {fileID: 1810987626}
+  nextStage: 0
 --- !u!82 &108404576
 AudioSource:
   m_ObjectHideFlags: 0
@@ -455,7 +456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 717, y: 379}
+  m_AnchoredPosition: {x: -686, y: 379}
   m_SizeDelta: {x: 369.2365, y: 429.5454}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523094305
@@ -611,28 +612,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info:
     name:
-    - "\uC0AC\uB0E5\uAFBC1"
+    - "\uC5B4\uB451\uC2DC\uB2C8"
+    - "\uC5B4\uB451\uC2DC\uB2C8"
+    - "\uC5B4\uB451\uC2DC\uB2C8"
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
-    - "\uC0AC\uB0E5\uAFBC1"
-    - "\uC0AC\uB0E5\uAFBC2"
-    - "\uC0AC\uB0E5\uAFBC1"
+    - "\uC5B4\uB451\uC2DC\uB2C8"
+    - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
     sentences:
-    - "\uB9C9\uB0B4\uC57C \uC77C\uC5B4\uB098 \uC6C0\uC9C1\uC77C \uC2DC\uAC04\uC774\uB2E4."
-    - "\uBC8C\uC368 \uC2DC\uAC04\uC774 \uC774\uB807\uAC8C \uB410\uB098\uC694??"
-    - "\uADF8\uB798 \uD574\uAC00 \uC84C\uB2E4. \uC774\uC81C \uC2AC\uC2AC \uC5B4\uB451\uC2DC\uB2C8\uB3C4
-      \uB098\uD0C0\uB0A0 \uAC70\uC57C."
-    - "\uC790\uC790~ \uC815\uBE44 \uB05D\uB0AC\uC73C\uBA74 \uC774\uC81C \uC2AC\uC2AC
-      \uC774\uB3D9\uD569\uC2DC\uB2E4."
-    - "\uC54C\uACE0 \uC788\uACA0\uC9C0\uB9CC \uC5B4\uB451\uC2DC\uB2C8 \uADFC\uCC98\uC758
-      \uC5B4\uB460\uC5D0 \uB2FF\uC73C\uBA74 \uACE7\uBC14\uB85C \uAE30\uC808\uD574\uC11C
-      \uADF8\uB188\uC758 \uBC25\uC774 \uB418\uB2C8\uAE4C \uC808\uB300 \uADF8\uB9BC\uC790
-      \uADFC\uCC98\uC5D0\uB3C4 \uAC00\uC9C0 \uC54A\uB3C4\uB85D."
+    - "\uC74C? \uC5B4\uB514\uC11C \uBE44\uBA85\uC18C\uB9AC\uAC00 \uB4E4\uB9B0 \uAC83
+      \uAC19\uC740\uB370 \uAC00\uBD10\uC57C\uACA0\uB2E4."
+    - "(\uC800\uBC85\uC800\uBC85)"
+    - "\uC5EC\uAE30 \uC5B4\uB514\uC11C \uC18C\uB9AC\uAC00 \uB4E4\uB838\uB294\uB370...
+      \uC751??"
+    - "\uC73C\uC73C... \uC5EC\uAE30\uAC00 \uC5B4\uB514\uC9C0... \uC751...?"
+    - "\uB108\uB294 \uC0AC\uB0E5\uAFBC??!! \uB3C4...\uB3C4\uB9DD\uAC00\uC790!!"
+    - "\uAC70\uAE30 \uC11C\uB77C!!!"
     images:
-    - {fileID: 1406698432}
+    - {fileID: 523094303}
+    - {fileID: 523094303}
+    - {fileID: 523094303}
     - {fileID: 1810987626}
-    - {fileID: 1406698432}
-    - {fileID: 1714628692}
-    - {fileID: 1406698432}
+    - {fileID: 523094303}
+    - {fileID: 1810987626}
 --- !u!4 &952959519
 Transform:
   m_ObjectHideFlags: 0
@@ -1260,7 +1261,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -727, y: 426}
+  m_AnchoredPosition: {x: 676, y: 426}
   m_SizeDelta: {x: 369.2365, y: 429.5454}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1810987628

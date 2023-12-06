@@ -53,8 +53,7 @@ public class Boss_goblinKing : MonoBehaviour
 
             if (distance < 1.5f)
             {
-                move = false;
-                ShakeScreen.Instance.Callshake(); // ȭ�� ��鸲 �Լ� ȣ��
+                ShakeScreen.Instance.Callshake(); // 화면 흔들림 함수 호출
                 yield return new WaitForSeconds(2f);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
