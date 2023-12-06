@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6433900802136080352}
   - component: {fileID: -6803564152080401286}
   - component: {fileID: 219453289863625146}
-  - component: {fileID: 4126899453632311947}
   - component: {fileID: 6044406254433937171}
   - component: {fileID: -2826815877486510929}
+  - component: {fileID: -6857551408736593933}
   m_Layer: 0
   m_Name: tile_22
   m_TagString: Untagged
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: de1b578a574ff42b8bc70ee371dbc865, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4cd2e707ae4cd433f8e9d77d2fb7073f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,21 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3f389c8bd54dd3b6737180bf02e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4126899453632311947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8367235115188408015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c33fbfeb2fffc54418117933e4629276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_count: 50
-  boss: {fileID: 0}
-  player: {fileID: 0}
 --- !u!82 &6044406254433937171
 AudioSource:
   m_ObjectHideFlags: 0
@@ -235,7 +220,7 @@ Animator:
   m_GameObject: {fileID: 8367235115188408015}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 21e30ec9683b84156975604144daa60c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -246,3 +231,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6857551408736593933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8367235115188408015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0928c101fce914f00aeea01d824059df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_count: 10
+  boss: {fileID: 0}
+  player: {fileID: 0}
+  fireimg: {fileID: 0}
