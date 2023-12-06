@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Boss_littleHunter : MonoBehaviour
+public class Boss_goblinKing : MonoBehaviour
 {
     AudioSource audioSource;
     public int boss_count;
     public GameObject player;
     public GameObject boss;
-    public GameObject fire;
-    public Sprite hunterSide;
+    public Sprite goblinRock;
 
     private bool move = false;
     private float origin;
@@ -19,13 +18,9 @@ public class Boss_littleHunter : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
-        GameObject prefab = Resources.Load("fireThrow") as GameObject;
-        fire = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
-        fire.transform.position = transform.position;
         player = FindObjectOfType<TileArray>().player;
         boss = FindObjectOfType<TileArray>().boss;
-        //target = FindObjectOfType<TileArray>().player.transform;
-        origin = Vector3.Distance(fire.transform.position, player.transform.position);
+        origin = Vector3.Distance(boss.transform.position, player.transform.position);
         count.Instance.fixMaxValue(boss_count);
     }
 
@@ -45,35 +40,27 @@ public class Boss_littleHunter : MonoBehaviour
             FindObjectOfType<count>().isOver = true;
             audioSource.Play();
             transform.gameObject.GetComponent<Animator>().enabled = false;
-            transform.gameObject.GetComponent<SpriteRenderer>().sprite = hunterSide;
+            transform.gameObject.GetComponent<SpriteRenderer>().sprite = goblinRock;
             move = true;
-            StartCoroutine(ThrowFire());
-            Debug.Log("Throw");
-            GameOver();
+            StartCoroutine(GoblinAttack());
             boss_count = -2;
         }
     }
 
-    void GameOver()
-    {
-        Debug.Log("GameOver!!!");
-    }
-
-    IEnumerator ThrowFire()
+    IEnumerator GoblinAttack()
     {
         while (true)
         {
-            
-            Debug.Log("Throw");
-            Vector3 direction = player.transform.position - fire.transform.position;
+
+            //Vector3 direction = player.transform.position - boss.transform.position;
+            Vector3 direction = Vector3.left;
             direction.Normalize();
             yield return new WaitForSeconds(0.03f);
-            float distance = Vector3.Distance(fire.transform.position, player.transform.position);
-            fire.transform.localScale = new Vector3(1, 1, 1);
-            
-            fire.transform.Translate(direction * 100 * Time.deltaTime);
+            float distance = Vector3.Distance(boss.transform.position, player.transform.position);
 
-            if (distance < 1)
+            boss.transform.Translate(direction * 100 * Time.deltaTime);
+
+            if (distance < 1.5f)
             {
                 move = false;
                 ShakeScreen.Instance.Callshake(); // 화면 흔들림 함수 호출
@@ -81,7 +68,6 @@ public class Boss_littleHunter : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             yield return null;
-
         }
     }
 
