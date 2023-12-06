@@ -32,11 +32,11 @@ public class Boss_goblinKing : MonoBehaviour
 
     public void Boss_Die()
     {
-            TileArray.Instance.Touchable = false;
-            FindObjectOfType<count>().isOver = true;
-            audioSource.Play();
-            StartCoroutine(GoblinAttack());
-            boss_count = -2;
+        TileArray.Instance.Touchable = false;
+        FindObjectOfType<count>().isOver = true;
+        audioSource.Play();
+        StartCoroutine(GoblinAttack());
+        boss_count = -2;
     }
 
     IEnumerator GoblinAttack()
@@ -53,7 +53,6 @@ public class Boss_goblinKing : MonoBehaviour
 
             if (distance < 1.5f)
             {
-                move = false;
                 ShakeScreen.Instance.Callshake(); // ȭ�� ��鸲 �Լ� ȣ��
                 yield return new WaitForSeconds(2f);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
