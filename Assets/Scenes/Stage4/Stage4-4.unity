@@ -134,9 +134,29 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 511658617, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 579
+      objectReference: {fileID: 0}
     - target: {fileID: 674750072, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 674750073, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 134.0957
+      objectReference: {fileID: 0}
+    - target: {fileID: 674750073, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 134.0957
+      objectReference: {fileID: 0}
+    - target: {fileID: 674750073, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 674750073, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 475.5302
       objectReference: {fileID: 0}
     - target: {fileID: 674750074, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_Sprite
@@ -249,6 +269,10 @@ PrefabInstance:
     - target: {fileID: 2460124276120501629, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_Name
       value: GameCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2460124277087864062, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}

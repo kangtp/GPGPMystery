@@ -10,6 +10,8 @@ public class PauseBtn : MonoBehaviour
 
     public GameObject paperAnimation;
 
+    public GameObject Help_paperAnimation;
+
     private AudioSource audioSource;
     private Animator animator;
 
@@ -69,5 +71,14 @@ public class PauseBtn : MonoBehaviour
     {
         audioSource.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Help()
+    {
+         Help_paperAnimation.SetActive(true);
+    }
+    public void Helpoff()
+    {
+         Help_paperAnimation.SetActive(false);
     }
 }
