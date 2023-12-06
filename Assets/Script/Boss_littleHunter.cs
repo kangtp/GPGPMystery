@@ -15,8 +15,11 @@ public class Boss_littleHunter : MonoBehaviour
     private bool move = false;
     private float origin;
 
+    static public Boss_littleHunter Instance;
+
     void Start()
     {
+        Instance = this;
         audioSource = GetComponent<AudioSource>();
 
         GameObject prefab = Resources.Load("fireThrow") as GameObject;
@@ -30,17 +33,9 @@ public class Boss_littleHunter : MonoBehaviour
     }
 
 
-    public void reduceCount()
+    public void Boss_Die()
     {
-        boss_count -= 1;
-        count.Instance.fillBar();
-        CheckCount();
-    }
 
-    void CheckCount()
-    {
-        if (boss_count == -1)
-        {
             TileArray.Instance.Touchable = false;
             FindObjectOfType<count>().isOver = true;
             audioSource.Play();
@@ -51,7 +46,6 @@ public class Boss_littleHunter : MonoBehaviour
             Debug.Log("Throw");
             GameOver();
             boss_count = -2;
-        }
     }
 
     void GameOver()
@@ -76,7 +70,7 @@ public class Boss_littleHunter : MonoBehaviour
             if (distance < 1)
             {
                 move = false;
-                ShakeScreen.Instance.Callshake(); // È­¸é Èçµé¸² ÇÔ¼ö È£Ãâ
+                ShakeScreen.Instance.Callshake(); // È­ï¿½ï¿½ ï¿½ï¿½é¸² ï¿½Ô¼ï¿½ È£ï¿½ï¿½
                 yield return new WaitForSeconds(2f);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }

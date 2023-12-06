@@ -41,26 +41,30 @@ public class count : MonoBehaviour
         bossGage.value += 1;
         leftNum -= 1;
         count_text.text = leftNum.ToString();
-    }
 
-    public void ReduceCount()
-    {
-
-    }
-
-    // Update is called once per frame
-    /*
-    void Update()
-    {
-        
-        if (!isOver)
+        if(leftNum == 0)
         {
-            countNum.text = FindObjectOfType<Boss>().boss_count.ToString();
-        }
-        else
-        {
-            countNum.text = "��";
+            switch (TileArray.Instance.bossType)
+            {
+                case "T":
+                Boss.Instance.Boss_Die();
+                break;
+
+                case "L":
+                Boss_littleHunter.Instance.Boss_Die();
+                break;
+
+                case "A":
+                Boss_AdultHunter.Instance.Boss_Die();
+                break;
+
+                case "G":
+                Boss_goblinKing.Instance.Boss_Die();
+                break;
+                
+                default:
+                break;
+            }
         }
     }
-    */
 }

@@ -15,6 +15,7 @@ public class PathManager : MonoBehaviour
 
     public string nextScene;
 
+
     [SerializeField]
     public int[,] pathMap = new int[,]
     {
@@ -526,6 +527,24 @@ public class PathManager : MonoBehaviour
         }
 
         Debug.Log(output);
+    }
+
+    public void startThrow()
+    {
+        StartCoroutine(Throw());
+    }
+
+    IEnumerator Throw()
+    {
+        while (true)
+        {
+            Hunter.transform.Rotate(Vector3.forward, 100f * Time.deltaTime);
+            Hunter.transform.Translate(Vector3.left * 30f * Time.deltaTime);
+            Monster.transform.Rotate(Vector3.forward, 100f * Time.deltaTime);
+            Monster.transform.Translate(Vector3.left * 30f * Time.deltaTime);
+            yield return null;
+
+        }
     }
 }
 

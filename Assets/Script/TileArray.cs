@@ -108,6 +108,8 @@ public class TileArray : MonoBehaviour
     public GameObject boss;
     public GameObject player;
 
+    public string bossType;
+
     public bool isBoss;
     private void Awake()
     {
@@ -297,6 +299,7 @@ public class TileArray : MonoBehaviour
                 //호랑이 생성
                 if (wallMap[i, j] == 20)
                 {
+                    bossType = "T";
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
@@ -307,6 +310,7 @@ public class TileArray : MonoBehaviour
 
                 if (wallMap[i, j] == 21)
                 {
+                    bossType = "L";
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
@@ -317,6 +321,7 @@ public class TileArray : MonoBehaviour
 
                 if (wallMap[i, j] == 22)
                 {
+                    bossType = "A";
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
@@ -327,6 +332,7 @@ public class TileArray : MonoBehaviour
 
                 if (wallMap[i, j] == 23)
                 {
+                    bossType = "G";
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
@@ -450,7 +456,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x - 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y + 1, 0);
                         if(isBoss)
-                            FindObjectOfType<Boss_goblinKing>().reduceCount();
+                            count.Instance.fillBar();
                     }
                 }
                 break;
@@ -490,7 +496,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x + 1, y);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x, get_Wall.transform.position.y - 1, 0);
                         if (isBoss)
-                            FindObjectOfType<Boss_goblinKing>().reduceCount();
+                            count.Instance.fillBar();
                     }
                 }
                 break;
@@ -530,7 +536,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x, y + 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x + 1, get_Wall.transform.position.y, 0);
                         if (isBoss)
-                            FindObjectOfType<Boss_goblinKing>().reduceCount();
+                            count.Instance.fillBar();
                     }
                 }
                 break;
@@ -570,7 +576,7 @@ public class TileArray : MonoBehaviour
                         get_Wall.GetComponent<wall_Info>().Set(x, y - 1);
                         get_Wall.transform.position = new Vector3(get_Wall.transform.position.x - 1, get_Wall.transform.position.y, 0);
                         if (isBoss)
-                            FindObjectOfType<Boss_goblinKing>().reduceCount();
+                            count.Instance.fillBar();
                     }
                 }
                 break;
@@ -593,7 +599,7 @@ public class TileArray : MonoBehaviour
                 if (hit.collider.CompareTag("fenfire") && hit.transform.gameObject.GetComponent<FenFire>().isOnFenFire == true)
                 {
                     if (isBoss)
-                      FindObjectOfType<Boss_goblinKing>().reduceCount();
+                      count.Instance.fillBar();
 
                     Debug.Log("turn off the fenfire");
                     audioSource.clip = fenfireOff; audioSource.Play();
@@ -609,7 +615,7 @@ public class TileArray : MonoBehaviour
                 else if (hit.collider.CompareTag("fenfire") && hit.transform.gameObject.GetComponent<FenFire>().isOnFenFire == false )
                 {
                     if (isBoss)
-                      FindObjectOfType<Boss_goblinKing>().reduceCount();
+                      count.Instance.fillBar();
                     
                     Debug.Log("turn on the fenfire");
                     audioSource.clip = fenfireOn; audioSource.Play();

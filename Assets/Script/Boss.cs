@@ -13,9 +13,12 @@ public class Boss : MonoBehaviour
     public GameObject player;
     private bool move = false;
     private float origin;
+
+    static public Boss Instance;
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
         audioSource = GetComponent<AudioSource>();
         boss = FindObjectOfType<TileArray>().boss;
         player = FindObjectOfType<TileArray>().player;
@@ -24,26 +27,14 @@ public class Boss : MonoBehaviour
     }
 
 
-    public void reduceCount()
+    public void Boss_Die()
     {
-        boss_count -= 1;
-        count.Instance.fillBar();
-        CheckCount();
-    }
-
-    void CheckCount()
-    {
-        if (boss_count == -1)
-        {
             TileArray.Instance.Touchable = false;
             FindObjectOfType<count>().isOver = true;
-            //audioSource.Play();
             
             move = true;
             StartCoroutine(MoveBoss());
             GameOver();
-            boss_count = -2;
-        }
     }
 
     void GameOver()
