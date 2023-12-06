@@ -9,9 +9,8 @@ public class Boss_goblinKing : MonoBehaviour
     public int boss_count;
     public GameObject player;
     public GameObject boss;
-    public Sprite goblinRock;
+    public GameObject goblinRock;
 
-    private bool move = false;
     private float origin;
 
     void Start()
@@ -20,6 +19,9 @@ public class Boss_goblinKing : MonoBehaviour
 
         player = FindObjectOfType<TileArray>().player;
         boss = FindObjectOfType<TileArray>().boss;
+        GameObject prefab = Resources.Load("goblinRock") as GameObject;
+        goblinRock = Instantiate(prefab, new Vector3(-4.47f,8f,0), Quaternion.identity) as GameObject;
+
         origin = Vector3.Distance(boss.transform.position, player.transform.position);
         count.Instance.fixMaxValue(boss_count);
     }
@@ -39,9 +41,6 @@ public class Boss_goblinKing : MonoBehaviour
             TileArray.Instance.Touchable = false;
             FindObjectOfType<count>().isOver = true;
             audioSource.Play();
-            transform.gameObject.GetComponent<Animator>().enabled = false;
-            transform.gameObject.GetComponent<SpriteRenderer>().sprite = goblinRock;
-            move = true;
             StartCoroutine(GoblinAttack());
             boss_count = -2;
         }
@@ -52,17 +51,15 @@ public class Boss_goblinKing : MonoBehaviour
         while (true)
         {
 
-            //Vector3 direction = player.transform.position - boss.transform.position;
-            Vector3 direction = Vector3.left;
+            Vector3 direction = player.transform.position - goblinRock.transform.position;
             direction.Normalize();
             yield return new WaitForSeconds(0.03f);
-            float distance = Vector3.Distance(boss.transform.position, player.transform.position);
+            float distance = Vector3.Distance(goblinRock.transform.position, player.transform.position);
 
-            boss.transform.Translate(direction * 100 * Time.deltaTime);
+            goblinRock.transform.Translate(direction * 100 * Time.deltaTime);
 
             if (distance < 1.5f)
             {
-                move = false;
                 ShakeScreen.Instance.Callshake(); // 화면 흔들림 함수 호출
                 yield return new WaitForSeconds(2f);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
