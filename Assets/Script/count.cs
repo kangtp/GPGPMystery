@@ -8,6 +8,8 @@ public class count : MonoBehaviour
 {
    // public TextMeshProUGUI countNum;
 
+
+
     public static count Instance;
 
     public TMP_Text count_text;
@@ -16,6 +18,7 @@ public class count : MonoBehaviour
     //public Font font;
     private int leftNum;
     public bool isOver = false;
+    GameObject bgm;
     // Start is called before the first frame update
     private void Awake() {
 
@@ -23,6 +26,8 @@ public class count : MonoBehaviour
     }
     private void Start()
     {
+        bgm = GameObject.Find("bgm");
+        Destroy(bgm);
         bossGage = GetComponent<Slider>();
         //countNum.text = leftNum.ToString();
         bossGage.minValue = 0;

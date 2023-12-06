@@ -14,10 +14,12 @@ public class Boss : MonoBehaviour
     private bool move = false;
     private float origin;
 
+
     static public Boss Instance;
     // Start is called before the first frame update
     void Start()
     {
+      
         Instance = this;
         audioSource = GetComponent<AudioSource>();
         boss = FindObjectOfType<TileArray>().boss;
