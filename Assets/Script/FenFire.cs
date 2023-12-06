@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class FenFire : MonoBehaviour
 {
-    public bool isOnFenFire = true;
+    public bool isOnFenFire = false;
     GameObject[,] tilePrefab;
     GameObject[,] fenfirePrefab;
     int i, j;

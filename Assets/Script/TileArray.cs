@@ -103,7 +103,7 @@ public class TileArray : MonoBehaviour
 
     private bool detectedWall = false;
 
-    public bool isOnFenFire = true;
+    public bool isOnFenFire = false;
 
     public GameObject boss;
     public GameObject player;
