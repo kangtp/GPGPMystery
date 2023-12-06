@@ -32,11 +32,11 @@ public class Boss_goblinKing : MonoBehaviour
 
     public void Boss_Die()
     {
-            TileArray.Instance.Touchable = false;
-            FindObjectOfType<count>().isOver = true;
-            audioSource.Play();
-            StartCoroutine(GoblinAttack());
-            boss_count = -2;
+        TileArray.Instance.Touchable = false;
+        FindObjectOfType<count>().isOver = true;
+        audioSource.Play();
+        StartCoroutine(GoblinAttack());
+        boss_count = -2;
     }
 
     IEnumerator GoblinAttack()

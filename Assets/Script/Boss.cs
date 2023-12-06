@@ -31,7 +31,7 @@ public class Boss : MonoBehaviour
     {
             TileArray.Instance.Touchable = false;
             FindObjectOfType<count>().isOver = true;
-            
+            audioSource.Play();
             move = true;
             StartCoroutine(MoveBoss());
             GameOver();

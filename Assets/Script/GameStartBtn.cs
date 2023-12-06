@@ -10,6 +10,11 @@ public class GameStartBtn : MonoBehaviour
     public Image[] buttons;
 
     public GameObject helpImage;
+
+    public GameObject settingUI;
+
+    public GameObject soundOnBtn;
+    public GameObject soundOffBtn;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +22,6 @@ public class GameStartBtn : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void GameStart()
     {
@@ -33,6 +34,31 @@ public class GameStartBtn : MonoBehaviour
         GameObject.Find("Manage").GetComponent<AudioSource>().Stop();
         paper.Play();
         StartCoroutine(StartGame());
+    }
+
+    public void Setting()
+    {
+        for(int i = 0; i < buttons.Length; i++) 
+        {
+            buttons[i].enabled = false;
+        }
+        GameObject.Find("Ani").transform.GetChild(0).gameObject.SetActive(true);
+        paper.Play();
+        //settingUI.SetActive(true);
+        StartCoroutine(Setimage());
+    }
+
+    public void SonudStopBtn()
+    {
+        soundOnBtn.SetActive(false);
+        soundOffBtn.SetActive(true);
+        GameObject.Find("Manage").GetComponent<AudioSource>().Stop();
+    }
+    public void SonudStartBtn()
+    {
+        soundOnBtn.SetActive(true);
+        soundOffBtn.SetActive(false);
+         GameObject.Find("Manage").GetComponent<AudioSource>().Play();
     }
 
     public void Help()
@@ -56,6 +82,16 @@ public class GameStartBtn : MonoBehaviour
         helpImage.SetActive(false);
     }
 
+    public void setBack()
+    {
+        for(int i = 0; i < buttons.Length; i++) 
+        {
+            buttons[i].enabled = true;
+        }
+        GameObject.Find("Ani").transform.GetChild(0).gameObject.SetActive(false);
+        settingUI.SetActive(false);
+    }
+
 
     IEnumerator StartGame()
     {
@@ -68,5 +104,11 @@ public class GameStartBtn : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         helpImage.SetActive(true);
+    }
+
+     IEnumerator Setimage()
+    {
+        yield return new WaitForSeconds(1.5f);
+        settingUI.SetActive(true);
     }
 }

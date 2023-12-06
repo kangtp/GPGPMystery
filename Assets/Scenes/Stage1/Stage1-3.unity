@@ -1079,6 +1079,7 @@ MonoBehaviour:
   isOnFenFire: 1
   boss: {fileID: 0}
   player: {fileID: 0}
+  bossType: 
   isBoss: 0
 --- !u!82 &760325246
 AudioSource:
