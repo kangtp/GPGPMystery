@@ -46,6 +46,21 @@ public class count : MonoBehaviour
         {
             switch (TileArray.Instance.bossType)
             {
+                case "T":
+                Boss.Instance.Boss_Die();
+                break;
+
+                case "L":
+                Boss_littleHunter.Instance.Boss_Die();
+                break;
+
+                case "A":
+                Boss_AdultHunter.Instance.Boss_Die();
+                break;
+
+                case "G":
+                Boss_goblinKing.Instance.Boss_Die();
+                break;
                 
                 default:
                 break;

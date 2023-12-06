@@ -38,7 +38,6 @@ public class Boss_AdultHunter : MonoBehaviour
 
             move = true;
             StartCoroutine(AttackBoss());
-            boss_count = -2;
     }
     IEnumerator AttackBoss()
     {

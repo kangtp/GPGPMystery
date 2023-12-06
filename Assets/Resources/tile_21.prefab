@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6433900802136080352}
   - component: {fileID: -6803564152080401286}
   - component: {fileID: 219453289863625146}
-  - component: {fileID: 4126899453632311947}
   - component: {fileID: -3657551309643279659}
   - component: {fileID: 6044406254433937171}
   - component: {fileID: -2826815877486510929}
@@ -115,21 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa3f389c8bd54dd3b6737180bf02e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4126899453632311947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8367235115188408015}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c33fbfeb2fffc54418117933e4629276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss_count: 4
-  boss: {fileID: 0}
-  player: {fileID: 0}
 --- !u!114 &-3657551309643279659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,14 +126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec0bafabc848944c9f618c6ac06f6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_count: 4
+  boss_count: 50
   player: {fileID: 0}
   boss: {fileID: 0}
   fire: {fileID: 0}
   hunterSide: {fileID: 21300000, guid: 41892449a94325e479d812df0a88d41d, type: 3}
-  target: {fileID: 0}
-  firingAngle: 45
-  gravity: 9.8
 --- !u!82 &6044406254433937171
 AudioSource:
   m_ObjectHideFlags: 0

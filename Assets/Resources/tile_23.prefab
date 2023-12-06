@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920364634f7921a458fed6173c6d0cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_count: 4
+  boss_count: 10
   player: {fileID: 0}
   boss: {fileID: 0}
   goblinRock: {fileID: 21300000, guid: 98c9944d24b3a3c42a03f5a974765553, type: 3}
