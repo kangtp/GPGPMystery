@@ -689,18 +689,19 @@ MonoBehaviour:
   info:
     name:
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
+    - "\uC5B4\uB451\uC2DC\uB2C8"
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
-    - "\uD638\uB791\uC774"
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
     sentences:
-    - "\uD5C9\uD5C9"
-    - "\uC557! \uC808\uBCBD\uC774?"
-    - "\uADF8\uB974\uB974~"
-    - "\uC5D0\uB77C, \uBAA8\uB974\uACA0\uB2E4!!!!"
+    - "\uD5C9\uD5C9\uD5C9..."
+    - "\uB108 \uC774\uB798\uB3C4 \uAD1C\uCC2E\uC544?"
+    - "\uBAB0\uB77C \uB4B7\uC77C\uC740 \uB098\uC911\uC5D0 \uC0DD\uAC01\uD560\uB798."
+    - "\uC0AC\uB0E5\uAFBC\uB4E4\uC774 \uB4A4\uB530\uB77C\uC62C \uC218\uB3C4 \uC788\uC5B4.
+      \uC5B4\uC11C \uAC00\uC790!"
     images:
     - {fileID: 1810987626}
+    - {fileID: 523094303}
     - {fileID: 1810987626}
-    - {fileID: 354770888}
     - {fileID: 1810987626}
 --- !u!4 &952959519
 Transform:

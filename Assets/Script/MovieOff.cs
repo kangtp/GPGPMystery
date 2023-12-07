@@ -16,11 +16,6 @@ public class MovieOff : MonoBehaviour
         PlayerPrefs.DeleteKey("Exist");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void SkipBtn()
     {
@@ -32,7 +27,6 @@ public class MovieOff : MonoBehaviour
     {
         yield return new WaitForSeconds(18.0f);
         panel.SetActive(false);
-
     }
     
 }

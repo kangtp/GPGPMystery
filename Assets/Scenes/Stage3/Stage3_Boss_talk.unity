@@ -189,6 +189,7 @@ MonoBehaviour:
   txtName: {fileID: 121174999}
   txtSentence: {fileID: 1763870664}
   txtImage: {fileID: 1810987626}
+  nextStage: 0
 --- !u!82 &108404576
 AudioSource:
   m_ObjectHideFlags: 0
@@ -688,30 +689,26 @@ MonoBehaviour:
   info:
     name:
     - "\uC0AC\uB0E5\uAFBC1"
-    - "\uC0AC\uB0E5\uAFBC\uB4E4"
-    - 
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
-    - "\uD638\uB791\uC774"
-    - "\uC0AC\uB0E5\uAFBC\uB4E4"
+    - "\uC0AC\uB0E5\uAFBC1"
+    - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
+    - "\uC0AC\uB0E5\uAFBC1"
+    - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
     sentences:
-    - "\uC5B4\uB451\uC2DC\uB2C8\uB294 \uBB34\uC2DC\uBB34\uC2DC\uD55C \uAD34\uBB3C\uC774\uC9C0\uB9CC
-      \uB2E4\uD589\uD788\uB3C4 \uADF8 \uB140\uC11D\uC740 \uBE5B\uC5D0 \uB2FF\uC73C\uBA74
-      \uC57D\uD574\uC9C4\uB2E4. \uADF8\uB7EC\uB2C8\uAE4C \uC624\uB298 \uB0AE\uC5D0
-      \uBBF8\uB9AC \uC124\uCE58\uD574\uB454 \uD683\uBD88\uACFC \uB4F1\uBD88\uB85C
-      \uAE38\uC744 \uB9CC\uB4E4\uACE0 \uB188\uC744 \uD3EC\uC704\uD558\uBA74 \uB41C\uB2E4.
-      \uC54C\uACA0\uB098??"
-    - "\uB124!!"
-    - "(\uBD80\uC2A4\uB7ED)"
-    - "\uC751? \uC774\uAC8C \uBB34\uC2A8 \uC18C\uB9AC\uC5D0\uC694?"
-    - "\uC5B4\uD765!!"
-    - "\uD638\uB791\uC774\uB2E4!!"
+    - "\uB9C9\uB0B4\uC57C \uC9C0\uAE08 \uBB50\uD558\uB294 \uAC70\uC57C?"
+    - "\uC800 \uADF8..\uADF8\uAC8C"
+    - "\uC5B4\uB451\uC2DC\uB2C8\uC5D0 \uD640\uB838\uAD70. \uB4A4\uB294 \uB9E1\uAE30\uACE0
+      \uB9C8\uC744\uB85C \uBCF5\uADC0\uD558\uB3C4\uB85D."
+    - .......
+    - "\uAC00\uB77C\uB2C8\uAE4C??"
+    - "\uC5B4\uB451\uC2DC\uB2C8\uC57C \uB6F0\uC5B4!!"
     images:
     - {fileID: 264989451}
-    - {fileID: 2097694877}
-    - {fileID: 2097694877}
     - {fileID: 1810987626}
-    - {fileID: 1360704977}
-    - {fileID: 2097694877}
+    - {fileID: 264989451}
+    - {fileID: 1810987626}
+    - {fileID: 264989451}
+    - {fileID: 1810987626}
 --- !u!4 &952959519
 Transform:
   m_ObjectHideFlags: 0

@@ -10,11 +10,6 @@ public class TutoText : MonoBehaviour
         StartCoroutine(appearText());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     IEnumerator appearText()
     {

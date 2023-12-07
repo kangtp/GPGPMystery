@@ -573,6 +573,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523094303}
   m_CullTransparentMesh: 1
+--- !u!1 &599724721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599724722}
+  - component: {fileID: 599724724}
+  - component: {fileID: 599724723}
+  m_Layer: 5
+  m_Name: goblinKing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &599724722
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599724721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.1768, y: 1.1768, z: 1.1768}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1254737644}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 579, y: 473}
+  m_SizeDelta: {x: 360, y: 360}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &599724723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599724721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: af0a443c78e08ee40b03d19b48d099ce, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &599724724
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599724721}
+  m_CullTransparentMesh: 1
 --- !u!1 &677929799
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,19 +764,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   info:
     name:
+    - "\uC5B4\uB451\uC2DC\uB2C8"
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
-    - "\uD638\uB791\uC774"
+    - "\uC5B4\uB451\uC2DC\uB2C8"
     - "\uAF2C\uB9C8\uC0AC\uB0E5\uAFBC"
     sentences:
-    - "\uD5C9\uD5C9"
-    - "\uC557! \uC808\uBCBD\uC774?"
-    - "\uADF8\uB974\uB974~"
-    - "\uC5D0\uB77C, \uBAA8\uB974\uACA0\uB2E4!!!!"
+    - "\uD5C9\uD5C9... \uAC04\uC2E0\uD788 \uB3C4\uB9DD\uCCD0\uB098\uC654\uB124...
+      \uAD1C\uCC2E\uC544?"
+    - "\uC751 \uB108\uAC00 \uC788\uC5B4\uC11C \uB2E4\uD589\uC774\uC57C."
+    - "\uB108\uB124 \uC9D1\uAE4C\uC9C0\uB294 \uC5BC\uB9C8\uB098 \uB0A8\uC558\uC5B4?"
+    - "\uAC70\uC758 \uB2E4\uC654\uC5B4. \uC800 \uC5B8\uB355\uB9CC \uB118\uC73C\uBA74
+      \uB0B4\uAC00 \uC0AC\uB294 \uACF3\uC774\uC57C."
+    - "\uADF8\uB798 \uACC4\uC18D \uAC00\uC790."
     images:
+    - {fileID: 523094303}
     - {fileID: 1810987626}
     - {fileID: 1810987626}
-    - {fileID: 354770888}
+    - {fileID: 523094303}
     - {fileID: 1810987626}
 --- !u!4 &952959519
 Transform:
@@ -754,6 +835,7 @@ RectTransform:
   - {fileID: 523094304}
   - {fileID: 1466061183}
   - {fileID: 354770889}
+  - {fileID: 599724722}
   - {fileID: 1420748842}
   - {fileID: 1827211668}
   m_Father: {fileID: 1376059342}
@@ -1077,7 +1159,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1254737644}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1403,7 +1485,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1254737644}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

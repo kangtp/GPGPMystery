@@ -243,6 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0928c101fce914f00aeea01d824059df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_count: 5
+  boss_count: 60
   boss: {fileID: 0}
   player: {fileID: 0}

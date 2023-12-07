@@ -21,7 +21,7 @@ public class ManageScene : MonoBehaviour
     public GameObject road5;
 
     private int exist = 2;
-    // Start is called before the first frame update
+
     void Start()
     {
         audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
@@ -35,7 +35,6 @@ public class ManageScene : MonoBehaviour
             }
             else
             {
-
                 Go(2);
             }
         }
@@ -47,7 +46,6 @@ public class ManageScene : MonoBehaviour
             }
             else
             {
-
                 Go(3);
             }
         }
@@ -59,7 +57,6 @@ public class ManageScene : MonoBehaviour
             }
             else
             {
-
                 Go(4);
             }
         }
@@ -71,7 +68,6 @@ public class ManageScene : MonoBehaviour
             }
             else
             {
-
                 Go(5);
             }
         }
@@ -83,16 +79,9 @@ public class ManageScene : MonoBehaviour
             }
             else
             {
-
                 Go(6);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 
@@ -484,6 +473,8 @@ public class ManageScene : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             road.transform.GetChild(i).gameObject.SetActive(true);
         }
+
+        Debug.Log("Exist: " + exist);
         PlayerPrefs.SetInt("Exist", exist++);
     }
 
