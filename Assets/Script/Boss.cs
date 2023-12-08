@@ -11,7 +11,6 @@ public class Boss : MonoBehaviour
     public int boss_count;
     public GameObject boss;
     public GameObject player;
-    private bool move = false;
     private float origin;
 
 
@@ -34,14 +33,7 @@ public class Boss : MonoBehaviour
             TileArray.Instance.Touchable = false;
             FindObjectOfType<count>().isOver = true;
             audioSource.Play();
-            move = true;
             StartCoroutine(MoveBoss());
-            GameOver();
-    }
-
-    void GameOver()
-    {
-        Debug.Log("GameOver!!!");
     }
 
     IEnumerator MoveBoss()
@@ -64,7 +56,6 @@ public class Boss : MonoBehaviour
             
             if (distance < 1)
             {
-                move = false;
                 ShakeScreen.Instance.Callshake(); // 화면 흔들림 함수 호출
                 yield return new WaitForSeconds(2f);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

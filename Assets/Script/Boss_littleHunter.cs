@@ -12,7 +12,6 @@ public class Boss_littleHunter : MonoBehaviour
     public GameObject fire;
     public Sprite hunterSide;
 
-    private bool move = false;
     private float origin;
 
     static public Boss_littleHunter Instance;
@@ -27,7 +26,6 @@ public class Boss_littleHunter : MonoBehaviour
         fire.transform.position = transform.position;
         player = FindObjectOfType<TileArray>().player;
         boss = FindObjectOfType<TileArray>().boss;
-        //target = FindObjectOfType<TileArray>().player.transform;
         origin = Vector3.Distance(fire.transform.position, player.transform.position);
         count.Instance.fixMaxValue(boss_count);
     }
@@ -35,42 +33,32 @@ public class Boss_littleHunter : MonoBehaviour
 
     public void Boss_Die()
     {
+        TileArray.Instance.Touchable = false;
+        FindObjectOfType<count>().isOver = true;
 
-            TileArray.Instance.Touchable = false;
-            FindObjectOfType<count>().isOver = true;
-            audioSource.Play();
-            transform.gameObject.GetComponent<Animator>().enabled = false;
-            transform.gameObject.GetComponent<SpriteRenderer>().sprite = hunterSide;
-            move = true;
-            StartCoroutine(ThrowFire());
-            Debug.Log("Throw");
-            GameOver();
-            boss_count = -2;
-    }
+        audioSource.Play();
+        transform.gameObject.GetComponent<Animator>().enabled = false;
+        transform.gameObject.GetComponent<SpriteRenderer>().sprite = hunterSide;
 
-    void GameOver()
-    {
-        Debug.Log("GameOver!!!");
+        StartCoroutine(ThrowFire());
+        boss_count = -2;
     }
 
     IEnumerator ThrowFire()
     {
         while (true)
         {
-            
-            Debug.Log("Throw");
             Vector3 direction = player.transform.position - fire.transform.position;
             direction.Normalize();
+
             yield return new WaitForSeconds(0.03f);
             float distance = Vector3.Distance(fire.transform.position, player.transform.position);
             fire.transform.localScale = new Vector3(1, 1, 1);
-            
             fire.transform.Translate(direction * 100 * Time.deltaTime);
 
             if (distance < 1)
             {
-                move = false;
-                ShakeScreen.Instance.Callshake(); // ȭ�� ��鸲 �Լ� ȣ��
+                ShakeScreen.Instance.Callshake();
                 yield return new WaitForSeconds(2f);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }

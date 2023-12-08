@@ -84,7 +84,6 @@ public class DialogueSystem : MonoBehaviour
     private void End()
     {
         PlayerPrefs.SetInt("Stage", nextStage);
-        PlayerPrefs.SetInt("OpenAni", nextStage);
         Debug.Log("save : " + nextStage);
         SceneManager.LoadScene(nextScene);
     }

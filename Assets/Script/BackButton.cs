@@ -4,38 +4,25 @@ using UnityEngine;
 
 public class BackButton : MonoBehaviour
 {
+    private GameObject stage;
     AudioSource audioSource;
     public GameObject currentWindow;
     // Start is called before the first frame update
     void Start()
     {
+        stage = GameObject.Find("Stages");
         audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Back()
     {
         
         audioSource.clip = FindObjectOfType<AudioManager>().back;
         audioSource.Play();
 
-        GameObject.Find("Stages").transform.GetChild(0).gameObject.SetActive(true);
-        GameObject.Find("Stages").transform.GetChild(1).gameObject.SetActive(true);
-        GameObject.Find("Stages").transform.GetChild(2).gameObject.SetActive(true);
-        GameObject.Find("Stages").transform.GetChild(3).gameObject.SetActive(true);
-        GameObject.Find("Stages").transform.GetChild(4).gameObject.SetActive(true);
-        GameObject.Find("Stages").transform.GetChild(5).gameObject.SetActive(true);
-
-        GameObject.Find("Stages").transform.GetChild(6).gameObject.SetActive(true);
-        GameObject.Find("Stages").transform.GetChild(7).gameObject.SetActive(true);
-        GameObject.Find("Stages").transform.GetChild(8).gameObject.SetActive(true);
-        GameObject.Find("Stages").transform.GetChild(9).gameObject.SetActive(true);
-        GameObject.Find("Stages").transform.GetChild(10).gameObject.SetActive(true);
+        for(int i = 0; i < stage.transform.childCount; i++)
+        {
+            stage.transform.GetChild(i).gameObject.SetActive(true);
+        }
         currentWindow.SetActive(false);
     }
 }

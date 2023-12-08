@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class ManageScene : MonoBehaviour
 {
     AudioSource audioSource;
+
+    private GameObject stage;
     public Image stage1;
     public Image stage2;
     public Image stage3;
@@ -20,10 +22,9 @@ public class ManageScene : MonoBehaviour
     public GameObject road4;
     public GameObject road5;
 
-    private int exist = 2;
-
     void Start()
     {
+        stage = GameObject.Find("Stages");
         audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         StartCoroutine(createIcon());
 
@@ -416,8 +417,8 @@ public class ManageScene : MonoBehaviour
             fadeCount += 0.005f;
             yield return new WaitForSeconds(0.01f);
             stage1.color = new Color(0, 0, 0, fadeCount);
-            //OpenAni가 없으면 실행. 깬 스테이지가 없다는 뜻
-            if (!PlayerPrefs.HasKey("OpenAni"))
+            //Stage가 없으면 실행. 깬 스테이지가 없다는 뜻
+            if (!PlayerPrefs.HasKey("Stage"))
             {
                 //깬 스테이지가 없으니 아직 0.2
                 stage2.color = new Color(0, 0, 0, fadeCount * 0.2f);
@@ -426,28 +427,28 @@ public class ManageScene : MonoBehaviour
                 stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
             }
-            //OpenAni가 있어
-            else if (PlayerPrefs.HasKey("OpenAni"))
+            //Stage가 있어
+            else if (PlayerPrefs.HasKey("Stage"))
             {
-                if(PlayerPrefs.GetInt("OpenAni") == 2)
+                if(PlayerPrefs.GetInt("Stage") == 2)
                 {
                     stage3.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 }
-                else if(PlayerPrefs.GetInt("OpenAni") == 3)
+                else if(PlayerPrefs.GetInt("Stage") == 3)
                 {
                     stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 }
-                else if (PlayerPrefs.GetInt("OpenAni") == 4)
+                else if (PlayerPrefs.GetInt("Stage") == 4)
                 {
                     stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 }
-                else if (PlayerPrefs.GetInt("OpenAni") == 5)
+                else if (PlayerPrefs.GetInt("Stage") == 5)
                 {
                     stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 }
@@ -470,17 +471,16 @@ public class ManageScene : MonoBehaviour
         
         for(int i = 0; i < road.transform.childCount; i++)
         {
-            yield return new WaitForSeconds(0.5f);
-            road.transform.GetChild(i).gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.3f);
+            road.transform.GetChild(i).GetComponent<Image>().color = new Color(0, 0, 0, 1);
         }
 
-        Debug.Log("Exist: " + exist);
-        PlayerPrefs.SetInt("Exist", exist++);
+        PlayerPrefs.SetInt("Exist", PlayerPrefs.GetInt("Stage"));
     }
 
     public IEnumerator ExistStage(Image img, GameObject road)
     {
-        
+        StartCoroutine(ExistRoad(road));
         float fadeCount = 0.0f;
         while (fadeCount < 1.0f)
         {
@@ -488,27 +488,27 @@ public class ManageScene : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             img.color = new Color(0, 0, 0, fadeCount);
         }
-        for (int i = 0; i < road.transform.childCount; i++)
+        
+    }
+    public IEnumerator ExistRoad(GameObject road)
+    {
+        float fadeCount = 0.0f;
+        while (fadeCount < 1.0f)
         {
-            road.transform.GetChild(i).GetComponent<Image>().color = new Color(0, 0, 0, fadeCount);
-            road.transform.GetChild(i).gameObject.SetActive(true);
+            fadeCount += 0.005f;
+            yield return new WaitForSeconds(0.01f);
+            for(int i = 0; i < road.transform.childCount; i++)
+            {
+                road.transform.GetChild(i).GetComponent<Image>().color = new Color(0, 0, 0, fadeCount);
+            }
         }
     }
 
     public void hideButton()
     {
-        GameObject.Find("Stage1").SetActive(false);
-        GameObject.Find("Stage2").SetActive(false);
-        GameObject.Find("Stage3").SetActive(false);
-        GameObject.Find("Stage4").SetActive(false);
-        GameObject.Find("Stage5").SetActive(false);
-        GameObject.Find("Stage6").SetActive(false);
-        road1.SetActive(false);
-        road2.SetActive(false);
-        road3.SetActive(false);
-        road4.SetActive(false);
-        road5.SetActive(false);
+        for(int i = 0; i < stage.transform.childCount; i++)
+        {
+            stage.transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
-
-    
 }
