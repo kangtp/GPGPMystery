@@ -12,8 +12,6 @@ public class MovieOff : MonoBehaviour
     void Awake()
     {
         StartCoroutine(screenOff());
-        PlayerPrefs.DeleteKey("Stage");
-        PlayerPrefs.DeleteKey("Exist");
     }
 
 

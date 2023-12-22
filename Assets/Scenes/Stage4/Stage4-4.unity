@@ -631,11 +631,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!225 &763587242 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 6075859863774607809, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-  m_PrefabInstance: {fileID: 28775448}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1016835374
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f4fce6a70cb479fabea09a22a9ad62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 763587242}
+  canvasGroup: {fileID: 28775449}
   fadein: 0
   fadeout: 0
   timetofade: 0.3
