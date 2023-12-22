@@ -33,7 +33,6 @@ public class FakeBoss : MonoBehaviour
     IEnumerator Done()
     {
         ShakeScreen.Instance.Callshake(); // 화면 흔들림 함수 호출
-        //GameObject.Find("GameCanvas").transform.GetChild(10).gameObject.SetActive(true);
         DeathHand.SetActive(true);
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

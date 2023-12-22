@@ -116,4 +116,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage5/Stage5_talk.unity
     guid: 900e52dec8fe64aa8a509a7bf99a9527
+  - enabled: 1
+    path: Assets/Scenes/Stage5/Ending.unity
+    guid: 98f0c8867ada35a43aeace4a61040446
   m_configObjects: {}
