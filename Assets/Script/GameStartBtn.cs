@@ -26,7 +26,7 @@ public class GameStartBtn : MonoBehaviour
     public void GameStart()
     {
         //���ӽ��۹�ư�� ������ ��ư UI �Ⱥ��̰��ϰ� �η縶�� �ִϸ��̼��� ����
-        for(int i = 0; i < buttons.Length; i++) 
+        for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].enabled = false;
         }
@@ -38,11 +38,21 @@ public class GameStartBtn : MonoBehaviour
 
     public void Setting()
     {
-        for(int i = 0; i < buttons.Length; i++) 
+        for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].enabled = false;
         }
         GameObject.Find("Ani").transform.GetChild(0).gameObject.SetActive(true);
+        if (PlayerPrefs.GetInt("SoundInfo") == 0)
+        {
+            soundOnBtn.SetActive(false);
+            soundOffBtn.SetActive(true);
+        }
+        else
+        {
+            soundOnBtn.SetActive(true);
+            soundOffBtn.SetActive(false);
+        }
         paper.Play();
         //settingUI.SetActive(true);
         StartCoroutine(Setimage());
@@ -52,18 +62,22 @@ public class GameStartBtn : MonoBehaviour
     {
         soundOnBtn.SetActive(false);
         soundOffBtn.SetActive(true);
+        PlayerPrefs.SetInt("SoundInfo", 0);
+        MuteManager.Instance.MuteAllSounds();
         GameObject.Find("Manage").GetComponent<AudioSource>().Stop();
     }
     public void SonudStartBtn()
     {
         soundOnBtn.SetActive(true);
         soundOffBtn.SetActive(false);
-         GameObject.Find("Manage").GetComponent<AudioSource>().Play();
+        PlayerPrefs.SetInt("SoundInfo", 1);
+        MuteManager.Instance.UnmuteAllSounds();
+        GameObject.Find("Manage").GetComponent<AudioSource>().Play();
     }
 
     public void Help()
     {
-        for(int i = 0; i < buttons.Length; i++) 
+        for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].enabled = false;
         }
@@ -74,7 +88,7 @@ public class GameStartBtn : MonoBehaviour
 
     public void HelpBack()
     {
-        for(int i = 0; i < buttons.Length; i++) 
+        for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].enabled = true;
         }
@@ -84,7 +98,7 @@ public class GameStartBtn : MonoBehaviour
 
     public void setBack()
     {
-        for(int i = 0; i < buttons.Length; i++) 
+        for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].enabled = true;
         }
@@ -106,7 +120,7 @@ public class GameStartBtn : MonoBehaviour
         helpImage.SetActive(true);
     }
 
-     IEnumerator Setimage()
+    IEnumerator Setimage()
     {
         yield return new WaitForSeconds(1.5f);
         settingUI.SetActive(true);
