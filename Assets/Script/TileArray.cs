@@ -684,7 +684,7 @@ public class TileArray : MonoBehaviour
                 if (tileMap[i,j] != 0 && tileMap[i,j] != 1)
                 {
                     //but make shadow on the fenfire position if fenfire is off
-                    if (tileMap[i, j] == 13 && fenfirePrefab[i,j].GetComponent<FenFire>().isOnFenFire == false)
+                    if ((tileMap[i, j] == 13 || tileMap[i, j] == 14) && fenfirePrefab[i,j].GetComponent<FenFire>().isOnFenFire == false)
                     {
                         tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = shadowSprite;
                     }
@@ -719,9 +719,8 @@ public class TileArray : MonoBehaviour
                             if (tileMap[i + n, j + m] != 0 && tileMap[i + n, j + m] != 1)
                             {
                                 //근데 off상태의 도깨비불이면 땅은 밝게 칠한다.
-                                if(tileMap[i + n, j + m] == 13 && !isOnFenFire)
+                                if((tileMap[i + n, j + m] == 13 || tileMap[i + n, j + m] == 14) && fenfirePrefab[i + n, j + m].GetComponent<FenFire>().isOnFenFire == false)
                                 {
-                                    
                                     tilePrefab[i + n, j + m].GetComponent<SpriteRenderer>().sprite = groundSprite;
                                 }
                                 continue;
@@ -732,81 +731,6 @@ public class TileArray : MonoBehaviour
                         }
                     }
                 }
-
-                
-
-                ////도깨비불
-                //if (wallMap[i, j] == 13)
-                //{
-                //    //도깨비불 on일때만 실행
-                //    if (isOnFenFire)
-                //    {
-                //        //아래 방향
-                //        for (int k = i + 1; k < tileMap.GetLength(0); k++)
-                //        {
-                //            if (tileMap[k, j] != 0 && tileMap[k, j] != 1)
-                //            {
-                //                if (tileMap[k, j] == (int)TileType.upDownWood || tileMap[k, j] == 5 || tileMap[k, j] == 2 || tileMap[k, j] >= 20)
-                //                {
-                //                    break;
-                //                }
-                //                continue;
-                //            }
-                            
-                //            //불이 비추는 방향 밝게
-                //            tileMap[k, j] = (int)TileType.ground;
-                //            tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
-                //        }
-                //        //위 방향
-                //        for (int k = i - 1; k >= 0; k--)
-                //        {
-                //            if (tileMap[k, j] != 0 && tileMap[k, j] != 1)
-                //            {
-                //                if (tileMap[k, j] == (int)TileType.upDownWood || tileMap[k, j] == 5 || tileMap[k, j] == 2 || tileMap[k, j] >= 20)
-                //                {
-                //                    break;
-                //                }
-                //                continue;
-                //            }
-                            
-                //            //불이 비추는 방향 밝게
-                //            tileMap[k, j] = (int)TileType.ground;
-                //            tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
-                //        }
-                //        //오른쪽 방향
-                //        for (int k = j + 1; k < tileMap.GetLength(1); k++)
-                //        {
-                //            if (tileMap[i, k] != 0 && tileMap[i, k] != 1)
-                //            {
-                //                if (tileMap[i, k] == (int)TileType.upDownWood || tileMap[i, k] == 5 || tileMap[i, k] == 2 || tileMap[i, k] >= 20)
-                //                {
-                //                    break;
-                //                }
-                //                continue;
-                //            }
-                            
-                //            //불이 비추는 방향 밝게
-                //            tileMap[i, k] = (int)TileType.ground;
-                //            tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
-                //        }
-                //        //왼쪽 방향
-                //        for (int k = j - 1; k >= 0; k--)
-                //        {
-                //            if (tileMap[i, k] != 0 && tileMap[i, k] != 1)
-                //            {
-                //                if (tileMap[i, k] == (int)TileType.upDownWood || tileMap[i, k] == 5 || tileMap[i, k] == 2 || tileMap[i, k] >= 20)
-                //                {
-                //                    break;
-                //                }
-                //                continue;
-                //            }
-                            
-                //            //불이 비추는 방향 밝게
-                //            tileMap[i, k] = (int)TileType.ground;
-                //            tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
-                //        }
-                //    }
-                //}
 
                 //십자 불
                 if (wallMap[i, j] == 12)

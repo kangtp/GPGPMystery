@@ -468,6 +468,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &882614561 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1401568131626419192, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+  m_PrefabInstance: {fileID: 1588689282}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1016835374
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +923,7 @@ PrefabInstance:
     - target: {fileID: 2460124276120501624, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: paperAnimation
       value: 
-      objectReference: {fileID: 1511116280}
+      objectReference: {fileID: 882614561}
     - target: {fileID: 2460124276120501625, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1061,7 +1066,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1939934135
 GameObject:
