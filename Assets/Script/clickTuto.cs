@@ -13,13 +13,14 @@ public class clickTuto : MonoBehaviour
 
     public void disappear()
     {
-        transform.GetChild(1).gameObject.SetActive(false);
+        transform.GetChild(6).gameObject.SetActive(false);
     }
 
     IEnumerator delayAppear()
     {
         yield return new WaitForSeconds(1f);
-        transform.GetChild(1).gameObject.SetActive(true);
+        transform.GetChild(6).gameObject.SetActive(true);
+
     }
 
     
