@@ -46,10 +46,10 @@ public class Boss_goblinKing : MonoBehaviour
 
             Vector3 direction = player.transform.position - goblinRock.transform.position;
             direction.Normalize();
-            yield return new WaitForSeconds(0.03f);
+            yield return new WaitForSeconds(0.015f);
             float distance = Vector3.Distance(goblinRock.transform.position, player.transform.position);
 
-            goblinRock.transform.Translate(direction * 100 * Time.deltaTime);
+            goblinRock.transform.Translate(direction * 200 * Time.deltaTime);
 
             if (distance < 1.5f)
             {
