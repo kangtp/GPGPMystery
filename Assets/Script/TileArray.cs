@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 
@@ -291,6 +292,17 @@ public class TileArray : MonoBehaviour
                     tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
                     tile.GetComponent<wall_Info>().Set(i, j);
                     tileMap[i, j] = 13;
+                    fenfirePrefab[i, j] = tile;
+                    tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
+                }
+                //도깨비불2 생성
+                if (wallMap[i, j] == 14)
+                {
+                    GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
+                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                    tile.GetComponent<wall_Info>().Set(i, j);
+                    tileMap[i, j] = 14;
                     fenfirePrefab[i, j] = tile;
                     tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
                 }
@@ -623,8 +635,16 @@ public class TileArray : MonoBehaviour
                     getWall_x = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_X();
                     getWall_y = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_Y();
                     tilePrefab[getWall_x, getWall_y].GetComponent<SpriteRenderer>().sprite = groundSprite;
+                     if(SceneManager.GetActiveScene().buildIndex < 29)
+                    {
                     get_Wall.GetComponent<Animator>().runtimeAnimatorController =
                         (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Ani\\goblinfire1", typeof(RuntimeAnimatorController)));
+                    }
+                    else
+                    {
+                        get_Wall.GetComponent<Animator>().runtimeAnimatorController =
+                        (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Ani\\goblinfirefs1", typeof(RuntimeAnimatorController)));
+                    }
                     get_Wall.GetComponent<FenFire>().isOnFenFire = true;
                 }
             }

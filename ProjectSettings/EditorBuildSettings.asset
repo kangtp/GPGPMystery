@@ -95,4 +95,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage4/Stage4_talk.unity
     guid: 28c7bdbf5fd23400f969600d45bef9c4
+  - enabled: 1
+    path: Assets/Scenes/Stage5/Stage5-1.unity
+    guid: f5c36dbe19790477db74654c20de14e1
+  - enabled: 1
+    path: Assets/Scenes/Stage5/Stage5-2.unity
+    guid: c5582131e2be241dea62df51033427ec
+  - enabled: 1
+    path: Assets/Scenes/Stage5/Stage5-3.unity
+    guid: d274b02f613164ab9ba04f4c6763700d
+  - enabled: 1
+    path: Assets/Scenes/Stage5/Stage5-4.unity
+    guid: 69fab6f892b20448ca484ae33b0766ec
+  - enabled: 1
+    path: Assets/Scenes/Stage5/Stage5_Boss_talk.unity
+    guid: 7ec3cc42c6c924c47a98c9d20beb4e2a
+  - enabled: 1
+    path: Assets/Scenes/Stage5/Stage5_BossClear_talk.unity
+    guid: 58e232dcabd1642009acc19c714093af
+  - enabled: 1
+    path: Assets/Scenes/Stage5/Stage5_talk.unity
+    guid: 900e52dec8fe64aa8a509a7bf99a9527
   m_configObjects: {}
