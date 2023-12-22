@@ -14,13 +14,11 @@ public class ManageScene : MonoBehaviour
     public Image stage3;
     public Image stage4;
     public Image stage5;
-    public Image stage6;
 
     public GameObject road1;
     public GameObject road2;
     public GameObject road3;
     public GameObject road4;
-    public GameObject road5;
 
     void Start()
     {
@@ -72,17 +70,6 @@ public class ManageScene : MonoBehaviour
                 Go(5);
             }
         }
-        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 6)
-        {
-            if (PlayerPrefs.HasKey("Exist") && PlayerPrefs.GetInt("Exist") >= 6)
-            {
-                StartCoroutine(ExistStage(stage6, road5));
-            }
-            else
-            {
-                Go(6);
-            }
-        }
     }
 
 
@@ -101,9 +88,6 @@ public class ManageScene : MonoBehaviour
                 break;
             case 5:
                 StartCoroutine(OpenStage(stage5, road4));
-                break;
-            case 6:
-                StartCoroutine(OpenStage(stage6, road5));
                 break;
             default: break;
         }
@@ -254,35 +238,6 @@ public class ManageScene : MonoBehaviour
         StartCoroutine(EnterStage5_4());
     }
 
-    public void Stage6()
-    {
-        if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 6)
-        {
-            hideButton();
-            GameObject.Find("Intro").transform.GetChild(5).gameObject.SetActive(true);
-            return;
-        }
-        Debug.Log("Not open");
-    }
-
-    public void GoStage6_1()
-    {
-        StartCoroutine(EnterStage6_1());
-    }
-    public void GoStage6_2()
-    {
-        StartCoroutine(EnterStage6_2());
-    }
-    public void GoStage6_3()
-    {
-        StartCoroutine(EnterStage6_3());
-    }
-    public void GoStage6_4()
-    {
-        StartCoroutine(EnterStage6_4());
-    }
-
-
     IEnumerator EnterStage1_1()
     {
         yield return new WaitForSeconds(1.0f);
@@ -388,27 +343,6 @@ public class ManageScene : MonoBehaviour
         SceneManager.LoadScene("Stage5-4");
     }
 
-    IEnumerator EnterStage6_1()
-    {
-        yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage6-1");
-    }
-    IEnumerator EnterStage6_2()
-    {
-        yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage6-2");
-    }
-    IEnumerator EnterStage6_3()
-    {
-        yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage6-3");
-    }
-    IEnumerator EnterStage6_4()
-    {
-        yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage6-4");
-    }
-
     IEnumerator createIcon()
     {
         float fadeCount = 0;
@@ -417,6 +351,7 @@ public class ManageScene : MonoBehaviour
             fadeCount += 0.005f;
             yield return new WaitForSeconds(0.01f);
             stage1.color = new Color(0, 0, 0, fadeCount);
+
             //Stage가 없으면 실행. 깬 스테이지가 없다는 뜻
             if (!PlayerPrefs.HasKey("Stage"))
             {
@@ -425,7 +360,6 @@ public class ManageScene : MonoBehaviour
                 stage3.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
-                stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
             }
             //Stage가 있어
             else if (PlayerPrefs.HasKey("Stage"))
@@ -435,26 +369,17 @@ public class ManageScene : MonoBehaviour
                     stage3.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
-                    stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 }
                 else if(PlayerPrefs.GetInt("Stage") == 3)
                 {
                     stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
                     stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
-                    stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 }
                 else if (PlayerPrefs.GetInt("Stage") == 4)
                 {
                     stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
-                    stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 }
-                else if (PlayerPrefs.GetInt("Stage") == 5)
-                {
-                    stage6.color = new Color(0, 0, 0, fadeCount * 0.2f);
-                }
-
             }
-            
         }
     }
 
