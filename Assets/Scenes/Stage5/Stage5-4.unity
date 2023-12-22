@@ -861,11 +861,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af8368d205e6949a0980d1b6d02eb585, type: 3}
---- !u!1 &1163422854 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2355927050233167531, guid: af8368d205e6949a0980d1b6d02eb585, type: 3}
-  m_PrefabInstance: {fileID: 1163422853}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1566441700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -916,6 +911,10 @@ PrefabInstance:
     - target: {fileID: 8047648865684953970, guid: 1a7a58ed673db4f28b57fa39be6ccf5e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047648865684953971, guid: 1a7a58ed673db4f28b57fa39be6ccf5e, type: 3}
+      propertyPath: Loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8047648865684953971, guid: 1a7a58ed673db4f28b57fa39be6ccf5e, type: 3}
       propertyPath: m_audioClip

@@ -15,6 +15,8 @@ public class PauseBtn : MonoBehaviour
     private AudioSource audioSource;
     private Animator animator;
 
+    GameObject bgm;
+
     public Button[] buttons;
     private void Start() 
     {
@@ -46,6 +48,8 @@ public class PauseBtn : MonoBehaviour
     public void GoMenu()
     {
         audioSource.Play();
+        bgm = GameObject.Find("bgm");
+        Destroy(bgm);
         SceneManager.LoadScene("Level Menu");
     }
 

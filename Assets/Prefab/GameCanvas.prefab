@@ -111,7 +111,7 @@ RectTransform:
   - {fileID: 845294076}
   - {fileID: 1620545431}
   m_Father: {fileID: 2460124276120501625}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -984,7 +984,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1400815693}
+  m_TargetGraphic: {fileID: 1535952389}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2351,7 +2351,6 @@ RectTransform:
   - {fileID: 2460124277087864061}
   - {fileID: 455668209}
   - {fileID: 404660784}
-  - {fileID: 2460124277087864061}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
