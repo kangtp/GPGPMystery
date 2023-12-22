@@ -351,6 +351,17 @@ public class TileArray : MonoBehaviour
                     tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = shadowSprite;
                     boss = tile;
                 }
+
+                if (wallMap[i, j] == 24)
+                {
+                    bossType = "C";
+                    GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
+                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                    tileMap[i, j] = 24;
+                    tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = shadowSprite;
+                    boss = tile;
+                }
             }
         }
     }
@@ -635,7 +646,7 @@ public class TileArray : MonoBehaviour
                     getWall_x = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_X();
                     getWall_y = get_Wall.transform.gameObject.GetComponent<wall_Info>().get_Y();
                     tilePrefab[getWall_x, getWall_y].GetComponent<SpriteRenderer>().sprite = groundSprite;
-                     if(SceneManager.GetActiveScene().buildIndex < 29)
+                    if(SceneManager.GetActiveScene().buildIndex < 29)
                     {
                     get_Wall.GetComponent<Animator>().runtimeAnimatorController =
                         (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Ani\\goblinfire1", typeof(RuntimeAnimatorController)));

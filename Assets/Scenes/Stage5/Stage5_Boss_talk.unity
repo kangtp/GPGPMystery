@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91122dae34684f6c9fb371bd876323a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: Stage4-4
+  nextScene: Stage5-4
   txtName: {fileID: 121174999}
   txtSentence: {fileID: 1763870664}
   txtImage: {fileID: 1810987626}

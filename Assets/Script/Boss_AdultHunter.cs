@@ -44,7 +44,7 @@ public class Boss_AdultHunter : MonoBehaviour
        
         Boss_AdultHunter_animator.SetBool("Attack",true);
         yield return new WaitForSeconds(0.5f);
-         ShakeScreen.Instance.Callshake(); // 화면 흔들림 함수 호출
+        ShakeScreen.Instance.Callshake(); // 화면 흔들림 함수 호출
         PathManager.Instance.startThrow();
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -336,6 +337,67 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a907880f650443f19e4aeda1d5296cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeCamera: {fileID: 519420032}
+  shakeRotate: 0
+  originPos: {x: 0, y: 0, z: 0}
+  originRot: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &663399075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 663399077}
+  - component: {fileID: 663399076}
+  m_Layer: 0
+  m_Name: FakeBoss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &663399076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663399075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3c0011fb8e7484491985bc0b660d30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss_count: 100
+--- !u!4 &663399077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 663399075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -191.86642, y: 435.72153, z: -8.281721}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &760325242
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,8 +443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d015033d2d38df44a173353fc430b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileMap_path: Data/Stage4/Stage4-3-tileMap
-  wallMap_path: Data/Stage4/Stage4-3-wallMap
+  tileMap_path: Data/Stage5/Stage5-3-tileMap
+  wallMap_path: Data/Stage5/Stage5-3-wallMap
   dragWood: {fileID: 8300000, guid: de01ad841397c2d47a710d23f5a01374, type: 3}
   dragfirefly: {fileID: 8300000, guid: 8b788ddc44e98d94faf5a56318df8dd4, type: 3}
   fenfireOn: {fileID: 8300000, guid: 54603bb784bacd5418b58e8c61f890af, type: 3}
@@ -390,8 +452,8 @@ MonoBehaviour:
   TileSize: 0
   wallSize: 0
   StartPoint: {x: -6, y: 5}
-  shadowSprite: {fileID: 21300000, guid: e925514eaa1fc4e8088e5fa5e6dd6fc6, type: 3}
-  groundSprite: {fileID: 21300000, guid: a7894751329c9430396d0740188a8895, type: 3}
+  shadowSprite: {fileID: 21300000, guid: 19123571ee3f9499da974df750a3accd, type: 3}
+  groundSprite: {fileID: 21300000, guid: 4a5faf101080045b59593743a4eedc8d, type: 3}
   offFenFireSprite: {fileID: 21300000, guid: b4ac83af1966d0940a48eb32c5d03014, type: 3}
   onFenFireSprite: {fileID: 21300000, guid: f8b4901a6c64c2e4e9cefcd5c1e313be, type: 3}
   Touchable: 0
@@ -399,7 +461,7 @@ MonoBehaviour:
   boss: {fileID: 0}
   player: {fileID: 0}
   bossType: 
-  isBoss: 0
+  isBoss: 1
 --- !u!82 &760325247
 AudioSource:
   m_ObjectHideFlags: 0
@@ -564,50 +626,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 24219655, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+    - target: {fileID: 404660783, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1843824993, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 674750074, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b31ed8be7203c48b4bf81689da6ae997, type: 3}
-    - target: {fileID: 1162199685, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1400815691, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 22.904
-      objectReference: {fileID: 0}
-    - target: {fileID: 1400815691, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 24.369
-      objectReference: {fileID: 0}
-    - target: {fileID: 1400815691, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 744
-      objectReference: {fileID: 0}
-    - target: {fileID: 1400815691, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1400815692, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077433648, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_SpriteState.m_PressedSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7f299ee18cbf74b05b4028bbf8875c9e, type: 3}
     - target: {fileID: 2460124275493902185, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1016835375}
-    - target: {fileID: 2460124275493902185, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Go_Button
-      objectReference: {fileID: 0}
     - target: {fileID: 2460124276120501624, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: paperAnimation
       value: 
@@ -700,10 +730,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 2460124277087864062, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
 --- !u!225 &999924668 stripped
@@ -745,7 +771,7 @@ MonoBehaviour:
   walkSound: {fileID: 0}
   failSound: {fileID: 8300000, guid: 38be1064fcd2e7943829de4136e4ba7d, type: 3}
   successSound: {fileID: 8300000, guid: 1ef1b5b494c19c34aba5294c1226aa75, type: 3}
-  nextScene: Stage4_Boss_talk
+  nextScene: Stage5_Boss_talk
   movespeed: 0
   count: 2
   startPosition_x: 0
