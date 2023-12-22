@@ -39,7 +39,7 @@ public class FenFire : MonoBehaviour
             {
                 if (TileArray.Instance.tileMap[k, j] != 0 && TileArray.Instance.tileMap[k, j] != 1)
                 {
-                    if (TileArray.Instance.tileMap[k,j] == 13 && fenfirePrefab[k,j].GetComponent<FenFire>().isOnFenFire == false)
+                    if ((TileArray.Instance.tileMap[k,j] == 13 || TileArray.Instance.tileMap[k, j] == 14) && fenfirePrefab[k,j].GetComponent<FenFire>().isOnFenFire == false)
                     {
                         tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
                     }
@@ -59,7 +59,7 @@ public class FenFire : MonoBehaviour
             {
                 if (TileArray.Instance.tileMap[k, j] != 0 && TileArray.Instance.tileMap[k, j] != 1)
                 {
-                    if (TileArray.Instance.tileMap[k, j] == 13 && fenfirePrefab[k, j].GetComponent<FenFire>().isOnFenFire == false)
+                    if ((TileArray.Instance.tileMap[k, j] == 13 || TileArray.Instance.tileMap[k, j] == 14) && fenfirePrefab[k, j].GetComponent<FenFire>().isOnFenFire == false)
                     {
                         tilePrefab[k, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
                     }
@@ -80,7 +80,7 @@ public class FenFire : MonoBehaviour
                 
                 if (TileArray.Instance.tileMap[i, k] != 0 && TileArray.Instance.tileMap[i, k] != 1)
                 {
-                    if (TileArray.Instance.tileMap[i, k] == 13 && fenfirePrefab[i, k].GetComponent<FenFire>().isOnFenFire == false)
+                    if ((TileArray.Instance.tileMap[i, k] == 13 || TileArray.Instance.tileMap[i, k] == 14) && fenfirePrefab[i, k].GetComponent<FenFire>().isOnFenFire == false)
                     {
                         tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
                     }
@@ -101,7 +101,7 @@ public class FenFire : MonoBehaviour
                 
                 if (TileArray.Instance.tileMap[i, k] != 0 && TileArray.Instance.tileMap[i, k] != 1)
                 {
-                    if (TileArray.Instance.tileMap[i, k] == 13 && fenfirePrefab[i, k].GetComponent<FenFire>().isOnFenFire == false)
+                    if ((TileArray.Instance.tileMap[i, k] == 13 || TileArray.Instance.tileMap[i, k] == 14) && fenfirePrefab[i, k].GetComponent<FenFire>().isOnFenFire == false)
                     {
                         tilePrefab[i, k].GetComponent<SpriteRenderer>().sprite = groundSprite;
                     }
