@@ -34,7 +34,10 @@ public class PauseBtn : MonoBehaviour
         buttons[0].interactable = false;
         buttons[1].interactable = false;
         paperAnimation.SetActive(true);
-        paperAnimation.GetComponent<AudioSource>().Play();
+        if(PlayerPrefs.GetInt("SoundInfo") == 1)
+        {
+          paperAnimation.GetComponent<AudioSource>().Play();
+        }
         StartCoroutine(showlater());
     }
 
@@ -50,7 +53,7 @@ public class PauseBtn : MonoBehaviour
         audioSource.Play();
         bgm = GameObject.Find("bgm");
         Destroy(bgm);
-        SceneManager.LoadScene("Level Menu");
+        SceneManager.LoadScene("Main_Menu");
     }
 
     public void Resume()
@@ -65,7 +68,10 @@ public class PauseBtn : MonoBehaviour
 
     IEnumerator backani()
     {
-         paperAnimation.GetComponent<AudioSource>().Play();
+        if(PlayerPrefs.GetInt("SoundInfo") == 1)
+        {
+          paperAnimation.GetComponent<AudioSource>().Play();
+        }
         yield return new WaitForSeconds(0.6f);
         paperAnimation.SetActive(false);
         TileArray.Instance.Touchable = true;

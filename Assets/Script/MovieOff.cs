@@ -20,6 +20,7 @@ public class MovieOff : MonoBehaviour
     public void SkipBtn()
     {
         StopCoroutine(screenOff());
+        PlayerPrefs.SetInt("watched", 1);
         panel.SetActive(false);
     }
 
@@ -27,6 +28,7 @@ public class MovieOff : MonoBehaviour
     {
         yield return new WaitForSeconds(18.0f);
         panel.SetActive(false);
+        PlayerPrefs.SetInt("watched", 1);
     }
     
 }

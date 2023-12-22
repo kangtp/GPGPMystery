@@ -28,7 +28,7 @@ public class count : MonoBehaviour
     }
     private void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 29 && SceneManager.GetActiveScene().buildIndex < 33)
+        if (SceneManager.GetActiveScene().buildIndex > 29 && SceneManager.GetActiveScene().buildIndex < 34)
         { 
             notBoss = true;
         }
