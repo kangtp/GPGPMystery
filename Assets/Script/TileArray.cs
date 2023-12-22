@@ -306,6 +306,15 @@ public class TileArray : MonoBehaviour
                     fenfirePrefab[i, j] = tile;
                     tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
                 }
+                //착취의 손아귀
+                if (wallMap[i, j] == 15)
+                {
+                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
+                    GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
+                    tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
+                    tileMap[i, j] = (int)TileType.rock;
+                    tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
+                }
 
                 //호랑이 생성
                 if (wallMap[i, j] == 20)
@@ -444,7 +453,7 @@ public class TileArray : MonoBehaviour
         {
             case 'U':
                 {
-                    if ((tileMap[x - 1, y] == 0 || tileMap[x - 1, y] == 1) && wallMap[x - 1, y] == 0)
+                    if (x > 0 && (tileMap[x - 1, y] == 0 || tileMap[x - 1, y] == 1) && wallMap[x - 1, y] == 0)
                     {
                         if (tileMap[x, y] == 4)
                         {
@@ -484,7 +493,7 @@ public class TileArray : MonoBehaviour
                 break;
             case 'D':
                 {
-                    if ((tileMap[x + 1, y] == 0 || tileMap[x + 1, y] == 1) && wallMap[x + 1, y] == 0)
+                    if (x < 9 && (tileMap[x + 1, y] == 0 || tileMap[x + 1, y] == 1) && wallMap[x + 1, y] == 0)
                     {
                         if (tileMap[x, y] == 4)
                         {
@@ -524,7 +533,7 @@ public class TileArray : MonoBehaviour
                 break;
             case 'R':
                 {
-                    if ((tileMap[x, y + 1] == 0 || tileMap[x, y + 1] == 1) && wallMap[x, y + 1] == 0)
+                    if (y < 9 && (tileMap[x, y + 1] == 0 || tileMap[x, y + 1] == 1) && wallMap[x, y + 1] == 0)
                     {
                         if (tileMap[x, y] == 4)
                         {
@@ -564,7 +573,7 @@ public class TileArray : MonoBehaviour
                 break;
             case 'L':
                 {
-                    if ((tileMap[x, y - 1] == 0 || tileMap[x, y - 1] == 1) && wallMap[x, y - 1] == 0)
+                    if (y > 0 && (tileMap[x, y - 1] == 0 || tileMap[x, y - 1] == 1) && wallMap[x, y - 1] == 0)
                     {
                         if (tileMap[x, y] == 4)
                         {

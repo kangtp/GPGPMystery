@@ -54,7 +54,7 @@ public class Boss_littleHunter : MonoBehaviour
             yield return new WaitForSeconds(0.03f);
             float distance = Vector3.Distance(fire.transform.position, player.transform.position);
             fire.transform.localScale = new Vector3(1, 1, 1);
-            fire.transform.Translate(direction * 100 * Time.deltaTime);
+            fire.transform.Translate(direction * 200 * Time.deltaTime);
 
             if (distance < 1)
             {
