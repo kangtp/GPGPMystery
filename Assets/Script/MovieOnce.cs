@@ -8,7 +8,7 @@ public class MovieOnce : MonoBehaviour
     public GameObject panel;
     void Awake()
     {
-        if(PlayerPrefs.GetInt("watched") == 1)
+        if(PlayerPrefs.GetInt("watched") == 1 && panel != null)
         {
             panel.SetActive(false);
         }
