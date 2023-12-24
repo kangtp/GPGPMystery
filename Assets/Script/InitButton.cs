@@ -8,5 +8,6 @@ public class InitButton : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("Stage");
         PlayerPrefs.DeleteKey("Exist");
+        PlayerPrefs.DeleteKey("watched");
     }
 }

@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3c0011fb8e7484491985bc0b660d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_count: 100
+  boss_count: 14
   DeathHand: {fileID: 1452754742}
 --- !u!4 &663399077
 Transform:

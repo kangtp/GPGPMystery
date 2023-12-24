@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 24219655, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 404660783, guid: fb903fb9386b84acbaf1cae122bb3514, type: 3}
       propertyPath: m_IsActive
@@ -961,7 +961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3c0011fb8e7484491985bc0b660d30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss_count: 30
+  boss_count: 29
   DeathHand: {fileID: 1416138015}
 --- !u!4 &1253359204
 Transform:
