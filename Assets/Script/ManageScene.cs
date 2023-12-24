@@ -353,7 +353,7 @@ public class ManageScene : MonoBehaviour
             stage1.color = new Color(0, 0, 0, fadeCount);
 
             //Stage�� ������ ����. �� ���������� ���ٴ� ��
-            if (!PlayerPrefs.HasKey("Stage"))
+            if (!PlayerPrefs.HasKey("Stage") || PlayerPrefs.GetInt("Stage") == 1)
             {
                 //�� ���������� ������ ���� 0.2
                 stage2.color = new Color(0, 0, 0, fadeCount * 0.2f);
