@@ -262,7 +262,7 @@ public class ManageScene : MonoBehaviour
     IEnumerator EnterStage2_1()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage2-1");
+        SceneManager.LoadScene("Stage2_talk");
     }
     IEnumerator EnterStage2_2()
     {
@@ -283,7 +283,7 @@ public class ManageScene : MonoBehaviour
     IEnumerator EnterStage3_1()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage3-1");
+        SceneManager.LoadScene("Stage3_talk");
     }
     IEnumerator EnterStage3_2()
     {
@@ -304,7 +304,7 @@ public class ManageScene : MonoBehaviour
     IEnumerator EnterStage4_1()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage4-1");
+        SceneManager.LoadScene("Stage4_talk");
     }
     IEnumerator EnterStage4_2()
     {
@@ -325,7 +325,7 @@ public class ManageScene : MonoBehaviour
     IEnumerator EnterStage5_1()
     {
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene("Stage5-1");
+        SceneManager.LoadScene("Stage5_talk");
     }
     IEnumerator EnterStage5_2()
     {
@@ -352,16 +352,16 @@ public class ManageScene : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
             stage1.color = new Color(0, 0, 0, fadeCount);
 
-            //Stage°¡ ¾øÀ¸¸é ½ÇÇà. ±ü ½ºÅ×ÀÌÁö°¡ ¾ø´Ù´Â ¶æ
+            //Stageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù´ï¿½ ï¿½ï¿½
             if (!PlayerPrefs.HasKey("Stage"))
             {
-                //±ü ½ºÅ×ÀÌÁö°¡ ¾øÀ¸´Ï ¾ÆÁ÷ 0.2
+                //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0.2
                 stage2.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 stage3.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 stage4.color = new Color(0, 0, 0, fadeCount * 0.2f);
                 stage5.color = new Color(0, 0, 0, fadeCount * 0.2f);
             }
-            //Stage°¡ ÀÖ¾î
+            //Stageï¿½ï¿½ ï¿½Ö¾ï¿½
             else if (PlayerPrefs.HasKey("Stage"))
             {
                 if(PlayerPrefs.GetInt("Stage") == 2)
@@ -385,7 +385,7 @@ public class ManageScene : MonoBehaviour
 
     public IEnumerator OpenStage(Image img, GameObject road)
     {
-        //¿­¸®´Â È¿°úÀ½ ³Ö±â
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½
         float fadeCount = 0.0f;
         while (fadeCount < 1.0f)
         {
