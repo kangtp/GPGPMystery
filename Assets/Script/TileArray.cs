@@ -22,8 +22,9 @@ public class TileArray : MonoBehaviour
     public AudioClip fenfireOff;
     public enum TileType
     {
-        shadow, ground, rock, fire, upDownWood, leftRightWood, none, hunterStart, hunterGoal, monsterStart, monsterGoal,
-        fireFly, crossFire, fenFire
+        shadow, ground, rock, fire, upDownWood, leftRightWood, none, 
+        hunterStart, hunterGoal, monsterStart, monsterGoal,
+        fireFly, crossFire, fenFire, fenFire2, deathHand
     };
     /*
      * -1 null
@@ -42,8 +43,15 @@ public class TileArray : MonoBehaviour
      * 11 반딧불 // wall
      * 12 십자불 / wall
      * 13 도깨비불 //wall
+     * 14 도깨비불2
+     * 15 죽음의 손아귀
      * 
-     * 20 호랑이 //boss
+     * Boss
+     * 20 호랑이
+     * 21 꼬마사냥꾼
+     * 22 어른사냥꾼
+     * 23 도깨비왕
+     * 24 착호갑사
     */
 
     public int[,] tileMap = new int[,]
@@ -90,6 +98,8 @@ public class TileArray : MonoBehaviour
 
     //타일위치에 따라 프리펩을 저장해놓은 2차원 배열
     public GameObject[,] tilePrefab = new GameObject[10, 10];
+
+    //도깨비불 프리팹을 저장해놓은 2차원 배열
     public GameObject[,] fenfirePrefab = new GameObject[10, 10];
 
     //public UnityEngine.Sprite[] shadowSprite;
@@ -189,17 +199,8 @@ public class TileArray : MonoBehaviour
 
         stringReader.Close();
     }
-    void ShowMatrix()
-    {
-        for (int i = 0; i < tileMap.GetLength(0); i++)
-        {
-            for (int j = 0; j < tileMap.GetLength(1); j++)
-            {
-                Debug.Log(tileMap[i, j]);
-            }
-        }
-        Debug.Log("-------------------------------");
-    }
+
+
     public void PopulateTileMap()
     {
         for (int i = 0; i < tileMap.GetLength(0); i++)
@@ -211,11 +212,11 @@ public class TileArray : MonoBehaviour
                 tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
                 tilePrefab[i, j] = tile;
                 //hunter
-                if (tileMap[i, j] == 7)
+                if (tileMap[i, j] == (int)TileType.hunterStart)
                 {
                     player = tile;
                 }
-                if(tileMap[i,j] == 9)
+                if(tileMap[i,j] == (int)TileType.monsterStart)
                 {
                     player = tile;
                 }
@@ -230,7 +231,7 @@ public class TileArray : MonoBehaviour
             for (int j = 0; j < wallMap.GetLength(1); j++)
             {
                 //돌 생성
-                if (wallMap[i, j] == 2)
+                if (wallMap[i, j] == (int)TileType.rock)
                 {
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -238,24 +239,24 @@ public class TileArray : MonoBehaviour
                     tileMap[i, j] = (int)TileType.rock;
                 }
                 //통나무 생성
-                if (wallMap[i, j] == 4 || wallMap[i, j] == 5)
+                if (wallMap[i, j] == (int)TileType.upDownWood || wallMap[i, j] == (int)TileType.leftRightWood)
                 {
                     GameObject prefab = Resources.Load("wall_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject wall = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     wall.GetComponent<wall_Info>().Set(i, j);
-                    if (wallMap[i, j] == 4)
+                    if (wallMap[i, j] == (int)TileType.upDownWood)
                     {
                         tileMap[i, j] = (int)TileType.upDownWood;
                     }
-                    else if (wallMap[i, j] == 5)
+                    else if (wallMap[i, j] == (int)TileType.leftRightWood)
                     {
-                        tileMap[i, j] = 5;
+                        tileMap[i, j] = (int)TileType.leftRightWood;
                     }
                     wall.transform.position = new Vector2(StartPoint.x + (wallSize * j) + (wallSize / 2), StartPoint.y - (wallSize * i) - (wallSize / 2));
 
                 }
                 //일자불 생성
-                if (wallMap[i, j] == 3)
+                if (wallMap[i, j] == (int)TileType.fire)
                 {
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -264,18 +265,17 @@ public class TileArray : MonoBehaviour
                     tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
                 }
                 //십자불 생성
-                if (wallMap[i, j] == 12)
+                if (wallMap[i, j] == (int)TileType.crossFire)
                 {
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
-                    //tile.GetComponent<wall_Info>().Set(i, j);
-                    tileMap[i, j] = 12;
+                    tileMap[i, j] = (int)TileType.crossFire;
                     tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
 
                 }
                 //반딧불 생성
-                if (wallMap[i, j] == 11)
+                if (wallMap[i, j] == (int)TileType.fireFly)
                 {
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -285,7 +285,7 @@ public class TileArray : MonoBehaviour
                 }
 
                 //도깨비불 생성
-                if (wallMap[i, j] == 13)
+                if (wallMap[i, j] == (int)TileType.fenFire)
                 {
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -295,19 +295,20 @@ public class TileArray : MonoBehaviour
                     fenfirePrefab[i, j] = tile;
                     tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
                 }
+
                 //도깨비불2 생성
-                if (wallMap[i, j] == 14)
+                if (wallMap[i, j] == (int)TileType.fenFire2)
                 {
                     GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
                     tile.transform.position = new Vector2(StartPoint.x + (TileSize * j) + (TileSize / 2), StartPoint.y - (TileSize * i) - (TileSize / 2));
                     tile.GetComponent<wall_Info>().Set(i, j);
-                    tileMap[i, j] = 14;
+                    tileMap[i, j] = (int)TileType.fenFire2;
                     fenfirePrefab[i, j] = tile;
                     tilePrefab[i, j].GetComponent<SpriteRenderer>().sprite = groundSprite;
                 }
                 //착취의 손아귀
-                if (wallMap[i, j] == 15)
+                if (wallMap[i, j] == (int)TileType.deathHand)
                 {
                      GameObject prefab = Resources.Load("tile_" + wallMap[i, j].ToString()) as GameObject;
                     GameObject tile = Instantiate(prefab, Vector3.zero, Quaternion.identity) as GameObject;
@@ -328,6 +329,7 @@ public class TileArray : MonoBehaviour
                     boss = tile;
                 }
 
+                //꼬마사냥꾼
                 if (wallMap[i, j] == 21)
                 {
                     bossType = "L";
@@ -339,6 +341,7 @@ public class TileArray : MonoBehaviour
                     boss = tile;
                 }
 
+                //어른사냥꾼
                 if (wallMap[i, j] == 22)
                 {
                     bossType = "A";
@@ -350,6 +353,7 @@ public class TileArray : MonoBehaviour
                     boss = tile;
                 }
 
+                //도깨비왕
                 if (wallMap[i, j] == 23)
                 {
                     bossType = "G";
@@ -361,6 +365,7 @@ public class TileArray : MonoBehaviour
                     boss = tile;
                 }
 
+                //착호갑사
                 if (wallMap[i, j] == 24)
                 {
                     bossType = "C";
@@ -455,7 +460,7 @@ public class TileArray : MonoBehaviour
                 {
                     if (x > 0 && (tileMap[x - 1, y] == 0 || tileMap[x - 1, y] == 1) && wallMap[x - 1, y] == 0)
                     {
-                        if (tileMap[x, y] == 4)
+                        if (tileMap[x, y] == (int)TileType.upDownWood)
                         {
                             wallMap[x - 1, y] = 4;
                             wallMap[x, y] = 0;
@@ -465,7 +470,7 @@ public class TileArray : MonoBehaviour
                             audioSource.clip = dragWood;
                             audioSource.Play();
                         }
-                        else if (tileMap[x, y] == 5)
+                        else if (tileMap[x, y] == (int)TileType.leftRightWood)
                         {
                             wallMap[x - 1, y] = 5;
                             wallMap[x, y] = 0;
@@ -475,7 +480,7 @@ public class TileArray : MonoBehaviour
                             audioSource.clip = dragWood;
                             audioSource.Play();
                         }
-                        else if (wallMap[x, y] == 11)
+                        else if (wallMap[x, y] == (int)TileType.fireFly)
                         {
                             wallMap[x - 1, y] = 11;
                             wallMap[x, y] = 0;
