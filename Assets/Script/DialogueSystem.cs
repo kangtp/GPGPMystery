@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class DialogueSystem : MonoBehaviour
 {
     public string nextScene;
+
+    private string nowScentence;
     public TMP_Text txtName;
     public TMP_Text txtSentence;
 
@@ -68,7 +70,8 @@ public class DialogueSystem : MonoBehaviour
         txtImage = images.Dequeue();
         txtImage.SetActive(true);
         StopAllCoroutines();
-        StartCoroutine(TypeSentence(sentences.Dequeue()));
+        nowScentence = sentences.Dequeue();
+        StartCoroutine(TypeSentence(nowScentence));
     }
 
     IEnumerator TypeSentence(string sentence)
@@ -86,6 +89,12 @@ public class DialogueSystem : MonoBehaviour
         PlayerPrefs.SetInt("Stage", nextStage);
         Debug.Log("save : " + nextStage);
         SceneManager.LoadScene(nextScene);
+    }
+
+    public void skipTyping()
+    {
+        StopAllCoroutines();
+        txtSentence.text = nowScentence;
     }
 
 }
