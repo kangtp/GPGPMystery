@@ -111,6 +111,7 @@ public class PathManager : MonoBehaviour
         clearHunter = false;
         clearMonster = false;
         fadeinout.fadeIn();
+        LevelManager.instance.levelUpdate();
         yield return new WaitForSeconds(3.0f);
         SceneManager.LoadScene(nextScene);
     }

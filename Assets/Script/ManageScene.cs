@@ -9,6 +9,7 @@ public class ManageScene : MonoBehaviour
     AudioSource audioSource;
 
     private GameObject stage;
+    public Button[] levels;
     public Image stage1;
     public Image stage2;
     public Image stage3;
@@ -20,11 +21,20 @@ public class ManageScene : MonoBehaviour
     public GameObject road3;
     public GameObject road4;
 
+    private int currentLevel = 0;
+
     void Start()
     {
         stage = GameObject.Find("Stages");
         audioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
         StartCoroutine(createIcon());
+
+        currentLevel = PlayerPrefs.GetInt("currentLevel");
+        print(currentLevel);
+        for (int i = currentLevel + 1; i < levels.Length; i++)
+        {
+            levels[i].interactable = false;
+        }
 
         if (PlayerPrefs.HasKey("Stage") && PlayerPrefs.GetInt("Stage") >= 2)
         {
@@ -70,6 +80,14 @@ public class ManageScene : MonoBehaviour
                 Go(5);
             }
         }
+    }
+
+    public void levelUpdate()
+    {
+        int level = PlayerPrefs.GetInt("currentLevel");
+        level += 1;
+        Debug.Log("next level: " + level);
+        PlayerPrefs.SetInt("currentLevel", level);
     }
 
 
@@ -345,6 +363,7 @@ public class ManageScene : MonoBehaviour
 
     IEnumerator createIcon()
     {
+        stage.transform.GetChild(stage.transform.childCount - 1).gameObject.SetActive(true);
         float fadeCount = 0;
         while(fadeCount < 1.0f)
         {
