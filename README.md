@@ -37,8 +37,13 @@
 
 |조작법|
 |---|
-|<img width="500" alt="1장 까막산기슭-1" src="https://github.com/user-attachments/assets/3eed9d80-c3f6-49e2-a2b8-24ea1c00c415">|
-|플레이어는 구조물을 드래그하여서 움직일 수 있다.|
+|<img width="600" alt="1장 까막산기슭-1" src="https://github.com/user-attachments/assets/3eed9d80-c3f6-49e2-a2b8-24ea1c00c415">|
+|플레이어는 구조물을 드래그하여서 움직일 수 있습니다.|
+
+|보스전|
+|---|
+|<img width="600" alt="1장 까막산기슭-보스" src="https://github.com/user-attachments/assets/4cf21b91-5fb6-4b57-bf4f-46d0d85f0326">|
+|보스전은 구조물의 이동 횟수에 제약을 걸어 신중하게 조작을 해야됩니다. (왼쪽 위 숫자는 플레이어의 남은 이동 횟수 입니다.)|
 
 - 미니게임
 
