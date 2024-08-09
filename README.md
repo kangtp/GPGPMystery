@@ -39,7 +39,7 @@
 
 |조작법|
 |---|
-|<div align="center"><img width="600" alt="1장 까막산기슭-1" src="https://github.com/user-attachments/assets/3eed9d80-c3f6-49e2-a2b8-24ea1c00c415"></div>|
+|<div align="center"><img width="400" alt="1장 까막산기슭-1" src="https://github.com/user-attachments/assets/3eed9d80-c3f6-49e2-a2b8-24ea1c00c415"></div>|
 |플레이어는 구조물을 드래그하여서 길을 만들고 오른쪽 출발 버튼을 누르면 자동으로 길을 찾아갑니다. (만약 길이 재대로 만들어지지 않으면 출발 버튼이 비활성화 됩니다.)|
 
 |상호작용|
@@ -50,14 +50,18 @@
 
 |보스전|
 |---|
-|<div align="center"><img width="600" alt="1장 까막산기슭-보스" src="https://github.com/user-attachments/assets/4cf21b91-5fb6-4b57-bf4f-46d0d85f0326"></div>|
+|<div align="center"><img width="400" alt="1장 까막산기슭-보스" src="https://github.com/user-attachments/assets/4cf21b91-5fb6-4b57-bf4f-46d0d85f0326"></div>|
 |보스전은 구조물의 이동 횟수에 제약을 걸었기 때문에 신중하게 조작을 해야됩니다. (왼쪽 위 숫자는 플레이어의 남은 이동 횟수 입니다.)|
 
 
 ## 게임 스테이지 설명
 <어둑시니>는 여러 개의 스테이지로 구성되어 있으며, 각각은 등장하는 기믹과 필드의 외향, 난이도 등이 모두 다릅니다. 또한 각 스테이지마다 보스가 존재합니다.
 
-|까막산 기슭|까막산 깊숙한 곳|아주 마을|도깨비 숲|어둠구멍|
-|---|---|---|---|---|
+|까막산 기슭|까막산 깊숙한 곳|아주 마을|도깨비 숲|어둠구멍|
+|--|--|--|--|--|
 |<img width="400" alt="1장 까막산기슭-보스" src="https://github.com/user-attachments/assets/f5596c16-a90d-453d-8cf5-192a29ac168c">|<img width="400" alt="2장 까막산깊숙한곳-보스" src="https://github.com/user-attachments/assets/6baf6303-b2f3-4a00-8108-3847cd76642c">|<img width="400" alt="3장 아주마을-3" src="https://github.com/user-attachments/assets/f8cfc618-8eab-4782-a03a-3e2938e017e7">|<img width="400" alt="4장 도깨비숲-보스" src="https://github.com/user-attachments/assets/04fad3fd-6f36-463a-8dc1-d85e1783ecb7">|<img width="400" alt="5장 어둠구멍-보스" src="https://github.com/user-attachments/assets/2773a834-5522-41d5-a0c4-41fc545ae8f6">|
 |- 등장기믹: 화로, 통나무, 반딧불 호랑이(보스)|- 등장기믹: 화로, 통나무, 꼬마사냥꾼(보스)|- 등장기믹: 화로, 통나무, 반딧불, 사냥꾼(보스)|- 등장기믹: 화로, 통나무, 도깨비 불, 도깨비(보스)|- 등장기믹: 화로, 통나무, 도깨비 불, 착호갑사(보스)|
+
+- 스테이지 중간에 스토리 요소도 추가하여서 플레이어의 몰입감을 높였습니다.
+|<div align="center"><img width="400" alt="5장 어둠구멍 스토리 진행 화면" src="https://github.com/user-attachments/assets/17eaaf40-dc7c-415e-b23c-e3a89f39e622">
+</div>|
