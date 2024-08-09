@@ -31,13 +31,14 @@
 ## 게임 플레이 방식
 <어둑시니>는 꼬마사냥꾼과 어둑시니를 각자의 정해진 목적지까지 이동시키는 것입니다. 꼬마 사냥꾼은 그림자가 진 어두운 길을 이동할 수 없고, 반대로 어둑시니는 빛이 비추는 밝은 길을 이동할 수 없습니다. 
 
-따라서, 밝은 길과 어두운 길을 함께 고려해 두 캐릭터가 같이 탈출할 수 있는 루트를 만들어야 합니다! 
+따라서, 밝은 길과 어두운 길을 함께 고려해 두 캐릭터가 같이 탈출할 수 있는 루트를 만들어야 합니다!
 
+- 플레이어는 구조물을 드래그하여 움직여서 두 캐릭터가 탈출 할 수 있게 해주어여 합니다.
 
-|Home|Forest|Store|Room|
-|---|---|---|---|
-|![image](https://user-images.githubusercontent.com/66003567/216816017-bfd18669-9f70-45c2-8561-bae648690602.png)|![image](https://user-images.githubusercontent.com/66003567/216815971-d8ed6ea8-1f92-45f8-9611-1cbe2b5e8db0.png)|![image](https://user-images.githubusercontent.com/66003567/216815991-88e0f4d6-3e5d-4c19-9eb9-97047b40c0d0.png)|![image](https://user-images.githubusercontent.com/66003567/216816002-4eca6510-4436-44f5-b949-347e75129ada.png)|
-|옥수수 농사 가능|슈팅, 두더지 잡기, 낚시 미니게임 입장 가능|물품 판매 및 구매 가능|게임 저장 가능|
+|조작법|
+|---|
+|<img width="500" alt="1장 까막산기슭-1" src="https://github.com/user-attachments/assets/3eed9d80-c3f6-49e2-a2b8-24ea1c00c415">|
+|플레이어는 구조물을 드래그하여서 움직일 수 있다.|
 
 - 미니게임
 
