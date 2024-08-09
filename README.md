@@ -82,16 +82,16 @@
 1. **맵 로드**  
    - 게임 시작 시 스테이지에 맞는 맵을 자동으로 로드를 해주기 위해서 10*10 배열을 만들어서 각 위치에 알맞는 타일을 생성하게 해주었습니다.
 
-|<img width="190" alt="시작 화면" src="https://github.com/user-attachments/assets/03911744-6493-40ab-ace6-f018dabede7f"> | <img width="190" alt="레벨 선택 화면" src="https://github.com/user-attachments/assets/52a879b7-5d57-49f8-a53d-1b67f3b7030b"> | <img width="190" alt="인게임 화면" src="https://github.com/user-attachments/assets/a5a0fd3c-1af7-4350-9929-8c02cd0bfe8e"> | <img width="190" alt="보스 화면" src="https://github.com/user-attachments/assets/5cbe26a6-48ac-4a6b-9030-242bed3084c6">|
-|:---:|:---:|:---:|:---:|
-| 시작 화면 | 레벨 선택 화면 | 인게임 화면 | 보스 화면 |
+|<img width="244" alt="무제 2" src="https://github.com/user-attachments/assets/3665bb7f-9868-4b94-806a-83f40e7705fc">|<img width="215" alt="wall" src="https://github.com/user-attachments/assets/3b3b7bda-c9fd-4b12-92be-0d244bd61450">|<img width="600" alt="1장 까막산기슭-3" src="https://github.com/user-attachments/assets/be1688e1-3c62-4036-9df7-5029cb66dcf5">|
+|:---:|:---:|:---:|
+| 타일 배열 | 구조물 배열 | 인게임 화면 |
 
 2. **빛과 그림자의 상호작용**  
    - 빛과 그림자를 활용하여 플레이어가 직접 길을 만들어 나갑니다. 각 캐릭터는 빛과 그림자에 따라 이동할 수 있는 경로가 달라지며, 이 상호작용이 게임의 핵심 퍼즐 요소로 작용합니다.
 
 3. **길 찾기 알고리즘**  
-   - 플레이어가 설정한 길에 따라 캐릭터가 자동으로 이동합니다. 잘못된 경로를 설정하면 캐릭터가 이동할 수 없으므로, 전략적으로 길을 설계해야 합니다.
-
+   - 플레이어가 설정한 길에 따라 캐릭터가 자동으로 이동해야되기때문에 너비 우선 탐색(BFS)을 이용하여서 모든 경로를 찾은다음에 가장 최적의 경로로 설정해준다.
+     
 4. **스테이지 레벨**  
    - 각 스테이지는 난이도와 등장 기믹이 달라지며, 플레이어의 실력을 점점 더 시험하게 됩니다. 스테이지마다 새로운 도전과 보스전이 포함되어 있습니다.
 
