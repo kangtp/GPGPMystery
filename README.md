@@ -5,7 +5,7 @@
 이 게임은 빛과 그림자를 이용하여 길을 만들어 나가는 퍼즐 게임이다. 플레이어는 꼬마 사냥꾼과 어둑시니를 조작하여, 숲을 탈출하는 데 필요한 길을 만들어야 한다.
 </div>
 
-### ▶️[게임 트레일러] (https://youtu.be/F45nQhTiLV8?si=k-CHRkOmJ7FR83D8](https://youtu.be/Au1-Q9dEQWc)
+### ▶️[게임 트레일러] (https://youtu.be/Au1-Q9dEQWc)
 
 ## 목차
   - [개요](#개요)
