@@ -63,5 +63,7 @@
 |- 등장기믹: 화로, 통나무, 반딧불 호랑이(보스)|- 등장기믹: 화로, 통나무, 꼬마사냥꾼(보스)|- 등장기믹: 화로, 통나무, 반딧불, 사냥꾼(보스)|- 등장기믹: 화로, 통나무, 도깨비 불, 도깨비(보스)|- 등장기믹: 화로, 통나무, 도깨비 불, 착호갑사(보스)|
 
 - 스테이지 중간에 스토리 요소도 추가하여서 플레이어의 몰입감을 높였습니다.
-|<div align="center"><img width="400" alt="5장 어둠구멍 스토리 진행 화면" src="https://github.com/user-attachments/assets/17eaaf40-dc7c-415e-b23c-e3a89f39e622">
-</div>|
+<div align="center"><img width="400" alt="5장 어둠구멍 스토리 진행 화면" src="https://github.com/user-attachments/assets/17eaaf40-dc7c-415e-b23c-e3a89f39e622"></div>
+
+## 게임 주요 기능
+
