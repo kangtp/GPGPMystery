@@ -1,18 +1,19 @@
 # 어둑시니 (2023 인디 게임 제작)
 <div align="center">
 <img width="237" alt="어둑시니로고" src="https://github.com/user-attachments/assets/b3909896-cea6-4a51-866f-77139ced4f9e">
-
+</div>
 한 어린 사냥꾼이 어둑시니를 잡기 위해 숲에 들어왔다가, 어둑시니의 슬픈 이야기를 듣게 된다. 이후, 사냥꾼은 어둑시니와 함께 숲을 탈출하기로 결심한다.
 이 게임은 빛과 그림자를 이용하여 길을 만들어 나가는 퍼즐 게임이다. 플레이어는 꼬마 사냥꾼과 어둑시니를 조작하여, 숲을 탈출하는 데 필요한 길을 만들어야 한다.
-</div>
+
 
 ### ▶️[게임 트레일러] (https://youtu.be/Au1-Q9dEQWc)
 
 ## 목차
   - [개요](#개요)
   - [게임 목표](#게임-목표)
-  - [게임 설명](#게임-설명)
   - [게임 플레이 방식](#게임-플레이-방식)
+  - [게임 스테이지 설명](#게임-스테이지-설명)
+  - [게임 주요 기능](#게임-주요-기능)
 
 ## 개요
 - 프로젝트 이름: 어둑시니
@@ -20,6 +21,7 @@
 - 개발 엔진 및 언어: Unity & C#
 - 멤버: 강현서,김태완,박선준
 - 게임 장르: 어드벤처 게임🛹/ 퍼즐 게임🧩/ 2D 형태의 픽셀게임 🎮
+- 플랫폼: PC, Android, ios
 
 ## 게임 목표
 - 빛과 그림자를 활용하여 어둑시니와 주인공인 꼬마 사냥꾼을 목적지까지 도달할 수 있도록 만드는 것이 목표이다. 꼬마 사냥꾼은 흰색 화살표, 어둑시니는 빨간색 화살표까지 도달해야 한다.
@@ -37,17 +39,25 @@
 
 |조작법|
 |---|
-|<img width="600" alt="1장 까막산기슭-1" src="https://github.com/user-attachments/assets/3eed9d80-c3f6-49e2-a2b8-24ea1c00c415">|
-|플레이어는 구조물을 드래그하여서 움직일 수 있습니다.|
+|<div align="center"><img width="600" alt="1장 까막산기슭-1" src="https://github.com/user-attachments/assets/3eed9d80-c3f6-49e2-a2b8-24ea1c00c415"></div>|
+|플레이어는 구조물을 드래그하여서 길을 만들고 오른쪽 출발 버튼을 누르면 자동으로 길을 찾아갑니다. (만약 길이 재대로 만들어지지 않으면 출발 버튼이 비활성화 됩니다.)|
+
+|상호작용|
+|---|
+|![help](https://github.com/user-attachments/assets/c18b8040-6d27-4fca-b8e2-f7fce00c6acd)|
+|플레이어는 다양한 구조물을 통해서 자신만의 창의적인 탈출 경로를 만들 수 있습니다.|
+
 
 |보스전|
 |---|
-|<img width="600" alt="1장 까막산기슭-보스" src="https://github.com/user-attachments/assets/4cf21b91-5fb6-4b57-bf4f-46d0d85f0326">|
-|보스전은 구조물의 이동 횟수에 제약을 걸어 신중하게 조작을 해야됩니다. (왼쪽 위 숫자는 플레이어의 남은 이동 횟수 입니다.)|
+|<div align="center"><img width="600" alt="1장 까막산기슭-보스" src="https://github.com/user-attachments/assets/4cf21b91-5fb6-4b57-bf4f-46d0d85f0326"></div>|
+|보스전은 구조물의 이동 횟수에 제약을 걸었기 때문에 신중하게 조작을 해야됩니다. (왼쪽 위 숫자는 플레이어의 남은 이동 횟수 입니다.)|
 
-- 미니게임
 
-|베이킹|슈팅|두더지 잡기|낚시|
-|---|---|---|---|
-|![image](https://user-images.githubusercontent.com/66003567/216816081-cf4a29c6-72f3-4b75-b01d-3dd6e3faabc5.png)|![image](https://user-images.githubusercontent.com/66003567/216816088-cd83d20a-e023-4af2-b406-98197af5ff35.png)|![image](https://user-images.githubusercontent.com/66003567/216816106-5a97f26e-565b-43a6-bfab-d22e36745f80.png)|![image](https://user-images.githubusercontent.com/66003567/216816119-fb22c507-f6c4-49a3-b4f0-28ecaae94f6c.png)|
-|오븐 타이머 조절 성공시 빵 획득|나무 몬스터 제거시 코인 획득|일정 수 이상 두더지 잡기 성공시 코인 획득|찌를 올바른 위치에 멈추기 3회 성공시 선택한 난이도의 물고기 획득|
+## 게임 스테이지 설명
+<어둑시니>는 여러 개의 스테이지로 구성되어 있으며, 각각은 등장하는 기믹과 필드의 외향, 난이도 등이 모두 다릅니다. 또한 각 스테이지마다 보스가 존재합니다.
+
+|까막산 기슭|까막산 깊숙한 곳|아주 마을|도깨비 숲|어둠구멍|
+|---|---|---|---|---|
+|<img width="400" alt="1장 까막산기슭-보스" src="https://github.com/user-attachments/assets/f5596c16-a90d-453d-8cf5-192a29ac168c">|<img width="400" alt="2장 까막산깊숙한곳-보스" src="https://github.com/user-attachments/assets/6baf6303-b2f3-4a00-8108-3847cd76642c">|<img width="400" alt="3장 아주마을-3" src="https://github.com/user-attachments/assets/f8cfc618-8eab-4782-a03a-3e2938e017e7">|<img width="400" alt="4장 도깨비숲-보스" src="https://github.com/user-attachments/assets/04fad3fd-6f36-463a-8dc1-d85e1783ecb7">|<img width="400" alt="5장 어둠구멍-보스" src="https://github.com/user-attachments/assets/2773a834-5522-41d5-a0c4-41fc545ae8f6">|
+|- 등장기믹: 화로, 통나무, 반딧불 호랑이(보스)|- 등장기믹: 화로, 통나무, 꼬마사냥꾼(보스)|- 등장기믹: 화로, 통나무, 반딧불, 사냥꾼(보스)|- 등장기믹: 화로, 통나무, 도깨비 불, 도깨비(보스)|- 등장기믹: 화로, 통나무, 도깨비 불, 착호갑사(보스)|
