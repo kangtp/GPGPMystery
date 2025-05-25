@@ -405,7 +405,7 @@ public class PathManager : MonoBehaviour
 
     int[] dirX = new int[] { -1, 0, 1, 0 };
     int[] dirY = new int[] { 0, -1, 0, 1 };
-    // !!!!!!!!! 밑에 getlength한번 테스트해보고 안되면 위치 바꿔보기
+
     private void BFS(int[,] maze, int code, int startPositionx, int startPositiony, int GoalPositionx, int GoalPositiony)
     {
         if (code == 0)
